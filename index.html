@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ale Cadario — Oradora, Fundadora, Experta en Ventas B2B</title>
+  <meta name="description" content="Ale Cadario: +20 años de experiencia en ventas y negocios internacionales. Oradora, fundadora de Oike y Piraí, experta en prospección B2B e IA aplicada a ventas." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    /* ── RESET & BASE ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --accent: #0D9488;
+      --accent-light: #14B8A6;
+      --accent-bg: rgba(13,148,136,0.08);
+      --accent-border: rgba(13,148,136,0.25);
+      --bg: #FAFBFC;
+      --bg-white: #FFFFFF;
+      --bg-section: #F1F5F9;
+      --text: #1E293B;
+      --text-secondary: #64748B;
+      --text-muted: #94A3B8;
+      --border: #E2E8F0;
+      --radius: 16px;
+      --radius-sm: 12px;
+      --radius-xs: 8px;
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.06);
+      --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
+      --shadow-lg: 0 8px 30px rgba(0,0,0,0.1);
+      --max-width: 1200px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 24px;
+      height: 64px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .nav-inner {
+      max-width: var(--max-width); width: 100%;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-logo {
+      display: flex; align-items: center; gap: 10px;
+      font-weight: 800; font-size: 18px; color: var(--text);
+      text-decoration: none;
+    }
+    .nav-logo-dot {
+      width: 10px; height: 10px; border-radius: 50%;
+      background: var(--accent);
+      display: inline-block;
+    }
+    .nav-links { display: flex; align-items: center; gap: 6px; }
+    .nav-link {
+      padding: 8px 16px; border-radius: var(--radius-xs);
+      font-size: 14px; font-weight: 500; color: var(--text-secondary);
+      text-decoration: none; transition: all 0.15s;
+    }
+    .nav-link:hover { background: var(--bg-section); color: var(--text); }
+    .nav-cta {
+      padding: 8px 20px; border-radius: var(--radius-xs); border: none;
+      background: var(--accent); color: white; font-size: 14px; font-weight: 600;
+      cursor: pointer; text-decoration: none; transition: background 0.15s;
+      margin-left: 8px;
+    }
+    .nav-cta:hover { background: var(--accent-light); }
+    .nav-hamburger {
+      display: none; background: none; border: none; cursor: pointer;
+      font-size: 24px; color: var(--text); padding: 4px;
+    }
+
+    /* Language toggle */
+    .lang-toggle {
+      display: flex; align-items: center; gap: 0;
+      background: var(--bg-section); border-radius: 20px;
+      padding: 3px; margin-left: 12px; border: 1px solid var(--border);
+    }
+    .lang-btn {
+      padding: 4px 12px; border-radius: 16px; border: none;
+      background: transparent; color: var(--text-muted);
+      font-size: 12px; font-weight: 700; cursor: pointer;
+      transition: all 0.2s; letter-spacing: 0.5px;
+    }
+    .lang-btn.active {
+      background: white; color: var(--text);
+      box-shadow: var(--shadow-sm);
+    }
+
+    /* ── SECTION SHARED ── */
+    .section { padding: 96px 24px; }
+    .section-alt { background: var(--bg-section); }
+    .section-inner { max-width: var(--max-width); margin: 0 auto; }
+    .section-header { text-align: center; margin-bottom: 56px; }
+    .section-header h2 {
+      font-size: clamp(28px, 4vw, 42px); font-weight: 800;
+      line-height: 1.2; margin-bottom: 16px;
+    }
+    .section-header h2 span { color: var(--accent); }
+    .section-header p {
+      font-size: 17px; color: var(--text-secondary);
+      max-width: 600px; margin: 0 auto;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      max-width: var(--max-width); margin: 0 auto;
+      padding: 80px 24px 64px;
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 64px; align-items: center;
+    }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--accent-bg); color: var(--accent);
+      border: 1px solid var(--accent-border); border-radius: 24px;
+      padding: 6px 16px; font-size: 13px; font-weight: 600;
+      margin-bottom: 28px;
+    }
+    .hero-badge-dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: var(--accent);
+      animation: pulse 2s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.4; }
+    }
+    .hero h1 {
+      font-size: clamp(36px, 5.5vw, 60px);
+      font-weight: 900; line-height: 1.08;
+      margin-bottom: 20px;
+    }
+    .hero h1 span { color: var(--accent); }
+    .hero-sub {
+      font-size: clamp(16px, 1.8vw, 19px);
+      color: var(--text-secondary);
+      margin-bottom: 36px; max-width: 480px;
+    }
+    .hero-sub strong { color: var(--text); font-weight: 600; }
+    .hero-ctas { display: flex; gap: 12px; margin-bottom: 48px; flex-wrap: wrap; }
+    .btn-primary {
+      padding: 14px 28px; border-radius: var(--radius-sm); border: none;
+      background: var(--accent); color: white; font-size: 15px; font-weight: 700;
+      cursor: pointer; text-decoration: none; transition: all 0.2s;
+      display: inline-flex; align-items: center; gap: 8px;
+    }
+    .btn-primary:hover { background: var(--accent-light); transform: translateY(-1px); box-shadow: var(--shadow-md); }
+    .btn-ghost {
+      padding: 14px 28px; border-radius: var(--radius-sm);
+      border: 1px solid var(--border); background: white;
+      color: var(--text); font-size: 15px; font-weight: 600;
+      cursor: pointer; text-decoration: none; transition: all 0.15s;
+      display: inline-flex; align-items: center; gap: 8px;
+    }
+    .btn-ghost:hover { background: var(--bg-section); border-color: var(--text-muted); }
+
+    /* Stats row */
+    .hero-stats {
+      display: flex; gap: 40px;
+      padding-top: 32px; border-top: 1px solid var(--border);
+    }
+    .hero-stat-number {
+      font-size: 32px; font-weight: 800; color: var(--accent);
+      line-height: 1;
+    }
+    .hero-stat-label {
+      font-size: 13px; color: var(--text-secondary);
+      margin-top: 4px;
+    }
+
+    /* Hero image */
+    .hero-image {
+      position: relative; display: flex;
+      justify-content: center; align-items: center;
+    }
+    .hero-image-wrapper {
+      position: relative; width: 100%; max-width: 440px;
+      aspect-ratio: 3/4; border-radius: 24px; overflow: hidden;
+      background: linear-gradient(135deg, var(--accent-bg), var(--bg-section));
+      border: 2px solid var(--accent-border);
+    }
+    .hero-image-wrapper img {
+      width: 100%; height: 100%; object-fit: cover;
+    }
+    .hero-image-placeholder {
+      width: 100%; height: 100%;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      color: var(--text-muted); font-size: 14px; gap: 8px;
+    }
+    .hero-image-placeholder svg { opacity: 0.4; }
+    .hero-image-float {
+      position: absolute; bottom: -16px; left: -16px;
+      background: white; border-radius: var(--radius-sm);
+      padding: 12px 16px; box-shadow: var(--shadow-lg);
+      display: flex; align-items: center; gap: 10px;
+      font-size: 13px; font-weight: 600; color: var(--text);
+    }
+    .hero-image-float-icon {
+      width: 36px; height: 36px; border-radius: 8px;
+      background: var(--accent-bg); color: var(--accent);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px;
+    }
+
+    /* ── ABOUT ── */
+    .about-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 64px; align-items: center;
+    }
+    .about-text h2 {
+      font-size: clamp(28px, 4vw, 40px); font-weight: 800;
+      line-height: 1.2; margin-bottom: 24px;
+    }
+    .about-text h2 span { color: var(--accent); }
+    .about-text p {
+      font-size: 16px; color: var(--text-secondary);
+      margin-bottom: 16px; line-height: 1.7;
+    }
+    .about-text p strong { color: var(--text); }
+    .about-text .about-mission {
+      font-size: 17px; font-weight: 600; color: var(--text);
+      margin-top: 24px; padding-top: 24px;
+      border-top: 1px solid var(--border);
+    }
+    .about-video {
+      border-radius: var(--radius); overflow: hidden;
+      background: var(--bg-section); aspect-ratio: 9/16;
+      max-height: 500px;
+      display: flex; align-items: center; justify-content: center;
+      border: 1px solid var(--border);
+    }
+    .about-video-placeholder {
+      text-align: center; color: var(--text-muted);
+      font-size: 14px; padding: 24px;
+    }
+
+    /* ── SERVICES ── */
+    .services-featured {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 32px; margin-bottom: 32px;
+    }
+    .service-card {
+      background: white; border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 32px;
+      transition: all 0.2s;
+    }
+    .service-card:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
+    .service-icon {
+      width: 48px; height: 48px; border-radius: var(--radius-xs);
+      background: var(--accent-bg); color: var(--accent);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 22px; margin-bottom: 20px;
+    }
+    .service-tag {
+      font-size: 11px; font-weight: 700; letter-spacing: 0.5px;
+      text-transform: uppercase; color: var(--accent);
+      margin-bottom: 10px;
+    }
+    .service-card h3 {
+      font-size: 20px; font-weight: 700; margin-bottom: 12px;
+      color: var(--text);
+    }
+    .service-card p {
+      font-size: 14px; color: var(--text-secondary);
+      line-height: 1.6; margin-bottom: 16px;
+    }
+    .service-bullets {
+      list-style: none; padding: 0;
+      display: flex; flex-direction: column; gap: 8px;
+      margin-bottom: 24px;
+    }
+    .service-bullets li {
+      font-size: 14px; color: var(--text-secondary);
+      display: flex; align-items: center; gap: 8px;
+    }
+    .service-bullets li::before {
+      content: ''; width: 6px; height: 6px;
+      border-radius: 50%; background: var(--accent);
+      flex-shrink: 0;
+    }
+    .btn-service {
+      padding: 10px 20px; border-radius: var(--radius-xs);
+      border: 1px solid var(--border); background: white;
+      color: var(--text); font-size: 14px; font-weight: 600;
+      cursor: pointer; text-decoration: none; transition: all 0.15s;
+      display: inline-flex; align-items: center; gap: 6px;
+    }
+    .btn-service:hover { background: var(--bg-section); }
+
+    /* ── PRODUCTS ── */
+    .products-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 32px;
+    }
+    .product-card {
+      background: white; border: 1px solid var(--border);
+      border-radius: var(--radius); overflow: hidden;
+      transition: all 0.2s;
+    }
+    .product-card:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
+    .product-card-image {
+      height: 200px; display: flex;
+      align-items: center; justify-content: center;
+      font-size: 48px; font-weight: 900;
+    }
+    .product-card-image.oike {
+      background: linear-gradient(135deg, #12121F, #1A1A2E);
+      color: #5BBFB5;
+    }
+    .product-card-image.pirai {
+      background: linear-gradient(135deg, #7C3AED, #4338CA);
+      color: white;
+    }
+    .product-card-body { padding: 28px; }
+    .product-card-body h3 { font-size: 20px; font-weight: 700; margin-bottom: 8px; }
+    .product-card-body p { font-size: 14px; color: var(--text-secondary); line-height: 1.6; margin-bottom: 20px; }
+
+    /* ── TESTIMONIALS ── */
+    .testimonials-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .testimonial-card {
+      background: white; border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 28px;
+    }
+    .testimonial-quote {
+      font-size: 15px; color: var(--text-secondary);
+      line-height: 1.7; margin-bottom: 20px;
+      font-style: italic;
+    }
+    .testimonial-quote::before {
+      content: '\201C'; font-size: 32px; color: var(--accent);
+      font-weight: 700; line-height: 0; display: block;
+      margin-bottom: 8px;
+    }
+    .testimonial-author { display: flex; align-items: center; gap: 12px; }
+    .testimonial-avatar {
+      width: 40px; height: 40px; border-radius: 50%;
+      background: var(--accent-bg); color: var(--accent);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 16px; font-weight: 700;
+    }
+    .testimonial-name { font-size: 14px; font-weight: 600; color: var(--text); }
+    .testimonial-role { font-size: 12px; color: var(--text-muted); }
+
+    /* ── NEWSLETTER ── */
+    .newsletter {
+      text-align: center; padding: 80px 24px;
+      background: linear-gradient(135deg, var(--accent), var(--accent-light));
+      color: white;
+    }
+    .newsletter-inner { max-width: 600px; margin: 0 auto; }
+    .newsletter h2 { font-size: clamp(24px, 4vw, 36px); font-weight: 800; margin-bottom: 16px; }
+    .newsletter p { font-size: 16px; opacity: 0.9; margin-bottom: 32px; }
+    .btn-newsletter {
+      padding: 16px 32px; border-radius: var(--radius-sm);
+      border: 2px solid white; background: white;
+      color: var(--accent); font-size: 16px; font-weight: 700;
+      cursor: pointer; text-decoration: none; transition: all 0.2s;
+      display: inline-flex; align-items: center; gap: 8px;
+    }
+    .btn-newsletter:hover { background: transparent; color: white; }
+
+    /* ── CTA FINAL ── */
+    .cta-final { text-align: center; padding: 96px 24px; }
+    .cta-final h2 { font-size: clamp(28px, 4vw, 42px); font-weight: 800; margin-bottom: 16px; }
+    .cta-final h2 span { color: var(--accent); }
+    .cta-final p { font-size: 17px; color: var(--text-secondary); max-width: 500px; margin: 0 auto 36px; }
+    .cta-final-buttons { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+
+    /* ── FOOTER ── */
+    footer { border-top: 1px solid var(--border); padding: 40px 24px; text-align: center; }
+    .footer-inner {
+      max-width: var(--max-width); margin: 0 auto;
+      display: flex; flex-direction: column; align-items: center; gap: 16px;
+    }
+    .footer-links { display: flex; gap: 24px; }
+    .footer-links a { font-size: 13px; color: var(--text-muted); text-decoration: none; transition: color 0.15s; }
+    .footer-links a:hover { color: var(--accent); }
+    .footer-copy { font-size: 12px; color: var(--text-muted); }
+
+    /* ── MOBILE NAV MENU ── */
+    .nav-mobile-menu {
+      display: none; position: fixed; top: 64px; left: 0; right: 0;
+      background: white; border-bottom: 1px solid var(--border);
+      padding: 16px 24px; box-shadow: var(--shadow-lg); z-index: 99;
+      flex-direction: column; gap: 4px;
+    }
+    .nav-mobile-menu.open { display: flex; }
+    .nav-mobile-menu a {
+      padding: 12px 16px; border-radius: var(--radius-xs);
+      font-size: 15px; font-weight: 500; color: var(--text);
+      text-decoration: none;
+    }
+    .nav-mobile-menu a:hover { background: var(--bg-section); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .hero { grid-template-columns: 1fr; gap: 40px; padding: 48px 24px 40px; }
+      .hero-image { order: -1; }
+      .hero-image-wrapper { max-width: 320px; margin: 0 auto; }
+      .hero-stats { gap: 24px; flex-wrap: wrap; }
+      .about-grid { grid-template-columns: 1fr; gap: 40px; }
+      .about-video { order: -1; max-height: 400px; }
+      .services-featured { grid-template-columns: 1fr; }
+      .products-grid { grid-template-columns: 1fr; }
+      .testimonials-grid { grid-template-columns: 1fr; }
+      .nav-links { display: none; }
+      .nav-hamburger { display: block; }
+      .section { padding: 64px 24px; }
+    }
+
+    @media (max-width: 480px) {
+      .hero h1 { font-size: 32px; }
+      .hero-stats { flex-direction: column; gap: 16px; }
+      .hero-ctas { flex-direction: column; }
+      .btn-primary, .btn-ghost { width: 100%; justify-content: center; }
+      .cta-final-buttons { flex-direction: column; align-items: center; }
+    }
+
+    /* ── ANIMATIONS ── */
+    .fade-up {
+      opacity: 0; transform: translateY(24px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
+  </style>
+</head>
+<body>
+
+  <!-- ═══ NAV ═══ -->
+  <nav>
+    <div class="nav-inner">
+      <a href="#" class="nav-logo">
+        <span class="nav-logo-dot"></span> Ale Cadario
+      </a>
+      <div class="nav-links">
+        <a href="#sobre-mi" class="nav-link" data-es="Sobre m&iacute;" data-en="About">Sobre m&iacute;</a>
+        <a href="#charlas" class="nav-link" data-es="Charlas" data-en="Speaking">Charlas</a>
+        <a href="#productos" class="nav-link" data-es="Productos" data-en="Products">Productos</a>
+        <a href="#libro" class="nav-link" data-es="Libro" data-en="Book">Libro</a>
+        <a href="#testimonios" class="nav-link" data-es="Testimonios" data-en="Testimonials">Testimonios</a>
+        <a href="#contacto" class="nav-cta" data-es="Hablemos &rarr;" data-en="Let's talk &rarr;">Hablemos &rarr;</a>
+        <div class="lang-toggle">
+          <button class="lang-btn active" onclick="setLang('es')">ES</button>
+          <button class="lang-btn" onclick="setLang('en')">EN</button>
+        </div>
+      </div>
+      <button class="nav-hamburger" onclick="toggleMenu()" aria-label="Menu">&#9776;</button>
+    </div>
+  </nav>
+  <div class="nav-mobile-menu" id="mobileMenu">
+    <a href="#sobre-mi" onclick="closeMenu()" data-es="Sobre m&iacute;" data-en="About">Sobre m&iacute;</a>
+    <a href="#charlas" onclick="closeMenu()" data-es="Charlas" data-en="Speaking">Charlas</a>
+    <a href="#productos" onclick="closeMenu()" data-es="Productos" data-en="Products">Productos</a>
+    <a href="#libro" onclick="closeMenu()" data-es="Libro" data-en="Book">Libro</a>
+    <a href="#testimonios" onclick="closeMenu()" data-es="Testimonios" data-en="Testimonials">Testimonios</a>
+    <a href="#contacto" onclick="closeMenu()" data-es="Hablemos" data-en="Let's talk">Hablemos</a>
+    <div class="lang-toggle" style="margin-top:8px;">
+      <button class="lang-btn active" onclick="setLang('es')">ES</button>
+      <button class="lang-btn" onclick="setLang('en')">EN</button>
+    </div>
+  </div>
+
+  <!-- ═══ HERO ═══ -->
+  <section class="hero">
+    <div class="hero-content">
+      <div class="hero-badge">
+        <span class="hero-badge-dot"></span>
+        <span data-es="+20 a&ntilde;os en ventas y negocios" data-en="+20 years in sales &amp; business">+20 a&ntilde;os en ventas y negocios</span>
+      </div>
+      <h1 data-es="Hola, soy <span>Ale<br>Cadario</span>" data-en="Hi, I'm <span>Ale<br>Cadario</span>">Hola, soy <span>Ale<br>Cadario</span></h1>
+      <p class="hero-sub" data-es="Experta en <strong>Ventas B2B</strong> y fan&aacute;tica de construir herramientas que realmente generen oportunidades." data-en="<strong>B2B Sales</strong> expert and obsessed with building tools that actually create opportunities.">Experta en <strong>Ventas B2B</strong> y fan&aacute;tica de construir herramientas que realmente generen oportunidades.</p>
+      <div class="hero-ctas">
+        <a href="#charlas" class="btn-primary" data-es="Contratame como speaker &rarr;" data-en="Book me as a speaker &rarr;">Contratame como speaker &rarr;</a>
+        <a href="#productos" class="btn-ghost" data-es="Conoc&eacute; mis productos" data-en="See my products">Conoc&eacute; mis productos</a>
+      </div>
+      <div class="hero-stats">
+        <div>
+          <div class="hero-stat-number">+6</div>
+          <div class="hero-stat-label" data-es="Pa&iacute;ses donde viv&iacute;<br>y trabaj&eacute;" data-en="Countries lived<br>&amp; worked in">Pa&iacute;ses donde viv&iacute;<br>y trabaj&eacute;</div>
+        </div>
+        <div>
+          <div class="hero-stat-number">+20</div>
+          <div class="hero-stat-label" data-es="A&ntilde;os de<br>experiencia" data-en="Years of<br>experience">A&ntilde;os de<br>experiencia</div>
+        </div>
+        <div>
+          <div class="hero-stat-number">+60K</div>
+          <div class="hero-stat-label" data-es="Seguidores en<br>redes sociales" data-en="Social media<br>followers">Seguidores en<br>redes sociales</div>
+        </div>
+        <div>
+          <div class="hero-stat-number">2</div>
+          <div class="hero-stat-label" data-es="Productos tech<br>propios" data-en="Tech products<br>built">Productos tech<br>propios</div>
+        </div>
+      </div>
+    </div>
+    <div class="hero-image">
+      <div class="hero-image-wrapper">
+        <div class="hero-image-placeholder">
+          <svg width="48" height="48" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"/></svg>
+          <span>Tu foto profesional ac&aacute;</span>
+        </div>
+      </div>
+      <div class="hero-image-float">
+        <div class="hero-image-float-icon">&#9889;</div>
+        <div>
+          <div style="font-weight:700; font-size:14px;" data-es="Oradora &amp; Fundadora" data-en="Speaker &amp; Founder">Oradora &amp; Fundadora</div>
+          <div style="font-size:12px; color:var(--text-muted);">Oike &bull; Pira&iacute; &bull; Coomadres</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ SOBRE MÍ ═══ -->
+  <section class="section section-alt" id="sobre-mi">
+    <div class="section-inner">
+      <div class="about-grid fade-up">
+        <div class="about-text">
+          <h2 data-es="&iquest;Por qu&eacute; <span>hago esto</span>?" data-en="Why do I <span>do this</span>?">&iquest;Por qu&eacute; <span>hago esto</span>?</h2>
+          <p data-es="Crec&iacute; en Santa Cruz de la Sierra, Bolivia &mdash; tierra camba. Ah&iacute; aprend&iacute; lo m&aacute;s importante que s&eacute; sobre ventas, mucho antes de saber que me dedicar&iacute;a a esto: <strong>empat&iacute;a, conversaci&oacute;n genuina y el arte de construir relaciones.</strong> En Santa Cruz no te ense&ntilde;an frameworks de ventas. Te ense&ntilde;an a mirar a los ojos, a escuchar y a generar confianza." data-en="I grew up in Santa Cruz de la Sierra, Bolivia &mdash; camba land. That's where I learned the most important thing I know about sales, long before I knew it would be my career: <strong>empathy, genuine conversation, and the art of building relationships.</strong> In Santa Cruz, they don't teach you sales frameworks. They teach you to look people in the eye, listen, and earn trust.">Crec&iacute; en Santa Cruz de la Sierra, Bolivia &mdash; tierra camba. Ah&iacute; aprend&iacute; lo m&aacute;s importante que s&eacute; sobre ventas, mucho antes de saber que me dedicar&iacute;a a esto: <strong>empat&iacute;a, conversaci&oacute;n genuina y el arte de construir relaciones.</strong> En Santa Cruz no te ense&ntilde;an frameworks de ventas. Te ense&ntilde;an a mirar a los ojos, a escuchar y a generar confianza.</p>
+          <p data-es="Despu&eacute;s viv&iacute; en Canad&aacute;, Costa Rica, B&eacute;lgica, Argentina y Espa&ntilde;a. Cada pa&iacute;s me ense&ntilde;&oacute; algo distinto sobre c&oacute;mo abrir puertas y generar negocios. No desde la teor&iacute;a &mdash; desde la trinchera." data-en="Then I lived in Canada, Costa Rica, Belgium, Argentina, and Spain. Each country taught me something different about opening doors and generating business. Not from theory &mdash; from the trenches.">Despu&eacute;s viv&iacute; en Canad&aacute;, Costa Rica, B&eacute;lgica, Argentina y Espa&ntilde;a. Cada pa&iacute;s me ense&ntilde;&oacute; algo distinto sobre c&oacute;mo abrir puertas y generar negocios. No desde la teor&iacute;a &mdash; desde la trinchera.</p>
+          <p data-es="En esos 20 a&ntilde;os vi algo que me frustraba profundamente: existen 100.000 CRMs y herramientas de IA &mdash; pero nada cambia si la gente no carga la informaci&oacute;n, no sabe leerla y no tiene pensamiento cr&iacute;tico para actuar sobre ella. <strong>El problema nunca fue la tecnolog&iacute;a. Siempre fue c&oacute;mo la usamos.</strong>" data-en="Over those 20 years I saw something deeply frustrating: there are 100,000 CRMs and AI tools out there &mdash; but nothing changes if people don't fill in the data, can't read it, and lack the critical thinking to act on it. <strong>The problem was never the technology. It was always how we use it.</strong>">En esos 20 a&ntilde;os vi algo que me frustraba profundamente: existen 100.000 CRMs y herramientas de IA &mdash; pero nada cambia si la gente no carga la informaci&oacute;n, no sabe leerla y no tiene pensamiento cr&iacute;tico para actuar sobre ella. <strong>El problema nunca fue la tecnolog&iacute;a. Siempre fue c&oacute;mo la usamos.</strong></p>
+          <p data-es="Por eso cre&eacute; <strong>Oike</strong> y <strong>Pira&iacute;</strong>: no para sumar otra herramienta al mercado, sino para resolver lo que las dem&aacute;s ignoran. Herramientas que te dicen a qui&eacute;n contactar, cu&aacute;ndo y con qu&eacute; mensaje &mdash; sin depender de que alguien llene un campo m&aacute;s." data-en="That's why I built <strong>Oike</strong> and <strong>Pira&iacute;</strong>: not to add another tool to the market, but to fix what the others ignore. Tools that tell you who to contact, when, and with what message &mdash; without depending on someone filling in yet another field.">Por eso cre&eacute; <strong>Oike</strong> y <strong>Pira&iacute;</strong>: no para sumar otra herramienta al mercado, sino para resolver lo que las dem&aacute;s ignoran. Herramientas que te dicen a qui&eacute;n contactar, cu&aacute;ndo y con qu&eacute; mensaje &mdash; sin depender de que alguien llene un campo m&aacute;s.</p>
+          <p class="about-mission" data-es="Mi misi&oacute;n es clara: ayudarte a abrir m&aacute;s oportunidades." data-en="My mission is clear: help you open more opportunities.">Mi misi&oacute;n es clara: ayudarte a abrir m&aacute;s oportunidades.</p>
+        </div>
+        <div class="about-video">
+          <div class="about-video-placeholder">
+            <svg width="48" height="48" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15.91 11.672a.375.375 0 010 .656l-5.603 3.113a.375.375 0 01-.557-.328V8.887c0-.286.307-.466.557-.327l5.603 3.112z"/></svg>
+            <p style="margin-top:12px;">Embed&iacute; tu video ac&aacute;<br><small>(TikTok, LinkedIn o YouTube)</small></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ CHARLAS ═══ -->
+  <section class="section" id="charlas">
+    <div class="section-inner">
+      <div class="section-header fade-up">
+        <h2 data-es="&iquest;Sobre qu&eacute; <span>puedo hablar</span>?" data-en="What do I <span>speak about</span>?">&iquest;Sobre qu&eacute; <span>puedo hablar</span>?</h2>
+        <p data-es="Temas pensados para equipos que quieren resultados reales, no teor&iacute;a de manual." data-en="Topics designed for teams that want real results, not textbook theory.">Temas pensados para equipos que quieren resultados reales, no teor&iacute;a de manual.</p>
+      </div>
+      <div class="services-featured fade-up">
+        <!-- Card 1 -->
+        <div class="service-card">
+          <div class="service-icon">&#128200;</div>
+          <div class="service-tag" data-es="PARA EQUIPOS DE VENTAS B2B" data-en="FOR B2B SALES TEAMS">PARA EQUIPOS DE VENTAS B2B</div>
+          <h3 data-es="Prospecci&oacute;n y Generaci&oacute;n de Oportunidades" data-en="Prospecting &amp; Opportunity Generation">Prospecci&oacute;n y Generaci&oacute;n de Oportunidades</h3>
+          <p data-es="C&oacute;mo construir un sistema de prospecci&oacute;n que genere pipeline predecible. Sin f&oacute;rmulas m&aacute;gicas &mdash; con disciplina, datos y personalizaci&oacute;n." data-en="How to build a prospecting system that generates predictable pipeline. No magic formulas &mdash; just discipline, data, and personalization.">C&oacute;mo construir un sistema de prospecci&oacute;n que genere pipeline predecible. Sin f&oacute;rmulas m&aacute;gicas &mdash; con disciplina, datos y personalizaci&oacute;n.</p>
+          <ul class="service-bullets">
+            <li data-es="Frameworks de prospecci&oacute;n multicanal (email, LinkedIn, WhatsApp)" data-en="Multichannel prospecting frameworks (email, LinkedIn, WhatsApp)">Frameworks de prospecci&oacute;n multicanal (email, LinkedIn, WhatsApp)</li>
+            <li data-es="C&oacute;mo usar IA para personalizar outreach a escala" data-en="How to use AI to personalize outreach at scale">C&oacute;mo usar IA para personalizar outreach a escala</li>
+            <li data-es="De actividad a conversi&oacute;n: m&eacute;tricas que importan" data-en="From activity to conversion: metrics that matter">De actividad a conversi&oacute;n: m&eacute;tricas que importan</li>
+          </ul>
+          <a href="#contacto" class="btn-service" data-es="Contratar esta charla &rarr;" data-en="Book this talk &rarr;">Contratar esta charla &rarr;</a>
+        </div>
+        <!-- Card 2 -->
+        <div class="service-card">
+          <div class="service-icon">&#127758;</div>
+          <div class="service-tag" data-es="PARA EVENTOS Y CONFERENCIAS" data-en="FOR EVENTS &amp; CONFERENCES">PARA EVENTOS Y CONFERENCIAS</div>
+          <h3 data-es="Migraci&oacute;n, Resiliencia y Reinvenci&oacute;n" data-en="Migration, Resilience &amp; Reinvention">Migraci&oacute;n, Resiliencia y Reinvenci&oacute;n</h3>
+          <p data-es="La historia de una boliviana que construy&oacute; carrera en 6 pa&iacute;ses, fund&oacute; empresas y aprendi&oacute; que las oportunidades no se esperan &mdash; se crean." data-en="The story of a Bolivian woman who built a career across 6 countries, founded companies, and learned that opportunities aren't waited for &mdash; they're created.">La historia de una boliviana que construy&oacute; carrera en 6 pa&iacute;ses, fund&oacute; empresas y aprendi&oacute; que las oportunidades no se esperan &mdash; se crean.</p>
+          <ul class="service-bullets">
+            <li data-es="C&oacute;mo empezar de cero (m&aacute;s de una vez) y salir adelante" data-en="How to start from zero (more than once) and thrive">C&oacute;mo empezar de cero (m&aacute;s de una vez) y salir adelante</li>
+            <li data-es="Adaptaci&oacute;n cultural como ventaja competitiva" data-en="Cultural adaptation as a competitive advantage">Adaptaci&oacute;n cultural como ventaja competitiva</li>
+            <li data-es="De empleada a fundadora: el camino real" data-en="From employee to founder: the real path">De empleada a fundadora: el camino real</li>
+          </ul>
+          <a href="#contacto" class="btn-service" data-es="Contratar esta charla &rarr;" data-en="Book this talk &rarr;">Contratar esta charla &rarr;</a>
+        </div>
+        <!-- Card 3 -->
+        <div class="service-card">
+          <div class="service-icon">&#128170;</div>
+          <div class="service-tag" data-es="PARA COMUNIDADES Y ORGANIZACIONES" data-en="FOR COMMUNITIES &amp; ORGANIZATIONS">PARA COMUNIDADES Y ORGANIZACIONES</div>
+          <h3 data-es="Mujeres, Liderazgo y Comunidad" data-en="Women, Leadership &amp; Community">Mujeres, Liderazgo y Comunidad</h3>
+          <p data-es="Fundadora de Coomadres, una comunidad de mujeres que se apoyan para crecer. Hablo sobre liderazgo femenino desde la acci&oacute;n, no el discurso." data-en="Founder of Coomadres, a community of women who support each other's growth. I speak about female leadership from action, not theory.">Fundadora de Coomadres, una comunidad de mujeres que se apoyan para crecer. Hablo sobre liderazgo femenino desde la acci&oacute;n, no el discurso.</p>
+          <ul class="service-bullets">
+            <li data-es="Construir comunidad como estrategia de crecimiento" data-en="Building community as a growth strategy">Construir comunidad como estrategia de crecimiento</li>
+            <li data-es="Liderazgo sin permiso: hac&eacute;, no esperes" data-en="Leadership without permission: act, don't wait">Liderazgo sin permiso: hac&eacute;, no esperes</li>
+            <li data-es="El poder de las redes de apoyo entre mujeres" data-en="The power of women's support networks">El poder de las redes de apoyo entre mujeres</li>
+          </ul>
+          <a href="#contacto" class="btn-service" data-es="Contratar esta charla &rarr;" data-en="Book this talk &rarr;">Contratar esta charla &rarr;</a>
+        </div>
+        <!-- Card 4 -->
+        <div class="service-card">
+          <div class="service-icon">&#129302;</div>
+          <div class="service-tag" data-es="PARA EQUIPOS TECH Y COMERCIALES" data-en="FOR TECH &amp; COMMERCIAL TEAMS">PARA EQUIPOS TECH Y COMERCIALES</div>
+          <h3 data-es="IA Aplicada a Ventas" data-en="AI Applied to Sales">IA Aplicada a Ventas</h3>
+          <p data-es="No hablo de IA en abstracto. Constru&iacute; dos productos con IA integrada. Muestro c&oacute;mo usarla para vender m&aacute;s, no para parecer moderno." data-en="I don't talk about AI in the abstract. I built two products with integrated AI. I show how to use it to sell more, not to look modern.">No hablo de IA en abstracto. Constru&iacute; dos productos con IA integrada. Muestro c&oacute;mo usarla para vender m&aacute;s, no para parecer moderno.</p>
+          <ul class="service-bullets">
+            <li data-es="Mensajes personalizados con IA a escala real" data-en="AI-personalized messages at real scale">Mensajes personalizados con IA a escala real</li>
+            <li data-es="Sales intelligence: de dato crudo a acci&oacute;n comercial" data-en="Sales intelligence: from raw data to commercial action">Sales intelligence: de dato crudo a acci&oacute;n comercial</li>
+            <li data-es="Caso real: c&oacute;mo constru&iacute; Oike desde cero" data-en="Real case: how I built Oike from scratch">Caso real: c&oacute;mo constru&iacute; Oike desde cero</li>
+          </ul>
+          <a href="#contacto" class="btn-service" data-es="Contratar esta charla &rarr;" data-en="Book this talk &rarr;">Contratar esta charla &rarr;</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ PRODUCTOS ═══ -->
+  <section class="section section-alt" id="productos">
+    <div class="section-inner">
+      <div class="section-header fade-up">
+        <h2 data-es="No solo hablo de ventas. <span>Construyo las herramientas.</span>" data-en="I don't just talk about sales. <span>I build the tools.</span>">No solo hablo de ventas. <span>Construyo las herramientas.</span></h2>
+        <p data-es="Una para el que est&aacute; empezando solo. Otra para el que ya tiene clientes pero le falta estructura. Las dos nacieron del mismo lugar: lo que faltaba en el mercado." data-en="One for those starting out alone. Another for those who already have clients but lack structure. Both were born from the same place: what the market was missing.">Una para el que est&aacute; empezando solo. Otra para el que ya tiene clientes pero le falta estructura. Las dos nacieron del mismo lugar: lo que faltaba en el mercado.</p>
+      </div>
+      <div class="products-grid fade-up">
+        <!-- Piraí -->
+        <div class="product-card">
+          <div class="product-card-image pirai"><span>Pira&iacute;</span></div>
+          <div class="product-card-body">
+            <div class="service-tag" data-es="GRATUITA" data-en="FREE">GRATUITA</div>
+            <h3 data-es="Pira&iacute; &mdash; Tu primer paso cuando no sab&eacute;s por d&oacute;nde empezar" data-en="Pira&iacute; &mdash; Your first step when you don't know where to start">Pira&iacute; &mdash; Tu primer paso cuando no sab&eacute;s por d&oacute;nde empezar</h3>
+            <p data-es="Te acab&aacute;s de mudar a otro pa&iacute;s y no ten&eacute;s contactos. Est&aacute;s buscando trabajo y no sab&eacute;s a qui&eacute;n hablarle. O arrancaste a emprender solo y sent&iacute;s que das vueltas sin avanzar. Pira&iacute; es para vos: te ayuda a definir objetivos, identificar contactos clave y hacer seguimiento de cada paso. Sin pagar un peso." data-en="You just moved to a new country with no contacts. You're job hunting and don't know who to reach out to. Or you started a business alone and feel like you're going in circles. Pira&iacute; is for you: it helps you set goals, identify key contacts, and track every step. Completely free.">Te acab&aacute;s de mudar a otro pa&iacute;s y no ten&eacute;s contactos. Est&aacute;s buscando trabajo y no sab&eacute;s a qui&eacute;n hablarle. O arrancaste a emprender solo y sent&iacute;s que das vueltas sin avanzar. Pira&iacute; es para vos: te ayuda a definir objetivos, identificar contactos clave y hacer seguimiento de cada paso. Sin pagar un peso.</p>
+            <a href="https://pirai.app" target="_blank" class="btn-primary" data-es="Empez&aacute; gratis &rarr;" data-en="Start free &rarr;">Empez&aacute; gratis &rarr;</a>
+          </div>
+        </div>
+        <!-- Oike -->
+        <div class="product-card">
+          <div class="product-card-image oike"><span>Oike</span></div>
+          <div class="product-card-body">
+            <div class="service-tag" data-es="PARA PYMES Y EMPRENDEDORES CON CLIENTES" data-en="FOR SMES &amp; ENTREPRENEURS WITH CLIENTS">PARA PYMES Y EMPRENDEDORES CON CLIENTES</div>
+            <h3 data-es="Oike &mdash; Inteligencia comercial para vender con estrategia" data-en="Oike &mdash; Sales intelligence to sell with strategy">Oike &mdash; Inteligencia comercial para vender con estrategia</h3>
+            <p data-es="Ya ten&eacute;s clientes pero te falta estructura. No sab&eacute;s qu&eacute; cuentas priorizar, qu&eacute; decirle a cada contacto o cu&aacute;ndo hacer seguimiento. Oike te da la visi&oacute;n completa: cuentas, stakeholders, oportunidades, mensajes con IA y estrategia comercial en un solo lugar." data-en="You already have clients but lack structure. You don't know which accounts to prioritize, what to say to each contact, or when to follow up. Oike gives you the full picture: accounts, stakeholders, opportunities, AI-powered messages, and commercial strategy in one place.">Ya ten&eacute;s clientes pero te falta estructura. No sab&eacute;s qu&eacute; cuentas priorizar, qu&eacute; decirle a cada contacto o cu&aacute;ndo hacer seguimiento. Oike te da la visi&oacute;n completa: cuentas, stakeholders, oportunidades, mensajes con IA y estrategia comercial en un solo lugar.</p>
+            <a href="https://oike.app" target="_blank" class="btn-service" data-es="Conocer Oike &rarr;" data-en="Discover Oike &rarr;">Conocer Oike &rarr;</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ LIBRO ═══ -->
+  <section class="section" id="libro">
+    <div class="section-inner">
+      <div class="about-grid fade-up" style="gap:48px;">
+        <div class="about-text">
+          <div class="service-tag" data-es="MI LIBRO" data-en="MY BOOK">MI LIBRO</div>
+          <h2 data-es="Lejos de casa, <span>cerca de m&iacute;</span>" data-en="Far from home, <span>close to myself</span>">Lejos de casa, <span>cerca de m&iacute;</span></h2>
+          <p data-es="La historia real de dejar todo lo conocido y construir una vida nueva. De Bolivia a Canad&aacute;, de Canad&aacute; a Espa&ntilde;a, pasando por 6 pa&iacute;ses, reinvent&aacute;ndome en cada uno." data-en="The real story of leaving everything behind and building a new life. From Bolivia to Canada, from Canada to Spain, through 6 countries, reinventing myself in each one.">La historia real de dejar todo lo conocido y construir una vida nueva. De Bolivia a Canad&aacute;, de Canad&aacute; a Espa&ntilde;a, pasando por 6 pa&iacute;ses, reinvent&aacute;ndome en cada uno.</p>
+          <p data-es="No es un libro de autoayuda. Es un relato honesto sobre migraci&oacute;n, resiliencia, identidad y las decisiones que te cambian la vida. Para cualquiera que alguna vez empez&oacute; de cero &mdash; o est&aacute; por hacerlo." data-en="This is not a self-help book. It's an honest account of migration, resilience, identity, and the decisions that change your life. For anyone who has ever started from scratch &mdash; or is about to.">No es un libro de autoayuda. Es un relato honesto sobre migraci&oacute;n, resiliencia, identidad y las decisiones que te cambian la vida. Para cualquiera que alguna vez empez&oacute; de cero &mdash; o est&aacute; por hacerlo.</p>
+          <p class="about-mission" data-es="A veces ten&eacute;s que irte lejos para encontrarte." data-en="Sometimes you have to go far away to find yourself.">A veces ten&eacute;s que irte lejos para encontrarte.</p>
+          <div style="margin-top:28px; display:flex; gap:12px; flex-wrap:wrap;">
+            <a href="https://amzn.eu/d/0g4tEX5u" target="_blank" class="btn-primary" data-es="Comprar en Amazon &rarr;" data-en="Buy on Amazon &rarr;">Comprar en Amazon &rarr;</a>
+            <a href="https://wa.me/p/26003442419318566/59162593051" target="_blank" class="btn-ghost" data-es="Comprar en Bolivia" data-en="Buy in Bolivia">Comprar en Bolivia</a>
+          </div>
+        </div>
+        <div style="display:flex; justify-content:center; align-items:center;">
+          <div style="width:280px; height:400px; border-radius:var(--radius); background: linear-gradient(135deg, #0D9488, #065F46); display:flex; flex-direction:column; align-items:center; justify-content:center; color:white; text-align:center; padding:32px; box-shadow: var(--shadow-lg);">
+            <div style="font-size:13px; font-weight:600; letter-spacing:1px; text-transform:uppercase; opacity:0.7; margin-bottom:16px;">Ale Cadario</div>
+            <div style="font-size:28px; font-weight:900; line-height:1.15; margin-bottom:12px;">Lejos de casa, cerca de m&iacute;</div>
+            <div style="width:40px; height:2px; background:rgba(255,255,255,0.4); margin:8px 0 16px;"></div>
+            <div style="font-size:12px; opacity:0.6;">Placeholder &mdash; reemplaz&aacute; con la portada real</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ TESTIMONIOS ═══ -->
+  <section class="section" id="testimonios">
+    <div class="section-inner">
+      <div class="section-header fade-up">
+        <h2 data-es="Lo que dicen de <span>trabajar conmigo</span>" data-en="What people say about <span>working with me</span>">Lo que dicen de <span>trabajar conmigo</span></h2>
+      </div>
+      <div class="testimonials-grid fade-up">
+        <div class="testimonial-card">
+          <div class="testimonial-quote" data-es="Ale tiene una energ&iacute;a que contagia. Su charla sobre prospecci&oacute;n nos cambi&oacute; la forma de pensar el outreach en todo el equipo." data-en="Ale has an energy that's contagious. Her talk on prospecting changed how our entire team thinks about outreach.">Ale tiene una energ&iacute;a que contagia. Su charla sobre prospecci&oacute;n nos cambi&oacute; la forma de pensar el outreach en todo el equipo.</div>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">N</div>
+            <div>
+              <div class="testimonial-name">Nombre Apellido</div>
+              <div class="testimonial-role">Cargo, Empresa</div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <div class="testimonial-quote" data-es="Lo que m&aacute;s valoro es que habla desde la experiencia real. No repite teor&iacute;a &mdash; te cuenta lo que hizo, lo que funcion&oacute; y lo que no." data-en="What I value most is that she speaks from real experience. She doesn't repeat theory &mdash; she tells you what she did, what worked, and what didn't.">Lo que m&aacute;s valoro es que habla desde la experiencia real. No repite teor&iacute;a &mdash; te cuenta lo que hizo, lo que funcion&oacute; y lo que no.</div>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">N</div>
+            <div>
+              <div class="testimonial-name">Nombre Apellido</div>
+              <div class="testimonial-role">Cargo, Empresa</div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <div class="testimonial-quote" data-es="Su historia de migraci&oacute;n y reinvenci&oacute;n inspir&oacute; a todo el equipo. Termin&oacute; con una standing ovation." data-en="Her story of migration and reinvention inspired the whole team. It ended with a standing ovation.">Su historia de migraci&oacute;n y reinvenci&oacute;n inspir&oacute; a todo el equipo. Termin&oacute; con una standing ovation.</div>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">N</div>
+            <div>
+              <div class="testimonial-name">Nombre Apellido</div>
+              <div class="testimonial-role">Cargo, Empresa</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ NEWSLETTER ═══ -->
+  <section class="newsletter">
+    <div class="newsletter-inner fade-up">
+      <h2 data-es="Cada semana, una idea sobre ventas que no vas a encontrar en ning&uacute;n manual." data-en="Every week, a sales insight you won't find in any textbook.">Cada semana, una idea sobre ventas que no vas a encontrar en ning&uacute;n manual.</h2>
+      <p data-es="Suscribite a mi newsletter en LinkedIn. Prospecci&oacute;n, IA, oportunidades y lo que aprendo construyendo productos." data-en="Subscribe to my LinkedIn newsletter. Prospecting, AI, opportunities, and what I learn building products.">Suscribite a mi newsletter en LinkedIn. Prospecci&oacute;n, IA, oportunidades y lo que aprendo construyendo productos.</p>
+      <a href="https://www.linkedin.com/newsletters/con-ojos-latinos-7094971123599077378/" target="_blank" class="btn-newsletter" id="newsletterBtn" data-es="Suscribite en LinkedIn &rarr;" data-en="Subscribe on LinkedIn &rarr;">Suscribite en LinkedIn &rarr;</a>
+    </div>
+  </section>
+
+  <!-- ═══ CTA FINAL ═══ -->
+  <section class="cta-final" id="contacto">
+    <h2 data-es="&iquest;Quer&eacute;s que hable en <span>tu evento</span>?" data-en="Want me to speak at <span>your event</span>?">&iquest;Quer&eacute;s que hable en <span>tu evento</span>?</h2>
+    <p data-es="Escribime y armamos una charla a medida para tu equipo, conferencia o comunidad." data-en="Reach out and we'll create a tailored talk for your team, conference, or community.">Escribime y armamos una charla a medida para tu equipo, conferencia o comunidad.</p>
+    <div class="cta-final-buttons">
+      <a href="mailto:team@alecadario.com" class="btn-primary" data-es="Escribime &rarr;" data-en="Get in touch &rarr;">Escribime &rarr;</a>
+      <a href="https://www.linkedin.com/in/alecadario/" target="_blank" class="btn-ghost" data-es="Ver mi LinkedIn" data-en="View my LinkedIn">Ver mi LinkedIn</a>
+    </div>
+  </section>
+
+  <!-- ═══ FOOTER ═══ -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-links">
+        <a href="https://www.linkedin.com/in/alecadario/" target="_blank">LinkedIn</a>
+        <a href="https://www.youtube.com/@alecadario5552/playlists" target="_blank">YouTube</a>
+        <a href="https://www.tiktok.com/@ale.cadario" target="_blank">TikTok</a>
+        <a href="https://www.instagram.com/alecadario" target="_blank">Instagram</a>
+        <a href="mailto:team@alecadario.com">team@alecadario.com</a>
+      </div>
+      <div class="footer-copy" data-es="&copy; 2026 Ale Cadario. Todos los derechos reservados." data-en="&copy; 2026 Ale Cadario. All rights reserved.">&copy; 2026 Ale Cadario. Todos los derechos reservados.</div>
+    </div>
+  </footer>
+
+  <!-- ═══ JS ═══ -->
+  <script>
+    // ── Language toggle ──
+    let currentLang = 'es';
+
+    function setLang(lang) {
+      currentLang = lang;
+      document.documentElement.lang = lang;
+
+      // Update toggle buttons
+      document.querySelectorAll('.lang-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.textContent.trim() === lang.toUpperCase());
+      });
+
+      // Update all translatable elements
+      document.querySelectorAll('[data-' + lang + ']').forEach(el => {
+        el.innerHTML = el.getAttribute('data-' + lang);
+      });
+
+      // Update page title
+      document.title = lang === 'es'
+        ? 'Ale Cadario — Oradora, Fundadora, Experta en Ventas B2B'
+        : 'Ale Cadario — Speaker, Founder, B2B Sales Expert';
+
+      // Update meta description
+      const meta = document.querySelector('meta[name="description"]');
+      if (meta) {
+        meta.content = lang === 'es'
+          ? 'Ale Cadario: +20 años de experiencia en ventas y negocios internacionales. Oradora, fundadora de Oike y Piraí, experta en prospección B2B e IA aplicada a ventas.'
+          : 'Ale Cadario: +20 years of experience in international sales and business. Speaker, founder of Oike and Piraí, B2B prospecting and AI-applied sales expert.';
+      }
+
+      // Update newsletter link based on language
+      const nlBtn = document.getElementById('newsletterBtn');
+      if (nlBtn) {
+        nlBtn.href = lang === 'es'
+          ? 'https://www.linkedin.com/newsletters/con-ojos-latinos-7094971123599077378/'
+          : 'https://www.linkedin.com/newsletters/the-human-side-of-tech-7239186289575530496/';
+      }
+    }
+
+    // ── Mobile menu ──
+    function toggleMenu() {
+      document.getElementById('mobileMenu').classList.toggle('open');
+    }
+    function closeMenu() {
+      document.getElementById('mobileMenu').classList.remove('open');
+    }
+
+    // ── Scroll animations ──
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('visible');
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>
