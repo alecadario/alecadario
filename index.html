@@ -418,33 +418,72 @@
     /* ═══════════════════════════════════
        FERIAS
     ═══════════════════════════════════ */
-    .ferias { padding: 80px 24px; background: var(--bg-section); }
+    .ferias { padding: 96px 24px; background: var(--bg-dark); }
     .ferias-inner { max-width: var(--max-width); margin: 0 auto; }
-    .ferias-inner h2 { font-size: clamp(26px,3.5vw,38px); font-weight: 900; margin-bottom: 8px; }
-    .ferias-inner h2 em { font-style: italic; color: var(--teal); }
-    .ferias-inner > p { font-size: 16px; color: var(--text-secondary); margin-bottom: 36px; }
-    .ferias-card {
-      background: white; border: 1.5px solid var(--border);
-      border-radius: var(--radius); padding: 36px 40px;
-      display: flex; gap: 48px; align-items: flex-start;
-      max-width: 860px;
+    .ferias-header { margin-bottom: 64px; }
+    .ferias-header .eyebrow { color: rgba(255,255,255,0.4); }
+    .ferias-header h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(32px,4.5vw,54px); font-weight: 900;
+      color: white; line-height: 1.1; margin-bottom: 16px;
     }
-    .ferias-card-left { flex-shrink: 0; }
-    .ferias-event-badge {
-      display: inline-block; background: var(--teal-bg);
-      color: var(--teal); border: 1px solid var(--teal-border);
-      border-radius: 6px; padding: 4px 12px;
-      font-size: 11px; font-weight: 700; letter-spacing: 0.08em;
-      text-transform: uppercase; margin-bottom: 12px;
+    .ferias-header h2 em { font-style: italic; color: var(--teal-light); }
+    .ferias-header p { font-size: 17px; color: rgba(255,255,255,0.55); max-width: 560px; }
+
+    .ferias-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; margin-bottom: 64px; }
+    .ferias-photo {
+      border-radius: var(--radius); overflow: hidden;
+      aspect-ratio: 4/3; position: relative;
     }
-    .ferias-card h3 { font-family: 'Inter', sans-serif; font-size: 20px; font-weight: 800; margin-bottom: 10px; }
-    .ferias-card p { font-size: 14.5px; color: var(--text-secondary); line-height: 1.7; margin-bottom: 20px; }
-    .ferias-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 24px; }
-    .ferias-tag {
-      background: var(--bg-section); border: 1px solid var(--border);
-      border-radius: 20px; padding: 5px 14px;
-      font-size: 12px; font-weight: 600; color: var(--text-secondary);
+    .ferias-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .ferias-photo-overlay {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.75) 0%, transparent 100%);
+      padding: 28px 24px 20px;
     }
+    .ferias-stat-big {
+      font-family: 'Playfair Display', serif;
+      font-size: 42px; font-weight: 900; color: white; line-height: 1;
+    }
+    .ferias-stat-label { font-size: 13px; color: rgba(255,255,255,0.7); font-weight: 600; margin-top: 4px; }
+
+    .ferias-right { display: flex; flex-direction: column; gap: 4px; }
+    .ferias-phase {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: var(--radius-sm); padding: 24px 28px;
+      transition: background 0.2s;
+    }
+    .ferias-phase:hover { background: rgba(255,255,255,0.09); }
+    .ferias-phase-num {
+      font-size: 11px; font-weight: 800; letter-spacing: 0.1em;
+      color: var(--teal-light); text-transform: uppercase; margin-bottom: 8px;
+    }
+    .ferias-phase h4 { font-size: 16px; font-weight: 800; color: white; margin-bottom: 6px; }
+    .ferias-phase p { font-size: 14px; color: rgba(255,255,255,0.55); line-height: 1.65; }
+
+    .ferias-cta-row {
+      display: flex; align-items: center; gap: 24px;
+      padding-top: 48px; border-top: 1px solid rgba(255,255,255,0.1);
+    }
+    .ferias-cta-row p { font-size: 15px; color: rgba(255,255,255,0.5); flex: 1; }
+    .btn-teal {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--teal); color: white;
+      padding: 14px 28px; border-radius: var(--radius-sm);
+      font-size: 15px; font-weight: 700; text-decoration: none;
+      transition: all 0.2s; white-space: nowrap;
+    }
+    .btn-teal:hover { background: var(--teal-light); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(13,148,136,0.4); }
+    .btn-ghost-white {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: transparent; color: white;
+      border: 1.5px solid rgba(255,255,255,0.25);
+      padding: 14px 28px; border-radius: var(--radius-sm);
+      font-size: 15px; font-weight: 600; text-decoration: none;
+      transition: all 0.2s; white-space: nowrap;
+    }
+    .btn-ghost-white:hover { border-color: rgba(255,255,255,0.6); background: rgba(255,255,255,0.07); }
 
     /* ═══════════════════════════════════
        PRODUCTOS
@@ -723,7 +762,8 @@
       .nav-links { display: none; }
       .nav-hamburger { display: block; }
       .section { padding: 64px 24px; }
-      .ferias-card { flex-direction: column; gap: 24px; padding: 28px; }
+      .ferias-layout { grid-template-columns: 1fr; }
+      .ferias-cta-row { flex-direction: column; align-items: flex-start; gap: 16px; }
     }
 
     @media (max-width: 560px) {
@@ -991,25 +1031,45 @@
 
   <!-- ═══ FERIAS Y EXPOSICIONES ═══ -->
   <section class="ferias" id="ferias">
-    <div class="ferias-inner fade-up">
-      <span class="eyebrow" data-es="FERIAS Y EXPOSICIONES" data-en="TRADE SHOWS &amp; EXHIBITIONS">FERIAS Y EXPOSICIONES</span>
-      <h2 data-es="Convierte la feria en<br><em>pipeline real.</em>" data-en="Turn the trade show into<br><em>real pipeline.</em>">Convierte la feria en<br><em>pipeline real.</em></h2>
-      <p data-es="No es tener un stand. Es llegar con agenda, sistema y disciplina." data-en="It's not about having a booth. It's about arriving with an agenda, a system, and discipline.">No es tener un stand. Es llegar con agenda, sistema y disciplina.</p>
-      <div class="ferias-card">
-        <div class="ferias-card-left">
-          <div class="ferias-event-badge">Expocruz 2025</div>
-          <div style="font-size:13px;color:var(--text-muted);font-weight:600;">18&ndash;27 Sep &middot; Santa Cruz</div>
-        </div>
-        <div>
-          <h3 data-es="Expocruz Pipeline Sprint" data-en="Expocruz Pipeline Sprint">Expocruz Pipeline Sprint</h3>
-          <p data-es="Prospecci&oacute;n + Metodolog&iacute;a BDR antes, durante y despu&eacute;s de la feria. En Expocruz 2024 se movieron USD $209 millones en intenciones de negocio. Las empresas que ganaron llegaron con agenda." data-en="Prospecting + BDR methodology before, during, and after the fair. At Expocruz 2024, USD $209 million in business intentions moved. The companies that won arrived with an agenda.">Prospecci&oacute;n + Metodolog&iacute;a BDR antes, durante y despu&eacute;s de la feria. En Expocruz 2024 se movieron USD $209 millones en intenciones de negocio. Las empresas que ganaron llegaron con agenda.</p>
-          <div class="ferias-tags">
-            <span class="ferias-tag" data-es="PRE-EVENT: Prospecci&oacute;n" data-en="PRE-EVENT: Prospecting">PRE-EVENT: Prospecci&oacute;n</span>
-            <span class="ferias-tag" data-es="DURING: Captura calificada" data-en="DURING: Qualified capture">DURING: Captura calificada</span>
-            <span class="ferias-tag" data-es="POST-EVENT: Follow-up" data-en="POST-EVENT: Follow-up">POST-EVENT: Follow-up</span>
+    <div class="ferias-inner">
+      <div class="ferias-header fade-up">
+        <span class="eyebrow" data-es="FERIAS Y EXPOSICIONES" data-en="TRADE SHOWS &amp; EXHIBITIONS">FERIAS Y EXPOSICIONES</span>
+        <h2 data-es="Convierte la feria en<br><em>pipeline real.</em>" data-en="Turn the trade show into<br><em>real pipeline.</em>">Convierte la feria en<br><em>pipeline real.</em></h2>
+        <p data-es="En Expocruz 2024 se movieron USD $209M en intenciones de negocio. Las empresas que ganaron no fueron las que más invirtieron en stands. Fueron las que llegaron con agenda." data-en="At Expocruz 2024, USD $209M in business intentions moved. The companies that won didn't invest the most in booths. They arrived with an agenda.">En Expocruz 2024 se movieron USD $209M en intenciones de negocio. Las empresas que ganaron no fueron las que más invirtieron en stands. Fueron las que llegaron con agenda.</p>
+      </div>
+
+      <div class="ferias-layout fade-up">
+        <div class="ferias-photo">
+          <img src="ale-conferencia.jpg" alt="Ale Cadario en Expocruz" />
+          <div class="ferias-photo-overlay">
+            <div class="ferias-stat-big">$209M</div>
+            <div class="ferias-stat-label" data-es="en intenciones de negocio — Expocruz 2024" data-en="in business intentions — Expocruz 2024">en intenciones de negocio — Expocruz 2024</div>
           </div>
-          <a href="/expocruz.html" class="btn-ghost-small" data-es="Ver metodolog&iacute;a completa &rarr;" data-en="See full methodology &rarr;">Ver metodolog&iacute;a completa &rarr;</a>
         </div>
+
+        <div class="ferias-right">
+          <div class="ferias-phase">
+            <div class="ferias-phase-num">Fase 1 &mdash; PRE-EVENT</div>
+            <h4 data-es="Llegás con agenda, no con esperanza." data-en="You arrive with an agenda, not hope.">Llegás con agenda, no con esperanza.</h4>
+            <p data-es="3 semanas de prospección directa. Identificamos tus cuentas objetivo, armamos lista de contactos clave y agendamos reuniones antes de que abran las puertas." data-en="3 weeks of direct prospecting. We identify your target accounts, build a key contact list, and schedule meetings before the doors open.">3 semanas de prospección directa. Identificamos tus cuentas objetivo, armamos lista de contactos clave y agendamos reuniones antes de que abran las puertas.</p>
+          </div>
+          <div class="ferias-phase">
+            <div class="ferias-phase-num">Fase 2 &mdash; DURING-EVENT</div>
+            <h4 data-es="Sistema de captura en tiempo real." data-en="Real-time capture system.">Sistema de captura en tiempo real.</h4>
+            <p data-es="Mientras estás en el stand, registramos contactos, los calificamos y hacemos follow-up inmediato con hot leads. Sin perder ninguna conversación." data-en="While you're at the booth, we log contacts, qualify them, and do immediate follow-up with hot leads. No conversation lost.">Mientras estás en el stand, registramos contactos, los calificamos y hacemos follow-up inmediato con hot leads. Sin perder ninguna conversación.</p>
+          </div>
+          <div class="ferias-phase">
+            <div class="ferias-phase-num">Fase 3 &mdash; POST-EVENT</div>
+            <h4 data-es="La prospección no termina cuando termina la feria." data-en="Prospecting doesn't end when the fair does.">La prospección no termina cuando termina la feria.</h4>
+            <p data-es="Follow-up estructurado para convertir contactos en reuniones y reuniones en oportunidades reales de negocio." data-en="Structured follow-up to turn contacts into meetings and meetings into real business opportunities.">Follow-up estructurado para convertir contactos en reuniones y reuniones en oportunidades reales de negocio.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="ferias-cta-row fade-up">
+        <p data-es="Expocruz 2025 &mdash; 18 al 27 de septiembre, Santa Cruz de la Sierra." data-en="Expocruz 2025 &mdash; September 18–27, Santa Cruz de la Sierra.">Expocruz 2025 &mdash; 18 al 27 de septiembre, Santa Cruz de la Sierra.</p>
+        <a href="/expocruz.html" class="btn-ghost-white" data-es="Ver metodolog&iacute;a completa" data-en="See full methodology">Ver metodología completa</a>
+        <a href="https://wa.me/59176819000?text=Hola%20Ale%2C%20quiero%20info%20sobre%20Expocruz%20Pipeline%20Sprint" target="_blank" class="btn-teal" data-es="Quiero participar &rarr;" data-en="I want to join &rarr;">Quiero participar &rarr;</a>
       </div>
     </div>
   </section>
