@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Ale Cadario — Creadora de contenido. 51K seguidores en TikTok. Audiencia real sobre ventas, IA y emprendimiento en LATAM." />
+  <title>Creadora de Contenido | Ale Cadario</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;0,900;1,700;1,800;1,900&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --teal: #0D9488; --teal-light: #14B8A6;
+      --teal-bg: rgba(13,148,136,0.08); --teal-border: rgba(13,148,136,0.25);
+      --bg: #FAFAF8; --bg-white: #FFFFFF; --bg-dark: #0D0D0D; --bg-section: #F4F4F1;
+      --text: #111111; --text-secondary: #555555; --text-muted: #999999;
+      --border: #E4E4E0; --radius: 16px; --radius-sm: 10px;
+      --shadow-md: 0 4px 16px rgba(0,0,0,0.08);
+      --max-width: 1160px;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+
+    .fade-up { opacity: 0; transform: translateY(28px); transition: opacity 0.65s ease, transform 0.65s ease; }
+    .fade-up.visible { opacity: 1; transform: none; }
+
+    /* NAV */
+    .nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(13,13,13,0.96); backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      padding: 0 24px; height: 60px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-logo { font-size: 15px; font-weight: 800; color: white; text-decoration: none; }
+    .nav-logo span { color: var(--teal-light); }
+    .nav-back { font-size: 13px; font-weight: 600; color: rgba(255,255,255,0.5); text-decoration: none; transition: color 0.2s; }
+    .nav-back:hover { color: white; }
+
+    .eyebrow { display: inline-block; font-size: 11px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: var(--teal); margin-bottom: 16px; }
+
+    /* HERO */
+    .hero { background: var(--bg-dark); padding: 96px 24px 80px; position: relative; overflow: hidden; }
+    .hero::before {
+      content: ''; position: absolute; top: -200px; right: -100px;
+      width: 700px; height: 700px;
+      background: radial-gradient(circle, rgba(13,148,136,0.12) 0%, transparent 65%);
+      border-radius: 50%; pointer-events: none;
+    }
+    .hero-inner { max-width: var(--max-width); margin: 0 auto; position: relative; z-index: 1; }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(13,148,136,0.15); border: 1px solid rgba(13,148,136,0.35);
+      color: var(--teal-light); border-radius: 999px;
+      padding: 6px 16px; font-size: 13px; font-weight: 600; margin-bottom: 28px;
+    }
+    .hero-badge-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--teal-light); }
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(36px, 6vw, 64px); font-weight: 900;
+      color: white; line-height: 1.05; margin-bottom: 20px; max-width: 800px;
+    }
+    .hero h1 em { font-style: italic; color: var(--teal-light); }
+    .hero-sub { font-size: clamp(16px, 2vw, 18px); color: rgba(255,255,255,0.55); max-width: 580px; line-height: 1.7; margin-bottom: 48px; }
+    .hero-stats-bar { display: flex; gap: 40px; flex-wrap: wrap; padding-top: 40px; border-top: 1px solid rgba(255,255,255,0.08); }
+    .hero-stat-num { font-family: 'Playfair Display', serif; font-size: 32px; font-weight: 900; color: white; line-height: 1; }
+    .hero-stat-label { font-size: 12px; color: rgba(255,255,255,0.4); font-weight: 600; margin-top: 4px; }
+
+    /* VIDEOS */
+    .videos { padding: 96px 24px; background: var(--bg-white); }
+    .videos-inner { max-width: var(--max-width); margin: 0 auto; }
+    .videos-header { margin-bottom: 48px; }
+    .videos-header h2 { font-family: 'Playfair Display', serif; font-size: clamp(26px,3.5vw,40px); font-weight: 900; line-height: 1.1; margin-bottom: 12px; }
+    .videos-header h2 em { font-style: italic; color: var(--teal); }
+    .videos-header p { font-size: 16px; color: var(--text-secondary); }
+    .videos-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+    .videos-grid iframe { border-radius: var(--radius-sm); }
+
+    /* FORM SECTION */
+    .brief { padding: 96px 24px; background: var(--bg-section); }
+    .brief-inner { max-width: var(--max-width); margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: start; }
+    .brief-left h2 { font-family: 'Playfair Display', serif; font-size: clamp(26px,3.5vw,40px); font-weight: 900; line-height: 1.1; margin-bottom: 16px; }
+    .brief-left h2 em { font-style: italic; color: var(--teal); }
+    .brief-left p { font-size: 15px; color: var(--text-secondary); line-height: 1.75; margin-bottom: 28px; }
+    .brief-left a { display: inline-flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 700; color: var(--teal); text-decoration: none; }
+    .brief-left a:hover { text-decoration: underline; }
+    .brief-form-wrap { background: white; border: 1px solid var(--border); border-radius: var(--radius); padding: 36px; }
+    .form-row { margin-bottom: 18px; }
+    .form-row label { display: block; font-size: 13px; font-weight: 700; margin-bottom: 6px; color: var(--text); }
+    .form-row input, .form-row textarea {
+      width: 100%; padding: 11px 14px;
+      border: 1px solid var(--border); border-radius: var(--radius-sm);
+      font-size: 14px; font-family: inherit; box-sizing: border-box;
+      background: var(--bg); color: var(--text); transition: border-color 0.2s;
+    }
+    .form-row input:focus, .form-row textarea:focus { outline: none; border-color: var(--teal); }
+    .form-row textarea { resize: vertical; }
+    .form-2col { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .btn-submit {
+      width: 100%; background: var(--text); color: white;
+      padding: 14px; border: none; border-radius: var(--radius-sm);
+      font-size: 15px; font-weight: 700; cursor: pointer;
+      font-family: inherit; transition: background 0.2s;
+    }
+    .btn-submit:hover { background: #333; }
+    .form-note { font-size: 12px; color: var(--text-muted); text-align: center; margin-top: 12px; }
+
+    /* FOOTER */
+    .footer { background: #0A0A0A; border-top: 1px solid rgba(255,255,255,0.06); padding: 32px 24px; text-align: center; }
+    .footer p { font-size: 13px; color: rgba(255,255,255,0.25); }
+    .footer a { color: rgba(255,255,255,0.4); text-decoration: none; }
+    .footer a:hover { color: white; }
+
+    /* RESPONSIVE */
+    @media (max-width: 960px) {
+      .videos-grid { grid-template-columns: repeat(2, 1fr); }
+      .brief-inner { grid-template-columns: 1fr; gap: 40px; }
+    }
+    @media (max-width: 560px) {
+      .videos-grid { grid-template-columns: 1fr 1fr; }
+      .form-2col { grid-template-columns: 1fr; }
+      .hero-stats-bar { gap: 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav">
+    <a href="/" class="nav-logo"><span>Ale</span> Cadario</a>
+    <a href="/" class="nav-back">← Volver al inicio</a>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-inner fade-up">
+      <div class="hero-badge">
+        <span class="hero-badge-dot"></span>
+        TikTok @ale.cadario
+      </div>
+      <h1>Audiencia auténtica.<br><em>Conversaciones que generan impacto.</em></h1>
+      <p class="hero-sub">51K seguidores reales. Contenido sobre ventas, IA, LATAM, emprendimiento y profesionalismo. Si tu marca habla ese idioma, podemos hacer algo juntas.</p>
+      <div class="hero-stats-bar">
+        <div>
+          <div class="hero-stat-num">51K</div>
+          <div class="hero-stat-label">Seguidores auténticos</div>
+        </div>
+        <div>
+          <div class="hero-stat-num">2.6M</div>
+          <div class="hero-stat-label">Espectadores — últimos 12 meses</div>
+        </div>
+        <div>
+          <div class="hero-stat-num">275K</div>
+          <div class="hero-stat-label">Likes · 11K comentarios</div>
+        </div>
+        <div>
+          <div class="hero-stat-num">67%</div>
+          <div class="hero-stat-label">Mujeres · 25–44 años</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VIDEOS -->
+  <section class="videos">
+    <div class="videos-inner">
+      <div class="videos-header fade-up">
+        <span class="eyebrow">VIDEOS RECIENTES</span>
+        <h2>Lo que ve<br><em>mi comunidad.</em></h2>
+        <p>Ventas reales, IA aplicada, historias de emprendimiento. Sin filtro.</p>
+      </div>
+      <div class="videos-grid fade-up">
+        <iframe src="https://www.tiktok.com/embed/v2/7611129313051692295" width="100%" height="560" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        <iframe src="https://www.tiktok.com/embed/v2/7610379993461378322" width="100%" height="560" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        <iframe src="https://www.tiktok.com/embed/v2/7610046239698210056" width="100%" height="560" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        <iframe src="https://www.tiktok.com/embed/v2/7606015589219339528" width="100%" height="560" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+      </div>
+    </div>
+  </section>
+
+  <!-- BRIEF FORM -->
+  <section class="brief" id="brief">
+    <div class="brief-inner">
+      <div class="brief-left fade-up">
+        <span class="eyebrow">TRABAJEMOS JUNTAS</span>
+        <h2>Contame<br><em>tu idea.</em></h2>
+        <p>Leo tu brief, evalúo el fit y te escribo en los próximos 2 días. Sin obligación, sin pitch genérico.</p>
+        <a href="https://www.tiktok.com/@ale.cadario" target="_blank">Seguime en TikTok →</a>
+      </div>
+      <div class="brief-form-wrap fade-up">
+        <form name="content-brief" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/gracias.html">
+          <input type="hidden" name="bot-field" />
+          <div class="form-row">
+            <label>Marca / Empresa</label>
+            <input type="text" name="brand" placeholder="¿Cuál es tu marca?" required />
+          </div>
+          <div class="form-row">
+            <label>¿Qué querés lograr?</label>
+            <textarea name="objective" placeholder="Awareness, conversiones, posicionamiento..." rows="2" required></textarea>
+          </div>
+          <div class="form-2col form-row">
+            <div>
+              <label>Videos / duración</label>
+              <input type="text" name="duration" placeholder="Ej: 3 videos" required />
+            </div>
+            <div>
+              <label>Presupuesto aprox.</label>
+              <input type="text" name="budget" placeholder="Sin compromiso" />
+            </div>
+          </div>
+          <div class="form-row">
+            <label>Timeline / fechas</label>
+            <input type="text" name="timeline" placeholder="¿Para cuándo lo necesitás?" required />
+          </div>
+          <div class="form-row">
+            <label>Detalles adicionales</label>
+            <textarea name="details" placeholder="Qué más debo saber sobre tu marca, audiencia o proyecto" rows="2"></textarea>
+          </div>
+          <button type="submit" class="btn-submit">Enviá tu brief &rarr;</button>
+          <p class="form-note">Sin spam. Solo te escribo si hay fit real.</p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <p>&copy; 2026 <a href="/">Ale Cadario</a> &nbsp;&middot;&nbsp; Creadora de Contenido &nbsp;&middot;&nbsp; <a href="https://www.tiktok.com/@ale.cadario" target="_blank">@ale.cadario</a></p>
+  </footer>
+
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>
