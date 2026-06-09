@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Expocruz Pipeline Sprint: Convierte tu inversión en feria en pipeline comercial real. Metodología BDR pre, durante y post evento.">
+    <meta name="description" content="Expocruz Pipeline Sprint: Convierte tu inversión en feria en pipeline comercial real con metodología BDR de Ale Cadario.">
     <title>Expocruz Pipeline Sprint | Ale Cadario</title>
     <style>
         * {
@@ -17,34 +17,93 @@
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             line-height: 1.6;
-            color: #333;
+            color: #1a1a1a;
             background: #fff;
+            overflow-x: hidden;
         }
 
+        /* ═══ ANIMATIONS ═══ */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes floatUp {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        @keyframes glow {
+            0%, 100% {
+                box-shadow: 0 0 20px rgba(61, 158, 148, 0.3);
+            }
+            50% {
+                box-shadow: 0 0 30px rgba(61, 158, 148, 0.6);
+            }
+        }
+
+        /* ═══ NAV ═══ */
         .nav {
             position: sticky;
             top: 0;
-            background: #12121f;
+            background: rgba(18, 18, 31, 0.95);
+            backdrop-filter: blur(10px);
             color: white;
-            padding: 1rem 2rem;
+            padding: 1.2rem 2rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
             z-index: 100;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            border-bottom: 1px solid rgba(61, 158, 148, 0.2);
         }
 
         .nav-logo {
-            font-weight: 700;
-            font-size: 1.3rem;
-            letter-spacing: 0.5px;
+            font-weight: 800;
+            font-size: 1.2rem;
+            letter-spacing: -0.5px;
+        }
+
+        .nav-logo span {
+            color: #3d9e94;
         }
 
         .nav-links {
             display: flex;
-            gap: 2rem;
+            gap: 2.5rem;
             list-style: none;
         }
 
@@ -53,11 +112,27 @@
             text-decoration: none;
             font-size: 0.95rem;
             opacity: 0.8;
-            transition: opacity 0.2s;
+            transition: all 0.3s;
+            position: relative;
         }
 
         .nav-links a:hover {
             opacity: 1;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #3d9e94;
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
         }
 
         .nav-back {
@@ -65,71 +140,160 @@
             text-decoration: none;
             font-size: 0.9rem;
             opacity: 0.9;
-            transition: opacity 0.2s;
+            transition: all 0.3s;
         }
 
         .nav-back:hover {
             opacity: 1;
+            transform: translateX(-3px);
         }
 
+        /* ═══ HERO ═══ */
         .hero {
-            background: linear-gradient(135deg, #12121f 0%, #1a1a2e 100%);
+            background: linear-gradient(135deg, #12121f 0%, #1a1a2e 50%, #0f3d3a 100%);
+            position: relative;
+            overflow: hidden;
             color: white;
-            padding: 6rem 2rem;
+            padding: 8rem 2rem;
             text-align: center;
-            min-height: 600px;
+            min-height: 700px;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
         }
 
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(61, 158, 148, 0.15) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: floatUp 6s ease-in-out infinite;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -30%;
+            left: -5%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(61, 158, 148, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: rgba(61, 158, 148, 0.2);
+            border: 1px solid rgba(61, 158, 148, 0.5);
+            color: #3d9e94;
+            padding: 0.8rem 1.5rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            backdrop-filter: blur(10px);
+        }
+
         .hero h1 {
-            font-size: 3.5rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            line-height: 1.2;
-            letter-spacing: -0.5px;
+            font-size: clamp(2.5rem, 8vw, 4.5rem);
+            font-weight: 800;
+            margin-bottom: 1.2rem;
+            line-height: 1.1;
+            letter-spacing: -1px;
+        }
+
+        .hero h1 .highlight {
+            color: #3d9e94;
+            display: inline-block;
+            position: relative;
+        }
+
+        .hero h1 .highlight::underline {
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #3d9e94, transparent);
+            border-radius: 2px;
         }
 
         .hero .tagline {
-            font-size: 1.3rem;
-            color: #3d9e94;
-            margin-bottom: 2rem;
+            font-size: 1.4rem;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 2.5rem;
             font-weight: 300;
-            max-width: 600px;
+            max-width: 700px;
             margin-left: auto;
             margin-right: auto;
+            line-height: 1.6;
         }
 
-        .cta-button {
-            display: inline-block;
-            background: #3d9e94;
-            color: white;
-            padding: 0.9rem 2.5rem;
-            border-radius: 6px;
+        .hero-cta {
+            display: flex;
+            gap: 1.2rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+
+        .btn {
+            padding: 1rem 2.2rem;
+            border-radius: 8px;
             text-decoration: none;
             font-weight: 600;
-            transition: background 0.2s;
+            font-size: 1rem;
+            transition: all 0.3s;
             border: none;
             cursor: pointer;
-            font-size: 1rem;
         }
 
-        .cta-button:hover {
-            background: #2d7f7a;
+        .btn-primary {
+            background: linear-gradient(135deg, #3d9e94 0%, #2d7f7a 100%);
+            color: white;
+            box-shadow: 0 10px 30px rgba(61, 158, 148, 0.3);
         }
 
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(61, 158, 148, 0.4);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid rgba(255, 255, 255, 0.4);
+        }
+
+        .btn-secondary:hover {
+            border-color: #3d9e94;
+            color: #3d9e94;
+            background: rgba(61, 158, 148, 0.1);
+        }
+
+        /* ═══ SECTIONS ═══ */
         .section {
-            padding: 5rem 2rem;
-            max-width: 1100px;
+            padding: 6rem 2rem;
+            max-width: 1200px;
             margin: 0 auto;
+            animation: fadeInUp 0.8s ease-out;
         }
 
         .section-title {
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
+            font-size: clamp(2rem, 5vw, 3.2rem);
+            font-weight: 800;
+            margin-bottom: 0.8rem;
             color: #12121f;
             text-align: center;
         }
@@ -138,45 +302,67 @@
             font-size: 1.2rem;
             color: #666;
             text-align: center;
-            margin-bottom: 3rem;
+            margin-bottom: 3.5rem;
             max-width: 700px;
             margin-left: auto;
             margin-right: auto;
         }
 
+        /* ═══ WHY SECTION ═══ */
         .why-section {
-            background: #f9f9f9;
+            background: linear-gradient(180deg, #f8f9fa 0%, #f0f4f8 100%);
         }
 
         .cards-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-bottom: 2rem;
+            gap: 2.5rem;
+            margin-bottom: 3rem;
         }
 
         .card {
             background: white;
-            border: 1px solid #e0e0e0;
-            border-radius: 8px;
-            padding: 2rem;
+            border: 1px solid #e8e8e8;
+            border-radius: 12px;
+            padding: 2.5rem;
             text-align: center;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, #3d9e94, transparent);
+            transition: left 0.4s;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 50px rgba(61, 158, 148, 0.15);
+            border-color: #3d9e94;
+        }
+
+        .card:hover::before {
+            left: 100%;
         }
 
         .card-icon {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            height: 60px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            font-size: 3rem;
+            margin-bottom: 1.2rem;
+            display: block;
         }
 
         .card h3 {
-            font-size: 1.3rem;
+            font-size: 1.4rem;
             color: #12121f;
             margin-bottom: 1rem;
-            font-weight: 600;
+            font-weight: 700;
         }
 
         .card p {
@@ -185,40 +371,167 @@
             font-size: 0.95rem;
         }
 
+        /* ═══ WHO AM I SECTION ═══ */
+        .who-section {
+            background: white;
+        }
+
+        .who-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .who-text h2 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            color: #12121f;
+        }
+
+        .who-text h2 .teal {
+            color: #3d9e94;
+        }
+
+        .who-text p {
+            font-size: 1.05rem;
+            color: #555;
+            line-height: 1.9;
+            margin-bottom: 1.5rem;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .stat {
+            background: linear-gradient(135deg, rgba(61, 158, 148, 0.1) 0%, rgba(61, 158, 148, 0.05) 100%);
+            padding: 1.5rem;
+            border-radius: 10px;
+            border: 1px solid rgba(61, 158, 148, 0.2);
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: #3d9e94;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 0.95rem;
+            color: #666;
+            font-weight: 600;
+        }
+
+        .proof-list {
+            list-style: none;
+            margin-top: 2rem;
+        }
+
+        .proof-list li {
+            padding: 0.8rem 0;
+            padding-left: 2rem;
+            position: relative;
+            color: #555;
+            font-size: 1rem;
+        }
+
+        .proof-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #3d9e94;
+            font-weight: 800;
+            font-size: 1.2rem;
+        }
+
+        .who-visual {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .credential {
+            background: white;
+            border: 1px solid #e8e8e8;
+            border-radius: 10px;
+            padding: 1.5rem;
+            transition: all 0.3s;
+        }
+
+        .credential:hover {
+            border-color: #3d9e94;
+            box-shadow: 0 10px 30px rgba(61, 158, 148, 0.1);
+        }
+
+        .credential-icon {
+            font-size: 2rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .credential-title {
+            font-weight: 700;
+            color: #12121f;
+            margin-bottom: 0.3rem;
+        }
+
+        .credential-desc {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        /* ═══ WHAT SECTION ═══ */
         .what-section {
             background: white;
         }
 
         .three-col {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 3rem;
             margin-top: 3rem;
         }
 
         .phase {
             text-align: center;
+            position: relative;
+            padding: 2rem;
+            border-radius: 12px;
+            transition: all 0.4s;
+            background: linear-gradient(180deg, #f9f9f9 0%, #f5f5f5 100%);
+        }
+
+        .phase:hover {
+            background: linear-gradient(180deg, #f0f4f8 0%, #e8f2f0 100%);
+            transform: translateY(-5px);
         }
 
         .phase-number {
             display: inline-flex;
-            width: 60px;
-            height: 60px;
-            background: #3d9e94;
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, #3d9e94 0%, #2d7f7a 100%);
             color: white;
             border-radius: 50%;
             align-items: center;
             justify-content: center;
-            font-size: 1.8rem;
-            font-weight: 700;
+            font-size: 2rem;
+            font-weight: 800;
             margin-bottom: 1.5rem;
+            box-shadow: 0 10px 30px rgba(61, 158, 148, 0.3);
         }
 
         .phase h3 {
-            font-size: 1.3rem;
+            font-size: 1.4rem;
             color: #12121f;
             margin-bottom: 1rem;
-            font-weight: 600;
+            font-weight: 700;
         }
 
         .phase p {
@@ -227,8 +540,9 @@
             font-size: 0.95rem;
         }
 
+        /* ═══ HOW SECTION ═══ */
         .how-section {
-            background: #f9f9f9;
+            background: linear-gradient(180deg, #f8f9fa 0%, #f0f4f8 100%);
         }
 
         .timeline {
@@ -239,41 +553,60 @@
 
         .timeline-item {
             display: flex;
-            margin-bottom: 2.5rem;
+            margin-bottom: 3rem;
             position: relative;
-            padding-left: 100px;
+            padding-left: 120px;
+            animation: slideInLeft 0.6s ease-out backwards;
+        }
+
+        .timeline-item:nth-child(odd) {
+            animation: slideInRight 0.6s ease-out backwards;
         }
 
         .timeline-item:not(:last-child)::after {
             content: '';
             position: absolute;
-            left: 25px;
-            top: 60px;
-            width: 2px;
-            height: 60px;
-            background: #3d9e94;
+            left: 40px;
+            top: 70px;
+            width: 3px;
+            height: 80px;
+            background: linear-gradient(180deg, #3d9e94, transparent);
         }
 
         .timeline-marker {
             position: absolute;
             left: 0;
-            width: 50px;
-            height: 50px;
-            background: #3d9e94;
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #3d9e94 0%, #2d7f7a 100%);
             color: white;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-weight: 700;
-            font-size: 1.1rem;
+            font-weight: 800;
+            font-size: 1.4rem;
+            box-shadow: 0 10px 30px rgba(61, 158, 148, 0.3);
+        }
+
+        .timeline-content {
+            background: white;
+            padding: 1.8rem;
+            border-radius: 10px;
+            border: 1px solid #e8e8e8;
+            transition: all 0.3s;
+        }
+
+        .timeline-content:hover {
+            border-color: #3d9e94;
+            box-shadow: 0 10px 30px rgba(61, 158, 148, 0.1);
         }
 
         .timeline-content h4 {
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             color: #12121f;
-            margin-bottom: 0.5rem;
-            font-weight: 600;
+            margin-bottom: 0.8rem;
+            font-weight: 700;
         }
 
         .timeline-content p {
@@ -282,25 +615,52 @@
             font-size: 0.95rem;
         }
 
+        /* ═══ DIFFERENTIATORS ═══ */
         .differentiators {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 2rem;
             margin-top: 3rem;
         }
 
         .diff-item {
             background: white;
-            padding: 1.5rem;
-            border-radius: 8px;
-            border-left: 4px solid #3d9e94;
+            padding: 2rem;
+            border-radius: 12px;
+            border: 2px solid #e8e8e8;
+            position: relative;
+            transition: all 0.4s;
+            overflow: hidden;
+        }
+
+        .diff-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, #3d9e94, transparent);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s;
+        }
+
+        .diff-item:hover {
+            border-color: #3d9e94;
+            box-shadow: 0 15px 40px rgba(61, 158, 148, 0.15);
+            transform: translateY(-5px);
+        }
+
+        .diff-item:hover::before {
+            transform: scaleX(1);
         }
 
         .diff-item h4 {
             color: #12121f;
             margin-bottom: 0.8rem;
-            font-weight: 600;
-            font-size: 1.1rem;
+            font-weight: 700;
+            font-size: 1.15rem;
         }
 
         .diff-item p {
@@ -309,113 +669,230 @@
             line-height: 1.6;
         }
 
+        /* ═══ CTA SECTION ═══ */
         .cta-section {
-            background: #12121f;
+            background: linear-gradient(135deg, #12121f 0%, #1a1a2e 50%, #0f3d3a 100%);
             color: white;
             text-align: center;
-            padding: 4rem 2rem;
-            border-radius: 0;
+            padding: 5rem 2rem;
+            border-radius: 16px;
+            margin: 4rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(61, 158, 148, 0.2) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .cta-content {
+            position: relative;
+            z-index: 2;
         }
 
         .cta-section h2 {
-            font-size: 2.2rem;
-            margin-bottom: 1rem;
-            font-weight: 700;
+            font-size: clamp(2rem, 5vw, 3rem);
+            margin-bottom: 1.2rem;
+            font-weight: 800;
         }
 
         .cta-section p {
-            font-size: 1.1rem;
-            margin-bottom: 2rem;
-            opacity: 0.9;
+            font-size: 1.15rem;
+            margin-bottom: 2.5rem;
+            opacity: 0.95;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
-        .cta-button-white {
-            display: inline-block;
-            background: #3d9e94;
-            color: white;
-            padding: 0.9rem 2.5rem;
-            border-radius: 6px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: background 0.2s;
-            border: none;
-            cursor: pointer;
-            font-size: 1rem;
+        .cta-buttons {
+            display: flex;
+            gap: 1.2rem;
+            justify-content: center;
+            flex-wrap: wrap;
         }
 
-        .cta-button-white:hover {
-            background: #2d7f7a;
-        }
-
+        /* ═══ FOOTER ═══ */
         .footer {
             background: #12121f;
             color: white;
-            padding: 2rem;
+            padding: 2.5rem;
             text-align: center;
             font-size: 0.9rem;
             opacity: 0.8;
         }
 
-        .value-box {
-            text-align: center;
-            margin-top: 3rem;
-            padding: 2rem;
+        /* ═══ EVENTS SECTION ═══ */
+        .events-section {
             background: white;
-            border-radius: 8px;
-            border: 1px solid #e0e0e0;
         }
 
-        .value-box p {
-            color: #666;
-            font-size: 1rem;
-            line-height: 1.8;
-            max-width: 700px;
-            margin: 0 auto;
+        .events-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+            margin-top: 3rem;
         }
 
-        .value-box strong {
+        .event-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            border: 1px solid #e8e8e8;
+        }
+
+        .event-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(61, 158, 148, 0.2);
+            border-color: #3d9e94;
+        }
+
+        .event-image-container {
+            position: relative;
+            width: 100%;
+            height: 280px;
+            overflow: hidden;
+            background: #f5f5f5;
+        }
+
+        .event-image {
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            position: absolute;
+            opacity: 0;
+            transition: opacity 0.8s ease-in-out;
+        }
+
+        .event-image.active {
+            opacity: 1;
+        }
+
+        .event-image-dots {
+            position: absolute;
+            bottom: 12px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 8px;
+            z-index: 10;
+        }
+
+        .event-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 2px solid transparent;
+        }
+
+        .event-dot.active {
+            background: white;
+            width: 24px;
+            border-radius: 4px;
+        }
+
+        .event-content {
+            padding: 1.8rem;
+        }
+
+        .event-content h4 {
+            font-size: 1.2rem;
             color: #12121f;
+            margin-bottom: 0.6rem;
+            font-weight: 700;
         }
 
+        .event-content p {
+            color: #666;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* ═══ RESPONSIVE ═══ */
         @media (max-width: 768px) {
-            .nav-links {
-                display: none;
+            .events-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+            .hero {
+                padding: 4rem 1.5rem;
             }
 
-            .hero h1 {
-                font-size: 2.3rem;
+            .who-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
             }
 
-            .section-title {
-                font-size: 1.8rem;
+            .stats {
+                grid-template-columns: 1fr;
             }
 
             .timeline-item {
                 padding-left: 80px;
             }
+
+            .timeline-marker {
+                width: 60px;
+                height: 60px;
+                font-size: 1.1rem;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .btn {
+                min-width: 280px;
+            }
         }
     </style>
 </head>
 <body>
+    <!-- ═══ NAV ═══ -->
     <nav class="nav">
-        <div class="nav-logo">Expocruz Pipeline Sprint</div>
+        <div class="nav-logo"><span>Expocruz</span> Pipeline Sprint</div>
         <ul class="nav-links">
-            <li><a href="#why">WHY</a></li>
-            <li><a href="#what">WHAT</a></li>
-            <li><a href="#how">HOW</a></li>
+            <li><a href="#why">POR QUÉ</a></li>
+            <li><a href="#who">QUIÉN SOY</a></li>
+            <li><a href="#events">EVENTOS</a></li>
+            <li><a href="#what">QUÉ HAGO</a></li>
+            <li><a href="#how">CÓMO</a></li>
             <li><a href="#cta">CONTACTO</a></li>
         </ul>
         <a href="/" class="nav-back">← Volver</a>
     </nav>
 
+    <!-- ═══ HERO ═══ -->
     <section class="hero">
-        <h1>Convierte Expocruz en Pipeline Real</h1>
-        <p class="tagline">Prospección + Metodología BDR antes, durante y después de la feria</p>
-        <a href="#cta" class="cta-button">Conocer cómo funciona</a>
+        <div class="hero-content">
+            <div class="hero-badge">🚀 Expocruz 18-27 de septiembre</div>
+            <h1>Convierte Expocruz en <span class="highlight">Pipeline Real</span></h1>
+            <p class="tagline">Prospección + Metodología BDR antes, durante y después de la feria.<br><strong>Conmigo, llegás con agenda.</strong></p>
+            <div class="hero-cta">
+                <a href="#cta" class="btn btn-primary">Conocer cómo funciona</a>
+                <a href="mailto:ale@alecadario.com" class="btn btn-secondary">Escribime</a>
+            </div>
+        </div>
     </section>
 
+    <!-- ═══ WHY ═══ -->
     <section id="why" class="section why-section">
-        <h2 class="section-title">WHY — Por qué esto es necesario</h2>
+        <h2 class="section-title">Por qué esto es necesario</h2>
         <p class="section-subtitle">El problema es siempre el mismo: inversión sin retorno medible</p>
         
         <div class="cards-grid">
@@ -427,137 +904,308 @@
             <div class="card">
                 <div class="card-icon">👥</div>
                 <h3>Tráfico vs Conversión</h3>
-                <p>Muchas tarjetas, muchos contactos, mucha actividad... y poco después, silencio. ¿Cuántos se convirtieron en oportunidades?</p>
+                <p>Muchas tarjetas, muchos contactos, mucha actividad... y poco después, silencio. ¿Cuántos se convirtieron?</p>
             </div>
             <div class="card">
                 <div class="card-icon">🎯</div>
                 <h3>Oportunidades perdidas</h3>
-                <p>No llegas con agenda calificada a las cuentas objetivo. Pierdes empresas que estaban ahí, en el mismo lugar que vos.</p>
+                <p>No llegas con agenda calificada. Pierdes empresas que estaban ahí, en el mismo lugar que vos.</p>
             </div>
         </div>
 
-        <div class="value-box">
-            <p>En Expocruz 2024 se movieron <strong>USD $209 millones en intenciones de negocio</strong>. Las empresas que ganaron no fueron las que más dinero invirtieron en stands. Fueron las que <strong>llegaron con agenda, sistema y disciplina</strong>.</p>
+        <div style="background: linear-gradient(135deg, rgba(61, 158, 148, 0.1) 0%, rgba(61, 158, 148, 0.05) 100%); padding: 2.5rem; border-radius: 12px; border: 1px solid rgba(61, 158, 148, 0.3); text-align: center; margin-top: 3rem;">
+            <p style="color: #12121f; font-size: 1.1rem; line-height: 1.8; margin: 0;">
+                En Expocruz 2024 se movieron <strong>USD $209 millones en intenciones de negocio</strong>. Las empresas que ganaron no fueron las que más dinero invirtieron en stands. <strong>Fueron las que llegaron con agenda, sistema y disciplina.</strong>
+            </p>
         </div>
     </section>
 
+    <!-- ═══ WHO AM I ═══ -->
+    <section id="who" class="section who-section">
+        <h2 class="section-title">Quién soy <span class="teal">(por qué yo)</span></h2>
+        <p class="section-subtitle">20 años de experiencia en B2B sales, 6 países, resultados comprobados</p>
+
+        <div class="who-content">
+            <div class="who-text">
+                <h2>Soy <span class="teal">especialista en prospección</span>, no en teoría.</h2>
+                <p>
+                    Hace 20 años que hago esto. Empecé en Bolivia, pasé por Canadá, Costa Rica, Bélgica, Argentina y ahora estoy en Madrid. En cada mercado hice lo mismo: armar sistemas de prospección que funcionan.
+                </p>
+                <p>
+                    <strong>Hoy:</strong> Trabajo en tech en MENA y APAC. Manejo demand generation, ABM, sales intelligence. Pero también creé dos productos tech (Oike y Piraí) y tengo +15K seguidores en TikTok hablando de ventas.
+                </p>
+
+                <div class="stats">
+                    <div class="stat">
+                        <div class="stat-number">20+</div>
+                        <div class="stat-label">Años en B2B</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">6</div>
+                        <div class="stat-label">Países</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">100+</div>
+                        <div class="stat-label">Eventos en 10+ Países</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">0</div>
+                        <div class="stat-label">Bullshit</div>
+                    </div>
+                </div>
+
+                <ul class="proof-list">
+                    <li><strong>Oike:</strong> SaaS de sales intelligence para equipos B2B pequeños</li>
+                    <li><strong>Piraí:</strong> App gratuita para organizar prospección (28K+ API routes)</li>
+                    <li><strong>Tech en MENA/APAC:</strong> Demand generation + ABM con 6Sense, ZoomInfo, Lusha</li>
+                    <li><strong>Comunidad:</strong> Coomadres, 400+ mujeres en ventas + liderazgo</li>
+                </ul>
+            </div>
+
+            <div class="who-visual">
+                <div class="credential">
+                    <div class="credential-icon">💼</div>
+                    <div class="credential-title">B2B Sales Pura</div>
+                    <div class="credential-desc">No vendo servicios genéricos. Trabajo en MENA, USA, LATAM. Sé cómo prospectar en distintos mercados.</div>
+                </div>
+                <div class="credential">
+                    <div class="credential-icon">🛠️</div>
+                    <div class="credential-title">Construyo Productos</div>
+                    <div class="credential-desc">Oike + Piraí. Entiendo tech, CRM, data, IA. No soy "consultora", soy operator.</div>
+                </div>
+                <div class="credential">
+                    <div class="credential-icon">🌍</div>
+                    <div class="credential-title">Multicultural</div>
+                    <div class="credential-desc">He navegado contextos culturales muy distintos. Entiendo la realidad de Santa Cruz.</div>
+                </div>
+                <div class="credential">
+                    <div class="credential-icon">📊</div>
+                    <div class="credential-title">Obsesionada con Números</div>
+                    <div class="credential-desc">No hablo de filosofía. Hablo de actividad, conversación y conversión. Números que importan.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══ WHAT ═══ -->
     <section id="what" class="section what-section">
-        <h2 class="section-title">WHAT — Qué ofrece la metodología</h2>
+        <h2 class="section-title">Qué hago</h2>
         <p class="section-subtitle">Tres fases integradas para convertir feria en oportunidades</p>
 
         <div class="three-col">
             <div class="phase">
                 <div class="phase-number">1</div>
                 <h3>PRE-EVENT</h3>
-                <p><strong>3 semanas de prospección directa.</strong> Identificamos cuentas objetivo, armamos lista de contactos clave, agendamos reuniones ANTES de que Expocruz abra. Llegas con agenda.</p>
+                <p><strong>3 semanas de prospección directa.</strong> Identificamos tus cuentas objetivo, armamos lista de contactos clave, agendamos reuniones ANTES. Llegas con agenda.</p>
             </div>
             <div class="phase">
                 <div class="phase-number">2</div>
                 <h3>DURING-EVENT</h3>
-                <p><strong>Sistema de captura en tiempo real.</strong> Mientras estás en el stand, registramos cada contacto, lo calificamos según criterios de calidad, y hacemos seguimiento inmediato con los hot leads.</p>
+                <p><strong>Sistema de captura en tiempo real.</strong> Mientras estás en el stand, registramos contactos, los calificamos y hacemos follow-up inmediato con hot leads.</p>
             </div>
             <div class="phase">
                 <div class="phase-number">3</div>
                 <h3>POST-EVENT</h3>
-                <p><strong>Follow-up estructurado sin pausa.</strong> Después de la feria, convertimos contactos en reuniones y reuniones en oportunidades reales. La prospección no termina cuando termina la feria.</p>
+                <p><strong>Follow-up estructurado.</strong> Convertimos contactos en reuniones y reuniones en oportunidades. La prospección no termina cuando termina la feria.</p>
             </div>
-        </div>
-
-        <div class="value-box">
-            <p><strong style="color: #12121f;">Resultado esperado:</strong> En lugar de "muchos contactos", tenés <strong>3-5 reuniones de NEGOCIOS agendadas antes de que termine la feria</strong>, y 10-15 oportunidades en pipeline post-evento.</p>
         </div>
     </section>
 
+    <!-- ═══ EVENTS SECTION ═══ -->
+    <section id="events" class="section events-section">
+        <h2 class="section-title">En eventos y conferencias</h2>
+        <p class="section-subtitle">20 años hablando, ejecutando, dando resultados en directo</p>
+
+        <div class="events-grid">
+            <div class="event-card">
+                <div class="event-image-container">
+                    <div class="event-image active" style="background-image: url('ale-conferencia.jpg');"></div>
+                    <div class="event-image" style="background-image: url('ale-conferencia2.jpg');"></div>
+                    <div class="event-image-dots">
+                        <div class="event-dot active" onclick="rotateImage(this.closest('.event-card'), 0)"></div>
+                        <div class="event-dot" onclick="rotateImage(this.closest('.event-card'), 1)"></div>
+                    </div>
+                </div>
+                <div class="event-content">
+                    <h4>Conferencias B2B</h4>
+                    <p>Hablando sobre prospección, ventas y sistemas que funcionan</p>
+                </div>
+            </div>
+
+            <div class="event-card">
+                <div class="event-image-container">
+                    <div class="event-image active" style="background-image: url('ale-networking.jpg');"></div>
+                    <div class="event-image" style="background-image: url('ale-networking2.jpg');"></div>
+                    <div class="event-image-dots">
+                        <div class="event-dot active" onclick="rotateImage(this.closest('.event-card'), 0)"></div>
+                        <div class="event-dot" onclick="rotateImage(this.closest('.event-card'), 1)"></div>
+                    </div>
+                </div>
+                <div class="event-content">
+                    <h4>Speaking & Comunidades</h4>
+                    <p>Conectando con equipos, compartiendo experiencia, generando conversations</p>
+                </div>
+            </div>
+
+            <div class="event-card">
+                <div class="event-image-container">
+                    <div class="event-image active" style="background-image: url('ale-ejecutando.jpg');"></div>
+                    <div class="event-image" style="background-image: url('ale-ejecutando2.jpg');"></div>
+                    <div class="event-image-dots">
+                        <div class="event-dot active" onclick="rotateImage(this.closest('.event-card'), 0)"></div>
+                        <div class="event-dot" onclick="rotateImage(this.closest('.event-card'), 1)"></div>
+                    </div>
+                </div>
+                <div class="event-content">
+                    <h4>Networking & Ejecución</h4>
+                    <p>Trabajando en terreno, ejecutando, convirtiendo oportunidades en resultados</p>
+                </div>
+            </div>
+        </div>
+    </section>
     <section id="how" class="section how-section">
-        <h2 class="section-title">HOW — Cómo funciona el proceso</h2>
+        <h2 class="section-title">Cómo funciona</h2>
         <p class="section-subtitle">Paso a paso desde hoy hasta post-Expocruz</p>
 
         <div class="timeline">
             <div class="timeline-item">
                 <div class="timeline-marker">1</div>
                 <div class="timeline-content">
-                    <h4>Semana 1: Mapeo + Prospección</h4>
-                    <p>Definimos tu ICP (quiénes son tus cuentas objetivo), identificamos 15-20 contactos clave en cada cuenta, y empezamos prospección directa por email + LinkedIn.</p>
+                    <h4>Semana 1: Mapeo</h4>
+                    <p>Definimos tu ICP, identificamos 15-20 contactos clave por cuenta, empezamos prospección (email + LinkedIn).</p>
                 </div>
             </div>
 
             <div class="timeline-item">
                 <div class="timeline-marker">2</div>
                 <div class="timeline-content">
-                    <h4>Semana 2: Agenda + Follow-up</h4>
-                    <p>Confirmamos primeras reuniones, seguimos con contactos que no respondieron, y armamos tu agenda de reuniones pre-evento. Objetivo: mínimo 3-5 calls agendadas.</p>
+                    <h4>Semana 2: Agenda</h4>
+                    <p>Confirmamos primeras reuniones, seguimos con no-responders, armamos tu agenda pre-evento. Meta: 3-5 calls agendadas.</p>
                 </div>
             </div>
 
             <div class="timeline-item">
                 <div class="timeline-marker">3</div>
                 <div class="timeline-content">
-                    <h4>Semana 3: Preparación Final</h4>
-                    <p>Revisamos cada call que agendaste, preparamos estrategia de conversación, armamos sistema de captura para el stand (qué preguntar, cómo calificar, a quién hacer follow-up).</p>
+                    <h4>Semana 3: Preparación</h4>
+                    <p>Revisamos cada call, preparamos estrategia, armamos sistema de captura para el stand (qué preguntar, cómo calificar).</p>
                 </div>
             </div>
 
             <div class="timeline-item">
                 <div class="timeline-marker">4</div>
                 <div class="timeline-content">
-                    <h4>Durante Expocruz (18-27 septiembre)</h4>
-                    <p>Ejecutamos las reuniones agendadas, capturamos contactos de calidad en el stand, y empezamos follow-up inmediato con leads hot. Sin pausa.</p>
+                    <h4>Durante Expocruz</h4>
+                    <p>Ejecutamos reuniones agendadas, capturamos contactos calificados, hacemos follow-up inmediato con hot leads.</p>
                 </div>
             </div>
 
             <div class="timeline-item">
                 <div class="timeline-marker">5</div>
                 <div class="timeline-content">
-                    <h4>Post-Expocruz: Conversión</h4>
-                    <p>Follow-up estructurado a todos los contactos capturados. Convertimos los mejores en reuniones, y esas reuniones en oportunidades en tu pipeline.</p>
+                    <h4>Post-Expocruz</h4>
+                    <p>Follow-up estructurado. Convertimos los mejores contactos en reuniones, esas reuniones en oportunidades en tu pipeline.</p>
                 </div>
             </div>
         </div>
 
-        <div style="margin-top: 3rem;">
-            <h3 style="color: #12121f; font-size: 1.3rem; margin-bottom: 1.5rem; font-weight: 600; text-align: center;">Lo que diferencia este enfoque</h3>
+        <div style="margin-top: 4rem;">
+            <h3 style="color: #12121f; font-size: 1.4rem; margin-bottom: 2rem; font-weight: 700; text-align: center;">Lo que me diferencia</h3>
             <div class="differentiators">
                 <div class="diff-item">
-                    <h4>No es publicidad</h4>
-                    <p>No estamos tratando de hacerte "visible". Estamos buscando oportunidades específicas de negocio con criterios claros.</p>
+                    <h4>✓ No es publicidad</h4>
+                    <p>No te hago "visible". Buscamos oportunidades específicas de negocio con criterios claros.</p>
                 </div>
                 <div class="diff-item">
-                    <h4>No es azafata</h4>
-                    <p>No es "tráfico al stand". Es prospección B2B con metodología BDR. Cuentas objetivo, contactos clave, conversaciones de valor.</p>
+                    <h4>✓ No es azafata</h4>
+                    <p>Prospección B2B real. Cuentas objetivo, contactos clave, conversaciones de valor. No tráfico al stand.</p>
                 </div>
                 <div class="diff-item">
-                    <h4>No es un evento</h4>
-                    <p>Expocruz no es el evento. Es uno de los 3 momentos de un sistema. Pre, during, post. Todo conectado.</p>
+                    <h4>✓ No es un evento</h4>
+                    <p>Expocruz es 1 de 3 momentos. Pre, during, post. Todo conectado. La prospección es un sistema, no una actividad.</p>
                 </div>
                 <div class="diff-item">
-                    <h4>Métricas claras</h4>
-                    <p>No contamos contactos. Contamos reuniones agendadas, oportunidades calificadas, y conversiones. KPIs que importan al negocio.</p>
+                    <h4>✓ Métricas claras</h4>
+                    <p>No contamos contactos. Contamos reuniones agendadas, oportunidades calificadas, conversiones. KPIs que importan.</p>
                 </div>
                 <div class="diff-item">
-                    <h4>Responsabilidad compartida</h4>
-                    <p>Vos ejecutas las calls, yo diseño la estrategia y hago el follow-up. Juntos convertimos en oportunidades.</p>
+                    <h4>✓ Responsabilidad compartida</h4>
+                    <p>Vos ejecutas las calls, yo diseño estrategia y hago follow-up. Juntos convertimos en oportunidades.</p>
                 </div>
                 <div class="diff-item">
-                    <h4>Experiencia comprobada</h4>
-                    <p>20 años en B2B sales. He hecho esto en 6 países. Sé exactamente qué preguntar para calificar rápido.</p>
+                    <h4>✓ Experiencia real</h4>
+                    <p>20 años haciendo esto. 6 países. Sé exactamente qué preguntar para calificar rápido sin wasting time.</p>
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- ═══ CTA FINAL ═══ -->
     <section id="cta" class="cta-section">
-        <h2>¿Listo para llegar a Expocruz con agenda?</h2>
-        <p>Agendar una call de 15 minutos para revisar si la metodología aplica a tu empresa.</p>
-        <a href="mailto:ale@alecadario.com?subject=Expocruz Pipeline Sprint" class="cta-button-white">
-            Escribime: ale@alecadario.com
-        </a>
-        <p style="margin-top: 1.5rem; font-size: 0.9rem; opacity: 0.8;">
-            También disponible por WhatsApp • LinkedIn • Teléfono
-        </p>
+        <div class="cta-content">
+            <h2>¿Listo para llegar a Expocruz con agenda?</h2>
+            <p>15 minutos de call para revisar si esto aplica a tu empresa. Sin obligación, sin pitch genérico.</p>
+            <div class="cta-buttons">
+                <a href="mailto:ale@alecadario.com?subject=Expocruz Pipeline Sprint" class="btn btn-primary">
+                    Escribime →
+                </a>
+                <a href="https://wa.me/34611581323?text=Hola%20Ale,%20vi%20tu%20Expocruz%20Pipeline%20Sprint%20y%20me%20interesa%20conocer%20más." class="btn btn-secondary">
+                    WhatsApp
+                </a>
+            </div>
+            <p style="margin-top: 2rem; font-size: 0.95rem; opacity: 0.8;">
+                ale@alecadario.com • <a href="https://www.linkedin.com/in/alecadario/" target="_blank" style="color: #3d9e94; text-decoration: none;">LinkedIn</a> • +20 años en B2B
+            </p>
+        </div>
     </section>
 
+    <!-- ═══ FOOTER ═══ -->
     <footer class="footer">
         <p>© 2026 Ale Cadario | Expocruz Pipeline Sprint | 18-27 de septiembre, Santa Cruz de la Sierra</p>
+        <p style="margin-top: 0.5rem; opacity: 0.6;">Prospección. Metodología. Resultados.</p>
     </footer>
+</body>
+</html>
+
+  <script>
+    // ── Image rotation in event cards ──
+    function rotateImage(card, imageIndex) {
+      const images = card.querySelectorAll('.event-image');
+      const dots = card.querySelectorAll('.event-dot');
+
+      images.forEach((img, idx) => {
+        img.classList.toggle('active', idx === imageIndex);
+      });
+
+      dots.forEach((dot, idx) => {
+        dot.classList.toggle('active', idx === imageIndex);
+      });
+
+      // Clear existing timer
+      if (card.imageTimer) clearInterval(card.imageTimer);
+      
+      // Restart auto-rotation after 10 seconds of inactivity
+      card.imageTimer = setTimeout(() => {
+        startAutoRotation(card);
+      }, 10000);
+    }
+
+    function startAutoRotation(card) {
+      let currentIndex = 0;
+      const images = card.querySelectorAll('.event-image');
+      const totalImages = images.length;
+
+      card.imageTimer = setInterval(() => {
+        currentIndex = (currentIndex + 1) % totalImages;
+        rotateImage(card, currentIndex);
+      }, 5000); // Cambiar cada 5 segundos
+    }
+
+    // Initialize auto-rotation for all event cards
+    document.querySelectorAll('.event-card').forEach(card => {
+      startAutoRotation(card);
+    });
+  </script>
+
 </body>
 </html>
