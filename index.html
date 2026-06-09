@@ -1126,7 +1126,7 @@
           <a href="https://www.tiktok.com/@ale.cadario" target="_blank" style="display:inline-flex; align-items:center; gap:8px; font-size:14px; font-weight:700; color:var(--teal); text-decoration:none;">Seguime en TikTok →</a>
         </div>
         <div style="background:var(--bg-section); border:1px solid var(--border); border-radius:var(--radius); padding:36px;">
-          <form id="content-brief-form">
+          <form name="content-brief" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/gracias.html">
             <div style="margin-bottom:18px;">
               <label style="display:block; font-size:13px; font-weight:700; margin-bottom:6px; color:var(--text);">Marca / Empresa</label>
               <input type="text" name="brand" placeholder="¿Cuál es tu marca?" required style="width:100%; padding:11px 14px; border:1px solid var(--border); border-radius:var(--radius-sm); font-size:14px; font-family:inherit; box-sizing:border-box; background:white; color:var(--text);">
@@ -1153,8 +1153,8 @@
               <label style="display:block; font-size:13px; font-weight:700; margin-bottom:6px; color:var(--text);">Detalles adicionales</label>
               <textarea name="details" placeholder="Qué más debo saber sobre tu marca, audiencia o proyecto" rows="2" style="width:100%; padding:11px 14px; border:1px solid var(--border); border-radius:var(--radius-sm); font-size:14px; font-family:inherit; box-sizing:border-box; resize:vertical; background:white; color:var(--text);"></textarea>
             </div>
-            <button type="submit" id="brief-submit-btn" style="width:100%; background:var(--text); color:white; padding:14px; border:none; border-radius:var(--radius-sm); font-size:15px; font-weight:700; cursor:pointer; font-family:inherit; transition:opacity 0.2s;">Enviá tu brief &rarr;</button>
-            <p id="brief-status" style="margin-top:14px; font-size:13px; text-align:center; color:var(--teal); display:none;"></p>
+            <input type="hidden" name="bot-field" />
+            <button type="submit" style="width:100%; background:var(--text); color:white; padding:14px; border:none; border-radius:var(--radius-sm); font-size:15px; font-weight:700; cursor:pointer; font-family:inherit; transition:opacity 0.2s;">Enviá tu brief &rarr;</button>
           </form>
         </div>
       </div>
@@ -1431,39 +1431,6 @@
       });
     }, { threshold: 0.08 });
     document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
-    // Content brief form
-    const briefForm = document.getElementById('content-brief-form');
-    if (briefForm) {
-      briefForm.addEventListener('submit', async (e) => {
-        e.preventDefault();
-        const btn = document.getElementById('brief-submit-btn');
-        const status = document.getElementById('brief-status');
-        const data = Object.fromEntries(new FormData(briefForm));
-        btn.disabled = true;
-        btn.textContent = 'Enviando...';
-        try {
-          const res = await fetch('/.netlify/functions/content-brief', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(data),
-          });
-          if (res.ok) {
-            briefForm.reset();
-            status.textContent = '¡Listo! Recibí tu brief. Te escribo en los próximos 2 días.';
-            status.style.display = 'block';
-            btn.textContent = 'Enviado ✓';
-          } else {
-            throw new Error();
-          }
-        } catch {
-          status.textContent = 'Algo salió mal. Escribime a team@alecadario.com';
-          status.style.color = '#e53e3e';
-          status.style.display = 'block';
-          btn.disabled = false;
-          btn.textContent = 'Enviá tu brief →';
-        }
-      });
-    }
   </script>
 
 </body>
