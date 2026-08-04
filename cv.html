@@ -11,131 +11,107 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
       --teal: #0D9488; --teal-light: #14B8A6;
-      --bg: #FAFAF8; --bg-white: #FFFFFF; --bg-dark: #0D0D0D; --bg-section: #F4F4F1;
-      --text: #111111; --text-secondary: #555555; --text-muted: #999999;
-      --border: #E4E4E0; --radius: 16px; --radius-sm: 10px;
+      --bg: #FAFAF8; --bg-white: #FFFFFF; --bg-section: #F0F0EC;
+      --text: #111111; --text-secondary: #4A4A4A; --text-muted: #888888;
+      --border: #E2E2DC; --radius: 16px; --radius-sm: 10px;
       --li-blue: #0A66C2;
       --max-width: 960px;
     }
     html { scroll-behavior: smooth; }
-    body { font-family: 'Inter', sans-serif; background: var(--bg-dark); color: var(--text); line-height: 1.6; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+    body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
 
     /* NAV */
     .nav {
       position: sticky; top: 0; z-index: 100;
-      background: rgba(13,13,13,0.96); backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(255,255,255,0.08);
+      background: rgba(250,250,248,0.96); backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
       padding: 0 24px; height: 60px;
       display: flex; align-items: center; justify-content: space-between;
     }
-    .nav-logo { font-size: 15px; font-weight: 800; color: white; text-decoration: none; }
-    .nav-logo span { color: var(--teal-light); }
-    .nav-back { font-size: 13px; font-weight: 600; color: rgba(255,255,255,0.5); text-decoration: none; transition: color 0.2s; }
-    .nav-back:hover { color: white; }
+    .nav-logo { font-size: 15px; font-weight: 800; color: var(--text); text-decoration: none; }
+    .nav-logo span { color: var(--teal); }
+    .nav-back { font-size: 13px; font-weight: 600; color: var(--text-muted); text-decoration: none; transition: color 0.2s; }
+    .nav-back:hover { color: var(--text); }
 
-    .eyebrow { display: inline-block; font-size: 11px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: var(--teal); margin-bottom: 14px; }
-
-    /* HERO / OVERVIEW */
-    .hero {
-      padding: 80px 24px 64px; position: relative; overflow: hidden;
-      background: var(--bg-dark);
-    }
-    .hero::before {
-      content: ''; position: absolute; top: -200px; right: -100px;
-      width: 700px; height: 700px;
-      background: radial-gradient(circle, rgba(13,148,136,0.13) 0%, transparent 65%);
-      border-radius: 50%; pointer-events: none;
-    }
-    .hero-inner { max-width: var(--max-width); margin: 0 auto; position: relative; z-index: 1; }
+    /* HERO */
+    .hero { padding: 72px 24px 56px; background: var(--bg-white); border-bottom: 1px solid var(--border); }
+    .hero-inner { max-width: var(--max-width); margin: 0 auto; }
     .hero-badge {
       display: inline-flex; align-items: center; gap: 8px;
-      background: rgba(13,148,136,0.15); border: 1px solid rgba(13,148,136,0.35);
-      color: var(--teal-light); border-radius: 999px;
-      padding: 6px 16px; font-size: 13px; font-weight: 600; margin-bottom: 24px;
+      background: rgba(13,148,136,0.08); border: 1px solid rgba(13,148,136,0.2);
+      color: var(--teal); border-radius: 999px;
+      padding: 5px 14px; font-size: 12px; font-weight: 700; margin-bottom: 28px;
+      letter-spacing: 0.04em;
+    }
+    .hero-tagline {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(28px, 4.5vw, 52px); font-weight: 900; font-style: italic;
+      color: var(--teal); line-height: 1.1; margin-bottom: 20px; max-width: 800px;
     }
     .hero h1 {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(28px, 4.5vw, 50px); font-weight: 900;
-      color: white; line-height: 1.1; margin-bottom: 16px; max-width: 820px;
+      font-size: clamp(16px, 2vw, 20px); font-weight: 500;
+      color: var(--text-secondary); line-height: 1.65; max-width: 680px; margin-bottom: 36px;
     }
-    .hero h1 em { font-style: italic; color: var(--teal-light); }
-    .hero-tagline {
-      font-size: clamp(14px, 1.8vw, 17px); color: rgba(255,255,255,0.4);
-      max-width: 580px; line-height: 1.7; margin-bottom: 32px; font-style: italic;
-    }
-    .hero-btns { display: flex; gap: 10px; flex-wrap: wrap; }
+    .hero-btns { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 48px; }
     .btn-teal { display: inline-flex; align-items: center; gap: 7px; background: var(--teal); color: white; padding: 12px 22px; border-radius: var(--radius-sm); font-size: 13px; font-weight: 700; text-decoration: none; transition: background 0.2s; }
     .btn-teal:hover { background: var(--teal-light); }
-    .btn-ghost { display: inline-flex; align-items: center; gap: 7px; background: transparent; color: rgba(255,255,255,0.65); border: 1px solid rgba(255,255,255,0.18); padding: 12px 22px; border-radius: var(--radius-sm); font-size: 13px; font-weight: 600; text-decoration: none; transition: all 0.2s; }
-    .btn-ghost:hover { border-color: rgba(255,255,255,0.45); color: white; }
+    .btn-outline { display: inline-flex; align-items: center; gap: 7px; background: transparent; color: var(--text); border: 1.5px solid var(--border); padding: 12px 22px; border-radius: var(--radius-sm); font-size: 13px; font-weight: 600; text-decoration: none; transition: all 0.2s; }
+    .btn-outline:hover { border-color: var(--teal); color: var(--teal); }
 
     /* LINKEDIN ICON */
     .li-icon { display: inline-flex; align-items: center; justify-content: center; width: 18px; height: 18px; background: var(--li-blue); border-radius: 4px; flex-shrink: 0; }
     .li-icon svg { width: 11px; height: 11px; fill: white; }
 
-    /* QUICK STATS ROW */
-    .quick-stats {
-      display: flex; gap: 0; margin-top: 48px;
-      border: 1px solid rgba(255,255,255,0.08); border-radius: var(--radius);
-      overflow: hidden;
-    }
-    .qs-item { flex: 1; padding: 20px 24px; border-right: 1px solid rgba(255,255,255,0.08); }
+    /* QUICK STATS */
+    .quick-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; border: 1.5px solid var(--border); border-radius: var(--radius); overflow: hidden; background: var(--bg); }
+    .qs-item { padding: 20px 24px; border-right: 1px solid var(--border); }
     .qs-item:last-child { border-right: none; }
-    .qs-num { font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 900; color: white; line-height: 1; }
-    .qs-label { font-size: 11px; color: rgba(255,255,255,0.35); font-weight: 600; margin-top: 4px; line-height: 1.4; }
+    .qs-num { font-family: 'Playfair Display', serif; font-size: 30px; font-weight: 900; color: var(--teal); line-height: 1; }
+    .qs-label { font-size: 11px; color: var(--text-muted); font-weight: 600; margin-top: 4px; line-height: 1.4; }
 
-    /* TABS */
-    .tabs-wrap {
-      background: var(--bg-dark);
-      border-top: 1px solid rgba(255,255,255,0.06);
-      position: sticky; top: 60px; z-index: 90;
-    }
-    .tabs {
-      max-width: var(--max-width); margin: 0 auto;
-      display: flex; gap: 0; overflow-x: auto; padding: 0 24px;
-      scrollbar-width: none;
-    }
-    .tabs::-webkit-scrollbar { display: none; }
+    /* SECTION TABS — visible card buttons */
+    .tabs-wrap { background: var(--bg-section); border-bottom: 1px solid var(--border); padding: 20px 24px; position: sticky; top: 60px; z-index: 90; }
+    .tabs-label { font-size: 11px; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 12px; }
+    .tabs { display: flex; gap: 8px; flex-wrap: wrap; max-width: var(--max-width); margin: 0 auto; }
     .tab-btn {
-      padding: 14px 20px; font-size: 13px; font-weight: 700;
-      color: rgba(255,255,255,0.35); background: none; border: none;
-      border-bottom: 2px solid transparent; cursor: pointer;
-      white-space: nowrap; transition: color 0.2s, border-color 0.2s;
+      padding: 10px 18px; font-size: 13px; font-weight: 700;
+      color: var(--text-secondary); background: var(--bg-white);
+      border: 1.5px solid var(--border); border-radius: 999px;
+      cursor: pointer; white-space: nowrap; transition: all 0.18s;
       font-family: inherit;
     }
-    .tab-btn:hover { color: rgba(255,255,255,0.65); }
-    .tab-btn.active { color: var(--teal-light); border-bottom-color: var(--teal-light); }
+    .tab-btn:hover { border-color: var(--teal); color: var(--teal); }
+    .tab-btn.active { background: var(--teal); color: white; border-color: var(--teal); }
 
     /* PANELS */
     .panel { display: none; background: var(--bg); min-height: 60vh; }
     .panel.active { display: block; }
-    .panel-inner { max-width: var(--max-width); margin: 0 auto; padding: 64px 24px; }
+    .panel-inner { max-width: var(--max-width); margin: 0 auto; padding: 56px 24px 72px; }
+    .eyebrow { display: inline-block; font-size: 11px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: var(--teal); margin-bottom: 12px; }
     .panel h2 { font-family: 'Playfair Display', serif; font-size: clamp(24px, 3vw, 36px); font-weight: 900; line-height: 1.1; margin-bottom: 8px; color: var(--text); }
     .panel h2 em { font-style: italic; color: var(--teal); }
-    .panel-sub { font-size: 15px; color: var(--text-muted); margin-bottom: 40px; }
+    .panel-sub { font-size: 15px; color: var(--text-muted); margin-bottom: 36px; }
 
     /* MÉTRICAS */
-    .metrics-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
-    .metric-card { background: var(--bg-white); border: 1px solid var(--border); border-radius: var(--radius); padding: 28px 24px; text-align: center; }
-    .metric-num { font-family: 'Playfair Display', serif; font-size: 40px; font-weight: 900; color: var(--teal); line-height: 1; }
+    .metrics-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+    .metric-card { background: var(--bg-white); border: 1.5px solid var(--border); border-radius: var(--radius); padding: 28px 20px; text-align: center; }
+    .metric-num { font-family: 'Playfair Display', serif; font-size: 42px; font-weight: 900; color: var(--teal); line-height: 1; }
     .metric-label { font-size: 13px; color: var(--text-secondary); margin-top: 8px; line-height: 1.5; font-weight: 500; }
     .metric-note { font-size: 11px; color: var(--text-muted); margin-top: 4px; }
-    .metrics-pending { margin-top: 28px; background: var(--bg-section); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 16px 20px; font-size: 13px; color: var(--text-muted); }
-    .metrics-pending strong { color: var(--text-secondary); }
 
     /* FILOSOFÍA */
-    .pillars-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
-    .pillar-card { background: var(--bg-white); border: 1px solid var(--border); border-radius: var(--radius); padding: 28px; }
-    .pillar-num { font-family: 'Playfair Display', serif; font-size: 40px; font-weight: 900; color: var(--teal); line-height: 1; margin-bottom: 12px; opacity: 0.35; }
+    .pillars-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+    .pillar-card { background: var(--bg-white); border: 1.5px solid var(--border); border-radius: var(--radius); padding: 28px; }
+    .pillar-num { font-family: 'Playfair Display', serif; font-size: 38px; font-weight: 900; color: var(--teal); line-height: 1; margin-bottom: 12px; opacity: 0.25; }
     .pillar-card h3 { font-size: 15px; font-weight: 800; color: var(--text); margin-bottom: 10px; }
     .pillar-card p { font-size: 14px; color: var(--text-secondary); line-height: 1.75; }
 
     /* EXPERIENCIA */
     .story-text { font-size: 16px; color: var(--text-secondary); line-height: 1.8; max-width: 700px; margin-bottom: 16px; }
     .quote-line { font-style: italic; color: var(--teal); font-weight: 600; border-left: 3px solid var(--teal); padding-left: 20px; margin: 24px 0; font-size: 16px; }
-    .timeline { margin-top: 40px; }
-    .t-label { font-size: 11px; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 16px; }
-    .t-item { display: grid; grid-template-columns: 160px 1fr; gap: 24px; padding: 20px 0; border-bottom: 1px solid var(--border); }
+    .timeline { margin-top: 40px; border: 1.5px solid var(--border); border-radius: var(--radius); overflow: hidden; background: var(--bg-white); }
+    .t-label { font-size: 11px; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); padding: 16px 24px; background: var(--bg-section); border-bottom: 1px solid var(--border); }
+    .t-item { display: grid; grid-template-columns: 160px 1fr; gap: 24px; padding: 20px 24px; border-bottom: 1px solid var(--border); }
     .t-item:last-child { border-bottom: none; }
     .t-date { font-size: 11px; font-weight: 800; color: var(--teal); text-transform: uppercase; letter-spacing: 0.06em; padding-top: 3px; }
     .t-role { font-size: 15px; font-weight: 700; color: var(--text); margin-bottom: 2px; }
@@ -143,53 +119,49 @@
     .t-desc { font-size: 13px; color: var(--text-secondary); line-height: 1.6; }
 
     /* TESTIMONIOS */
-    .t-cards { display: flex; flex-direction: column; gap: 20px; }
-    .t-card { background: var(--bg-white); border: 1px solid var(--border); border-radius: var(--radius); padding: 32px; }
+    .t-cards { display: flex; flex-direction: column; gap: 16px; }
+    .t-card { background: var(--bg-white); border: 1.5px solid var(--border); border-radius: var(--radius); padding: 32px; }
     .t-card blockquote { font-size: 16px; color: var(--text-secondary); line-height: 1.75; margin-bottom: 24px; font-style: italic; }
     .t-card-footer { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
-    .t-cite { display: flex; align-items: center; gap: 10px; font-size: 13px; color: var(--text-muted); font-weight: 600; }
-    .t-cite strong { color: var(--text); }
-    .t-cite a { display: inline-flex; align-items: center; gap: 5px; color: var(--li-blue); text-decoration: none; font-weight: 700; }
-    .t-cite a:hover { text-decoration: underline; }
-    .t-verify { font-size: 12px; font-weight: 700; color: var(--teal); text-decoration: none; border: 1px solid var(--teal-light); padding: 7px 16px; border-radius: 999px; white-space: nowrap; transition: all 0.2s; opacity: 0.7; }
-    .t-verify:hover { opacity: 1; background: rgba(13,148,136,0.06); }
+    .t-cite { display: flex; align-items: center; gap: 10px; font-size: 13px; color: var(--text-muted); }
+    .t-cite a { display: inline-flex; align-items: center; gap: 6px; color: var(--text); text-decoration: none; font-weight: 700; }
+    .t-cite a:hover { color: var(--teal); }
+    .t-cite-detail { font-size: 12px; color: var(--text-muted); }
+    .t-verify { font-size: 12px; font-weight: 700; color: var(--teal); text-decoration: none; border: 1.5px solid rgba(13,148,136,0.3); padding: 7px 16px; border-radius: 999px; white-space: nowrap; transition: all 0.2s; }
+    .t-verify:hover { background: rgba(13,148,136,0.06); border-color: var(--teal); }
 
     /* KNOW-HOW */
-    .ventures-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
-    .venture-card { background: var(--bg-white); border: 1px solid var(--border); border-radius: var(--radius); padding: 28px; }
+    .ventures-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+    .venture-card { background: var(--bg-white); border: 1.5px solid var(--border); border-radius: var(--radius); padding: 28px; }
     .venture-tag { font-size: 11px; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; color: var(--teal); margin-bottom: 10px; }
     .venture-card h3 { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 900; color: var(--text); margin-bottom: 10px; }
     .venture-card p { font-size: 13px; color: var(--text-secondary); line-height: 1.7; }
-    .venture-card .venture-link { display: inline-flex; align-items: center; gap: 6px; margin-top: 14px; font-size: 12px; font-weight: 700; color: var(--teal); text-decoration: none; }
-    .venture-card .venture-link:hover { text-decoration: underline; }
+    .venture-link { display: inline-flex; align-items: center; gap: 5px; margin-top: 14px; font-size: 12px; font-weight: 700; color: var(--teal); text-decoration: none; }
+    .venture-link:hover { text-decoration: underline; }
 
     /* CTA STRIP */
-    .cta-strip {
-      background: var(--bg-dark); padding: 64px 24px; text-align: center;
-    }
-    .cta-strip-inner { max-width: 600px; margin: 0 auto; }
-    .cta-strip h2 { font-family: 'Playfair Display', serif; font-size: clamp(22px, 3vw, 34px); font-weight: 900; color: white; line-height: 1.15; margin-bottom: 12px; }
-    .cta-strip h2 em { font-style: italic; color: var(--teal-light); }
-    .cta-strip p { font-size: 15px; color: rgba(255,255,255,0.4); margin-bottom: 28px; }
+    .cta-strip { background: var(--bg-section); border-top: 1px solid var(--border); padding: 64px 24px; text-align: center; }
+    .cta-strip-inner { max-width: 560px; margin: 0 auto; }
+    .cta-strip h2 { font-family: 'Playfair Display', serif; font-size: clamp(22px, 3vw, 34px); font-weight: 900; color: var(--text); line-height: 1.15; margin-bottom: 12px; }
+    .cta-strip h2 em { font-style: italic; color: var(--teal); }
+    .cta-strip p { font-size: 15px; color: var(--text-muted); margin-bottom: 28px; }
     .cta-btns { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
-    .cta-links { margin-top: 20px; font-size: 12px; color: rgba(255,255,255,0.3); }
-    .cta-links a { color: rgba(255,255,255,0.45); text-decoration: none; margin: 0 6px; transition: color 0.2s; }
-    .cta-links a:hover { color: white; }
 
     /* FOOTER */
-    .footer { background: #0A0A0A; border-top: 1px solid rgba(255,255,255,0.06); padding: 24px; text-align: center; }
-    .footer p { font-size: 12px; color: rgba(255,255,255,0.2); }
-    .footer a { color: rgba(255,255,255,0.35); text-decoration: none; }
-    .footer a:hover { color: white; }
+    .footer { background: var(--bg-section); border-top: 1px solid var(--border); padding: 24px; text-align: center; }
+    .footer p { font-size: 12px; color: var(--text-muted); }
+    .footer a { color: var(--text-secondary); text-decoration: none; }
+    .footer a:hover { color: var(--teal); }
 
     @media (max-width: 720px) {
-      .quick-stats { flex-direction: column; }
-      .qs-item { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.08); }
-      .qs-item:last-child { border-bottom: none; }
+      .quick-stats { grid-template-columns: repeat(2, 1fr); }
+      .qs-item:nth-child(2) { border-right: none; }
+      .qs-item:nth-child(1), .qs-item:nth-child(2) { border-bottom: 1px solid var(--border); }
       .metrics-grid { grid-template-columns: repeat(2, 1fr); }
       .pillars-grid { grid-template-columns: 1fr; }
       .ventures-grid { grid-template-columns: 1fr; }
       .t-item { grid-template-columns: 1fr; gap: 3px; }
+      .t-date { padding-top: 0; }
       .t-card-footer { flex-direction: column; align-items: flex-start; }
     }
   </style>
@@ -202,19 +174,19 @@
     <a href="/" class="nav-back">← Volver al inicio</a>
   </nav>
 
-  <!-- HERO / OVERVIEW -->
+  <!-- HERO -->
   <section class="hero">
     <div class="hero-inner">
       <div class="hero-badge">Head of BD · Director · VP</div>
-      <h1>No vendo lo que creo que necesitan.<br><em>Construyo el sistema que descubre<br>lo que realmente necesitan.</em></h1>
       <p class="hero-tagline">"Si tu pipeline se cae cuando yo agarro vacaciones, no es un sistema. Es una persona con suerte."</p>
+      <h1>No vendo lo que creo que necesitan. Construyo el sistema que descubre lo que realmente necesitan — un sistema que le pertenece al negocio, no a mí.</h1>
       <div class="hero-btns">
         <a href="https://mail.google.com/mail/?view=cm&fs=1&to=team@alecadario.com" target="_blank" class="btn-teal">Contactar →</a>
-        <a href="https://www.linkedin.com/in/alecadario/" target="_blank" class="btn-ghost">
+        <a href="https://www.linkedin.com/in/alecadario/" target="_blank" class="btn-outline">
           <span class="li-icon"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></span>
           LinkedIn
         </a>
-        <a href="https://calendar.app.google/pVx8u2CpPygzXwjF7" target="_blank" class="btn-ghost">Agendar llamada</a>
+        <a href="https://calendar.app.google/pVx8u2CpPygzXwjF7" target="_blank" class="btn-outline">Agendar llamada</a>
       </div>
       <div class="quick-stats">
         <div class="qs-item">
@@ -239,12 +211,15 @@
 
   <!-- TABS -->
   <div class="tabs-wrap">
-    <div class="tabs">
-      <button class="tab-btn active" data-tab="metricas">Métricas</button>
-      <button class="tab-btn" data-tab="filosofia">Filosofía de trabajo</button>
-      <button class="tab-btn" data-tab="experiencia">Experiencia</button>
-      <button class="tab-btn" data-tab="testimonios">Testimonios</button>
-      <button class="tab-btn" data-tab="knowhow">Know-how</button>
+    <div style="max-width: var(--max-width); margin: 0 auto;">
+      <div class="tabs-label">Explorá en detalle →</div>
+      <div class="tabs">
+        <button class="tab-btn active" data-tab="metricas">📊 Métricas</button>
+        <button class="tab-btn" data-tab="filosofia">💡 Filosofía de trabajo</button>
+        <button class="tab-btn" data-tab="experiencia">🗂 Experiencia</button>
+        <button class="tab-btn" data-tab="testimonios">💬 Testimonios</button>
+        <button class="tab-btn" data-tab="knowhow">🛠 Know-how</button>
+      </div>
     </div>
   </div>
 
@@ -253,8 +228,18 @@
     <div class="panel-inner">
       <span class="eyebrow">Números reales</span>
       <h2>Lo que se mide,<br><em>se demuestra.</em></h2>
-      <p class="panel-sub">Track record confirmado. Pendiente: cuota, pipeline generado en € y métricas de liderazgo de equipo.</p>
+      <p class="panel-sub">Track record confirmado.</p>
       <div class="metrics-grid">
+        <div class="metric-card">
+          <div class="metric-num">160%</div>
+          <div class="metric-label">Cumplimiento de cuota</div>
+          <div class="metric-note">Consistente sobre target</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-num">↑40%</div>
+          <div class="metric-label">Reducción de ciclo de venta</div>
+          <div class="metric-note">vs. benchmark industria B2B SaaS</div>
+        </div>
         <div class="metric-card">
           <div class="metric-num">20+</div>
           <div class="metric-label">Años en ventas B2B y desarrollo de negocio</div>
@@ -269,21 +254,8 @@
         </div>
         <div class="metric-card">
           <div class="metric-num">15+</div>
-          <div class="metric-label">Empresas e industrias distintas</div>
+          <div class="metric-label">Industrias distintas trabajadas</div>
         </div>
-        <div class="metric-card">
-          <div class="metric-num">400+</div>
-          <div class="metric-label">Miembros activos en comunidad liderada</div>
-          <div class="metric-note">Coomadres · 90% engagement</div>
-        </div>
-        <div class="metric-card">
-          <div class="metric-num">51K</div>
-          <div class="metric-label">Seguidores en TikTok — audiencia orgánica</div>
-          <div class="metric-note">2.6M views · últimos 12 meses</div>
-        </div>
-      </div>
-      <div class="metrics-pending">
-        <strong>Pendiente de completar:</strong> % de cumplimiento de cuota · Pipeline generado (€/$) · Tamaño de equipo liderado · Gente promovida · Reducción de ciclo de venta
       </div>
     </div>
   </div>
@@ -303,7 +275,7 @@
         <div class="pillar-card">
           <div class="pillar-num">02</div>
           <h3>Decido con datos, no con olfato</h3>
-          <p>Cada paso del proceso comercial (prospección, calificación, forecast) se mide. Si algo no convierte, el dato lo dice antes que la opinión.</p>
+          <p>Cada paso del proceso comercial —prospección, calificación, forecast— se mide. Si algo no convierte, el dato lo dice antes que la opinión.</p>
         </div>
         <div class="pillar-card">
           <div class="pillar-num">03</div>
@@ -327,9 +299,8 @@
       <p class="story-text">Crecí en Santa Cruz de la Sierra, Bolivia, donde aprendí lo esencial de las ventas mucho antes de dedicarme a esto: empatía, conversación genuina y el arte de construir relaciones. Después viví y trabajé en Canadá, Costa Rica, Bélgica, Argentina y España — cada mudanza significó volver a presentarme, aprender un mercado nuevo y ganarme la confianza de gente que no me conocía.</p>
       <p class="quote-line">"A veces tenés que irte lejos para encontrarte." — de mi libro, <em>Lejos de casa, cerca de mí</em></p>
       <p class="story-text">Cualificar un lead, desarrollar un negocio desde cero, abrir una puerta que estaba cerrada — no es una técnica que aprendí, es como armé mi propia vida. Creo tanto en ese método que terminé construyendo Piraí, una app que le da a cualquier persona buscando trabajo el mismo sistema de generación de oportunidades que uso yo.</p>
-
       <div class="timeline">
-        <div class="t-label">Track record comercial</div>
+        <div class="t-label">Track record</div>
         <div class="t-item">
           <div class="t-date">2025 — Presente</div>
           <div>
@@ -379,7 +350,7 @@
     <div class="panel-inner">
       <span class="eyebrow">Quienes trabajaron conmigo</span>
       <h2>Lo que dicen<br><em>los que saben.</em></h2>
-      <p class="panel-sub">Tres ángulos: manager anterior, manager reciente, compañero de equipo. Podés escribirles directamente.</p>
+      <p class="panel-sub">Podés escribirles directamente para verificar.</p>
       <div class="t-cards">
 
         <div class="t-card">
@@ -388,7 +359,7 @@
             <div class="t-cite">
               <span class="li-icon"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></span>
               <a href="https://www.linkedin.com/in/carloszs/" target="_blank"><strong>Carlos Zamorano</strong></a>
-              <span>— Pure Organic Foods (su manager)</span>
+              <span class="t-cite-detail">— Pure Organic Foods</span>
             </div>
             <a href="https://mail.google.com/mail/?view=cm&fs=1&to=tzamoranoscott@gmail.com&su=Pregunta%20rapida%20sobre%20Ale%20Cadario&body=Hola%20Carlos%2C%0A%0AVimos%20que%20Alejandra%20%28Ale%29%20Cadario%20trabajo%20contigo%20en%20Pure%20Organic%20Foods%20y%20la%20estamos%20evaluando%20para%20un%20rol%20de%20liderazgo%20comercial%20%28Head%20of%20Business%20Development%20%2F%20Director%20%2F%20VP%29.%0A%0ANos%20encantaria%20conocer%20tu%20opinion%20como%20su%20manager%3A%20como%20maneja%20la%20ambiguedad%3F%20La%20pondrias%20a%20cargo%20de%20un%20equipo%20comercial%20desde%20cero%20otra%20vez%3F%0A%0ACualquier%20comentario%2C%20por%20breve%20que%20sea%2C%20nos%20ayuda%20mucho.%0A%0AGracias%21" target="_blank" class="t-verify">Verificar referencia →</a>
           </div>
@@ -400,7 +371,7 @@
             <div class="t-cite">
               <span class="li-icon"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></span>
               <a href="https://www.linkedin.com/in/leopoldorojasd/" target="_blank"><strong>Leopoldo Rojas</strong></a>
-              <span>— Speexx (su manager)</span>
+              <span class="t-cite-detail">— Speexx</span>
             </div>
             <a href="https://mail.google.com/mail/?view=cm&fs=1&to=l.dominguez@speexx.com&su=Pregunta%20rapida%20sobre%20Ale%20Cadario&body=Hola%20Leopoldo%2C%0A%0AVimos%20que%20trabajaste%20con%20Alejandra%20%28Ale%29%20Cadario%20en%20Speexx%20y%20la%20estamos%20evaluando%20para%20un%20rol%20de%20liderazgo%20comercial%20%28Head%20of%20Business%20Development%20%2F%20Director%20%2F%20VP%29.%0A%0ANos%20encantaria%20conocer%20tu%20opinion%3A%20como%20es%20que%20te%20reporte%20directamente%3F%20La%20pondrias%20a%20cargo%20de%20un%20equipo%3F%0A%0ACualquier%20comentario%2C%20por%20breve%20que%20sea%2C%20nos%20ayuda%20mucho.%0A%0AGracias%21" target="_blank" class="t-verify">Verificar referencia →</a>
           </div>
@@ -412,7 +383,7 @@
             <div class="t-cite">
               <span class="li-icon"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></span>
               <a href="https://www.linkedin.com/in/inigomarin/" target="_blank"><strong>Iñigo Marín</strong></a>
-              <span>— Speexx (compañero de equipo)</span>
+              <span class="t-cite-detail">— Speexx</span>
             </div>
             <a href="https://mail.google.com/mail/?view=cm&fs=1&to=inigo.marin@aon.com&su=Pregunta%20rapida%20sobre%20Ale%20Cadario&body=Hola%20Inigo%2C%0A%0AVimos%20que%20trabajaste%20junto%20a%20Alejandra%20%28Ale%29%20Cadario%20en%20Speexx%20y%20la%20estamos%20evaluando%20para%20un%20rol%20de%20liderazgo%20comercial%20%28Head%20of%20Business%20Development%20%2F%20Director%20%2F%20VP%29.%0A%0ANos%20encantaria%20conocer%20tu%20opinion%20como%20companero%20de%20equipo%3A%20como%20es%20colaborar%20con%20ella%3F%20Comparte%20lo%20que%20aprende%20con%20el%20resto%20del%20equipo%3F%0A%0ACualquier%20comentario%2C%20por%20breve%20que%20sea%2C%20nos%20ayuda%20mucho.%0A%0AGracias%21" target="_blank" class="t-verify">Verificar referencia →</a>
           </div>
@@ -456,8 +427,8 @@
       <p>Si buscás a alguien que la rediseñe, hablemos.</p>
       <div class="cta-btns">
         <a href="https://mail.google.com/mail/?view=cm&fs=1&to=team@alecadario.com" target="_blank" class="btn-teal">Escribime →</a>
-        <a href="https://calendar.app.google/pVx8u2CpPygzXwjF7" target="_blank" class="btn-ghost">Agendar llamada</a>
-        <a href="https://www.linkedin.com/in/alecadario/" target="_blank" class="btn-ghost">
+        <a href="https://calendar.app.google/pVx8u2CpPygzXwjF7" target="_blank" class="btn-outline">Agendar llamada</a>
+        <a href="https://www.linkedin.com/in/alecadario/" target="_blank" class="btn-outline">
           <span class="li-icon"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></span>
           LinkedIn
         </a>
@@ -465,19 +436,15 @@
     </div>
   </div>
 
-  <!-- FOOTER -->
   <footer class="footer">
     <p>&copy; 2026 <a href="/">Ale Cadario</a> &nbsp;&middot;&nbsp; Liderazgo Comercial B2B</p>
   </footer>
 
   <script>
-    const tabs = document.querySelectorAll('.tab-btn');
-    const panels = document.querySelectorAll('.panel');
-
-    tabs.forEach(tab => {
+    document.querySelectorAll('.tab-btn').forEach(tab => {
       tab.addEventListener('click', () => {
-        tabs.forEach(t => t.classList.remove('active'));
-        panels.forEach(p => p.classList.remove('active'));
+        document.querySelectorAll('.tab-btn').forEach(t => t.classList.remove('active'));
+        document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
         tab.classList.add('active');
         document.getElementById('panel-' + tab.dataset.tab).classList.add('active');
         document.querySelector('.tabs-wrap').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
