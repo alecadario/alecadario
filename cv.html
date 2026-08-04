@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Ale Cadario — Liderazgo Comercial B2B. Head of BD / Director / VP." />
+  <title>Para Recruiters | Ale Cadario</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;0,900;1,700;1,800;1,900&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --teal: #0D9488; --teal-light: #14B8A6;
+      --teal-bg: rgba(13,148,136,0.08); --teal-border: rgba(13,148,136,0.25);
+      --bg: #FAFAF8; --bg-white: #FFFFFF; --bg-dark: #0D0D0D; --bg-section: #F4F4F1;
+      --text: #111111; --text-secondary: #555555; --text-muted: #999999;
+      --border: #E4E4E0; --radius: 16px; --radius-sm: 10px;
+      --shadow-md: 0 4px 16px rgba(0,0,0,0.08);
+      --max-width: 1000px;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+
+    .fade-up { opacity: 0; transform: translateY(28px); transition: opacity 0.65s ease, transform 0.65s ease; }
+    .fade-up.visible { opacity: 1; transform: none; }
+
+    /* NAV */
+    .nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(13,13,13,0.96); backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      padding: 0 24px; height: 60px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-logo { font-size: 15px; font-weight: 800; color: white; text-decoration: none; }
+    .nav-logo span { color: var(--teal-light); }
+    .nav-back { font-size: 13px; font-weight: 600; color: rgba(255,255,255,0.5); text-decoration: none; transition: color 0.2s; }
+    .nav-back:hover { color: white; }
+
+    .eyebrow { display: inline-block; font-size: 11px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: var(--teal); margin-bottom: 16px; }
+
+    /* HERO */
+    .hero { background: var(--bg-dark); padding: 96px 24px 80px; position: relative; overflow: hidden; }
+    .hero::before {
+      content: ''; position: absolute; top: -200px; right: -100px;
+      width: 700px; height: 700px;
+      background: radial-gradient(circle, rgba(13,148,136,0.12) 0%, transparent 65%);
+      border-radius: 50%; pointer-events: none;
+    }
+    .hero-inner { max-width: var(--max-width); margin: 0 auto; position: relative; z-index: 1; }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(13,148,136,0.15); border: 1px solid rgba(13,148,136,0.35);
+      color: var(--teal-light); border-radius: 999px;
+      padding: 6px 16px; font-size: 13px; font-weight: 600; margin-bottom: 28px;
+    }
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(28px, 4.5vw, 50px); font-weight: 900;
+      color: white; line-height: 1.1; margin-bottom: 20px; max-width: 860px;
+    }
+    .hero h1 em { font-style: italic; color: var(--teal-light); }
+    .hero-tagline {
+      font-size: clamp(15px, 2vw, 18px); color: rgba(255,255,255,0.45);
+      max-width: 640px; line-height: 1.65; margin-bottom: 36px;
+      font-style: italic;
+    }
+    .hero-btns { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 48px; }
+    .btn-teal { display: inline-flex; align-items: center; background: var(--teal); color: white; padding: 13px 26px; border-radius: var(--radius-sm); font-size: 14px; font-weight: 700; text-decoration: none; transition: background 0.2s; }
+    .btn-teal:hover { background: var(--teal-light); }
+    .btn-ghost { display: inline-flex; align-items: center; background: transparent; color: rgba(255,255,255,0.7); border: 1px solid rgba(255,255,255,0.2); padding: 13px 26px; border-radius: var(--radius-sm); font-size: 14px; font-weight: 600; text-decoration: none; transition: border-color 0.2s, color 0.2s; }
+    .btn-ghost:hover { border-color: rgba(255,255,255,0.5); color: white; }
+
+    .stats-bar { display: flex; gap: 48px; flex-wrap: wrap; padding-top: 40px; border-top: 1px solid rgba(255,255,255,0.08); }
+    .stat-num { font-family: 'Playfair Display', serif; font-size: 34px; font-weight: 900; color: white; line-height: 1; }
+    .stat-label { font-size: 12px; color: rgba(255,255,255,0.4); font-weight: 600; margin-top: 4px; max-width: 130px; line-height: 1.4; }
+
+    /* SECTIONS */
+    .section { padding: 80px 24px; }
+    .section-inner { max-width: var(--max-width); margin: 0 auto; }
+    .section h2 { font-family: 'Playfair Display', serif; font-size: clamp(26px, 3.5vw, 38px); font-weight: 900; line-height: 1.1; margin-bottom: 24px; }
+    .section h2 em { font-style: italic; color: var(--teal); }
+
+    /* PILLARS */
+    .pillars { background: var(--bg-section); }
+    .pillars-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; margin-top: 32px; }
+    .pillar-card { background: var(--bg-white); border: 1px solid var(--border); border-radius: var(--radius); padding: 28px; }
+    .pillar-num { font-family: 'Playfair Display', serif; font-size: 36px; font-weight: 900; color: var(--teal); line-height: 1; margin-bottom: 12px; opacity: 0.4; }
+    .pillar-card h3 { font-size: 16px; font-weight: 800; color: var(--text); margin-bottom: 10px; }
+    .pillar-card p { font-size: 14px; color: var(--text-secondary); line-height: 1.75; }
+
+    /* STORY */
+    .story { background: var(--bg-white); }
+    .story p { font-size: 16px; color: var(--text-secondary); line-height: 1.8; margin-bottom: 16px; max-width: 720px; }
+    .story p:last-child { margin-bottom: 0; }
+    .quote-line {
+      font-style: italic; color: var(--teal) !important; font-weight: 600;
+      border-left: 3px solid var(--teal); padding-left: 20px;
+      margin: 28px 0 !important; font-size: 17px !important;
+    }
+
+    /* TRACK RECORD */
+    .track { background: var(--bg-section); }
+    .timeline { margin-top: 32px; display: flex; flex-direction: column; }
+    .t-item {
+      display: grid; grid-template-columns: 160px 1fr; gap: 24px;
+      padding: 24px 0; border-bottom: 1px solid var(--border);
+    }
+    .t-item:last-child { border-bottom: none; }
+    .t-date { font-size: 11px; font-weight: 800; color: var(--teal); text-transform: uppercase; letter-spacing: 0.06em; padding-top: 3px; line-height: 1.5; }
+    .t-role { font-size: 16px; font-weight: 700; color: var(--text); margin-bottom: 2px; }
+    .t-company { font-size: 13px; color: var(--text-muted); font-weight: 600; margin-bottom: 6px; }
+    .t-desc { font-size: 14px; color: var(--text-secondary); line-height: 1.65; }
+
+    /* TESTIMONIALS */
+    .testimonials { background: var(--bg-dark); padding: 80px 24px; }
+    .testimonials-inner { max-width: var(--max-width); margin: 0 auto; }
+    .testimonials-header { margin-bottom: 40px; }
+    .testimonials-header h2 { font-family: 'Playfair Display', serif; font-size: clamp(26px, 3.5vw, 38px); font-weight: 900; color: white; line-height: 1.1; }
+    .testimonials-header h2 em { font-style: italic; color: var(--teal-light); }
+    .testimonials-grid { display: flex; flex-direction: column; gap: 24px; }
+    .t-card {
+      background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);
+      border-radius: var(--radius); padding: 32px;
+    }
+    .t-card blockquote { font-size: 16px; color: rgba(255,255,255,0.8); line-height: 1.75; margin-bottom: 20px; font-style: italic; }
+    .t-card-footer { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+    .t-cite { font-size: 13px; color: rgba(255,255,255,0.4); font-weight: 600; }
+    .t-cite strong { color: var(--teal-light); }
+    .t-cite a { color: var(--teal-light); text-decoration: none; }
+    .t-cite a:hover { text-decoration: underline; }
+    .t-verify { font-size: 12px; font-weight: 700; color: rgba(255,255,255,0.35); text-decoration: none; border: 1px solid rgba(255,255,255,0.12); padding: 6px 14px; border-radius: 999px; white-space: nowrap; transition: color 0.2s, border-color 0.2s; }
+    .t-verify:hover { color: white; border-color: rgba(255,255,255,0.35); }
+    .t-draft { font-size: 11px; font-weight: 700; color: rgba(255,200,50,0.6); background: rgba(255,200,50,0.08); border: 1px solid rgba(255,200,50,0.2); padding: 3px 10px; border-radius: 999px; margin-left: 8px; vertical-align: middle; }
+
+    /* VENTURES */
+    .ventures { background: var(--bg-white); }
+    .ventures-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 32px; }
+    .venture-card { background: var(--bg-section); border: 1px solid var(--border); border-radius: var(--radius); padding: 28px; }
+    .venture-tag { font-size: 11px; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; color: var(--teal); margin-bottom: 10px; }
+    .venture-card h3 { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 900; color: var(--text); margin-bottom: 10px; }
+    .venture-card p { font-size: 14px; color: var(--text-secondary); line-height: 1.7; }
+
+    /* CTA FINAL */
+    .cta-final { background: var(--bg-dark); padding: 96px 24px; text-align: center; position: relative; overflow: hidden; }
+    .cta-final::before {
+      content: ''; position: absolute; top: -150px; right: -150px;
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(13,148,136,0.12) 0%, transparent 65%);
+      border-radius: 50%; pointer-events: none;
+    }
+    .cta-final-inner { max-width: 660px; margin: 0 auto; position: relative; z-index: 1; }
+    .cta-final h2 { font-family: 'Playfair Display', serif; font-size: clamp(24px, 3.5vw, 38px); font-weight: 900; color: white; line-height: 1.15; margin-bottom: 16px; }
+    .cta-final h2 em { font-style: italic; color: var(--teal-light); }
+    .cta-final p { font-size: 16px; color: rgba(255,255,255,0.45); line-height: 1.7; margin-bottom: 36px; }
+    .cta-btns { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; }
+    .cta-links { margin-top: 28px; font-size: 13px; color: rgba(255,255,255,0.3); }
+    .cta-links a { color: rgba(255,255,255,0.5); text-decoration: none; margin: 0 8px; transition: color 0.2s; }
+    .cta-links a:hover { color: white; }
+
+    /* FOOTER */
+    .footer { background: #0A0A0A; border-top: 1px solid rgba(255,255,255,0.06); padding: 28px 24px; text-align: center; }
+    .footer p { font-size: 13px; color: rgba(255,255,255,0.25); }
+    .footer a { color: rgba(255,255,255,0.4); text-decoration: none; }
+    .footer a:hover { color: white; }
+
+    @media (max-width: 720px) {
+      .stats-bar { gap: 24px; }
+      .pillars-grid { grid-template-columns: 1fr; }
+      .ventures-grid { grid-template-columns: 1fr; }
+      .t-item { grid-template-columns: 1fr; gap: 4px; }
+      .t-date { padding-top: 0; }
+      .t-card-footer { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav">
+    <a href="/" class="nav-logo"><span>Ale</span> Cadario</a>
+    <a href="/" class="nav-back">← Volver al inicio</a>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-inner fade-up">
+      <div class="hero-badge">Head of BD · Director · VP</div>
+      <h1>No vendo lo que creo que necesitan.<br><em>Construyo el sistema que descubre<br>lo que realmente necesitan.</em></h1>
+      <p class="hero-tagline">"Si tu pipeline se cae cuando yo agarro vacaciones, no es un sistema. Es una persona con suerte."</p>
+      <div class="hero-btns">
+        <a href="mailto:team@alecadario.com" class="btn-teal">Contactar →</a>
+        <a href="https://www.linkedin.com/in/alecadario/" target="_blank" class="btn-ghost">Ver LinkedIn</a>
+        <a href="https://calendar.app.google/pVx8u2CpPygzXwjF7" target="_blank" class="btn-ghost">Agendar llamada</a>
+      </div>
+      <div class="stats-bar">
+        <div>
+          <div class="stat-num">20+</div>
+          <div class="stat-label">Años en ventas B2B y desarrollo de negocio</div>
+        </div>
+        <div>
+          <div class="stat-num">6</div>
+          <div class="stat-label">Países donde viví y vendí</div>
+        </div>
+        <div>
+          <div class="stat-num">3</div>
+          <div class="stat-label">Organizaciones fundadas desde cero</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CÓMO TRABAJO -->
+  <section class="section pillars">
+    <div class="section-inner fade-up">
+      <span class="eyebrow">Cómo trabajo</span>
+      <h2>Cuatro principios.<br><em>Sin excepciones.</em></h2>
+      <div class="pillars-grid">
+        <div class="pillar-card">
+          <div class="pillar-num">01</div>
+          <h3>Descubro, no asumo</h3>
+          <p>Antes de proponer, investigo: quién decide, qué dato valida el problema, qué fricción real están viviendo. El valor no sale de lo que yo creo que sirve, sale de lo que el negocio necesita y todavía no vio.</p>
+        </div>
+        <div class="pillar-card">
+          <div class="pillar-num">02</div>
+          <h3>Decido con datos, no con olfato</h3>
+          <p>Cada paso del proceso comercial (prospección, calificación, forecast) se mide. Si algo no convierte, el dato lo dice antes que la opinión.</p>
+        </div>
+        <div class="pillar-card">
+          <div class="pillar-num">03</div>
+          <h3>Construyo sistemas, no dependencia</h3>
+          <p>El objetivo de cualquier proceso que armo es que sobreviva a mi salida. Con clientes externos y con equipos internos: si el sistema depende de mí para funcionar, todavía no terminé de construirlo.</p>
+        </div>
+        <div class="pillar-card">
+          <div class="pillar-num">04</div>
+          <h3>Multiplico, no controlo</h3>
+          <p>Mi trabajo no es ser la que más vende. Es dejar un equipo que vende mejor sin necesitarme en cada llamada. Documento el criterio, no solo la tarea, para que se pueda enseñar y escalar — no para que dependa de mi memoria.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STORY -->
+  <section class="section story">
+    <div class="section-inner fade-up">
+      <span class="eyebrow">Mi historia</span>
+      <h2>Empezar de cero<br><em>no me asusta.</em></h2>
+      <p>Crecí en Santa Cruz de la Sierra, Bolivia, donde aprendí lo esencial de las ventas mucho antes de dedicarme a esto: empatía, conversación genuina y el arte de construir relaciones. Después viví y trabajé en Canadá, Costa Rica, Bélgica, Argentina y España — cada mudanza significó volver a presentarme, aprender un mercado nuevo y ganarme la confianza de gente que no me conocía.</p>
+      <p class="quote-line">"A veces tenés que irte lejos para encontrarte." — de mi libro, <em>Lejos de casa, cerca de mí</em></p>
+      <p>Cualificar un lead, desarrollar un negocio desde cero, abrir una puerta que estaba cerrada — no es una técnica que aprendí, es como armé mi propia vida. Migré sola a países donde no conocía a nadie y usé exactamente ese proceso: identificar quién podía ayudarme, calificar la oportunidad real detrás de cada contacto, insistir hasta abrir la puerta. Creo tanto en ese método que terminé construyendo Piraí, una app que le da a cualquier persona buscando trabajo el mismo sistema de generación de oportunidades que uso yo — para que abrir puertas no dependa de a quién conocés, sino de saber buscar.</p>
+    </div>
+  </section>
+
+  <!-- TRACK RECORD -->
+  <section class="section track">
+    <div class="section-inner fade-up">
+      <span class="eyebrow">Track record comercial</span>
+      <h2>De ejecutar la venta<br><em>a liderar el equipo.</em></h2>
+      <div class="timeline">
+        <div class="t-item">
+          <div class="t-date">2025 — Presente</div>
+          <div>
+            <div class="t-role">Senior Business Consultant</div>
+            <div class="t-company">Globant · Madrid</div>
+            <div class="t-desc">Desarrollo de negocio y consultoría comercial para cuentas internacionales.</div>
+          </div>
+        </div>
+        <div class="t-item">
+          <div class="t-date">2022 — Presente</div>
+          <div>
+            <div class="t-role">Solutions Consultant</div>
+            <div class="t-company">Speexx</div>
+            <div class="t-desc">Estrategias de comunicación B2B para clientes corporativos internacionales; gestión de presentaciones de alto impacto para audiencias globales.</div>
+          </div>
+        </div>
+        <div class="t-item">
+          <div class="t-date">2018 — 2019</div>
+          <div>
+            <div class="t-role">Commercial Manager, North America</div>
+            <div class="t-company">Pure Organic Foods · Toronto</div>
+            <div class="t-desc">Expandió su rol de Operations Manager para liderar también el desarrollo comercial en Norteamérica.</div>
+          </div>
+        </div>
+        <div class="t-item">
+          <div class="t-date">2017 — 2021</div>
+          <div>
+            <div class="t-role">Commercial Director & Partner</div>
+            <div class="t-company">SAMI Salud · Santa Cruz de la Sierra</div>
+            <div class="t-desc">Dirección comercial y sociedad en el negocio.</div>
+          </div>
+        </div>
+        <div class="t-item">
+          <div class="t-date">2012 — 2015</div>
+          <div>
+            <div class="t-role">Sales and Marketing Manager</div>
+            <div class="t-company">Laboratorios IFA S.A.</div>
+            <div class="t-desc">Planificación y ejecución de objetivos de marketing y ventas; planes de acción de venta en campo.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="testimonials">
+    <div class="testimonials-inner">
+      <div class="testimonials-header fade-up">
+        <span class="eyebrow" style="color: var(--teal-light);">Quienes trabajaron conmigo</span>
+        <h2>Lo que dicen<br><em>los que saben.</em></h2>
+      </div>
+      <div class="testimonials-grid fade-up">
+
+        <!-- Teddy -->
+        <div class="t-card">
+          <blockquote>"Contraté a Ale para un rol de Operations Manager y terminó liderando también el desarrollo comercial en Norteamérica. Esa capacidad de expandir su rol sin que nadie se lo pida es lo que la distingue. Si hoy tuviera que armar un equipo comercial desde cero en cualquier mercado, la llamaría primero a ella."</blockquote>
+          <div class="t-card-footer">
+            <div class="t-cite"><strong><a href="https://www.linkedin.com/in/carloszs/" target="_blank">Carlos Zamorano</a></strong> — Pure Organic Foods (su manager)</div>
+            <a href="mailto:tzamoranoscott@gmail.com?subject=Pregunta%20rapida%20sobre%20Ale%20Cadario&body=Hola%20Carlos%2C%0A%0AVimos%20que%20Alejandra%20%28Ale%29%20Cadario%20trabajo%20contigo%20en%20Pure%20Organic%20Foods%20y%20la%20estamos%20evaluando%20para%20un%20rol%20de%20liderazgo%20comercial%20%28Head%20of%20Business%20Development%20/%20Director%20/%20VP%29.%0A%0ANos%20encantaria%20conocer%20tu%20opinion%20como%20su%20manager%20en%20ese%20momento%3A%20como%20maneja%20la%20ambiguedad%3F%20La%20pondrias%20a%20cargo%20de%20un%20equipo%20comercial%20desde%20cero%20otra%20vez%3F%0A%0ACualquier%20comentario%2C%20por%20breve%20que%20sea%2C%20nos%20ayuda%20mucho.%0A%0AGracias%21" class="t-verify">¿Querés confirmarlo? Escribile →</a>
+          </div>
+        </div>
+
+        <!-- Leopoldo -->
+        <div class="t-card">
+          <blockquote>"Como manager de Ale, lo que más valoro es que no espera instrucciones para resolver — identifica el problema, decide con datos y después informa. Le daría un equipo a cargo sin dudarlo."</blockquote>
+          <div class="t-card-footer">
+            <div class="t-cite"><strong><a href="https://www.linkedin.com/in/leopoldorojasd/" target="_blank">Leopoldo Rojas</a></strong> — Speexx (su manager) <span class="t-draft">pendiente confirmación</span></div>
+            <a href="mailto:l.dominguez@speexx.com?subject=Pregunta%20rapida%20sobre%20Ale%20Cadario&body=Hola%20Leopoldo%2C%0A%0AVimos%20que%20trabajaste%20con%20Alejandra%20%28Ale%29%20Cadario%20en%20Speexx%20y%20la%20estamos%20evaluando%20para%20un%20rol%20de%20liderazgo%20comercial%20%28Head%20of%20Business%20Development%20/%20Director%20/%20VP%29.%0A%0ANos%20encantaria%20conocer%20tu%20opinion%3A%20como%20es%20que%20te%20reporte%20directamente%3F%20La%20pondrias%20a%20cargo%20de%20un%20equipo%3F%0A%0ACualquier%20comentario%2C%20por%20breve%20que%20sea%2C%20nos%20ayuda%20mucho.%0A%0AGracias%21" class="t-verify">¿Querés confirmarlo? Escribile →</a>
+          </div>
+        </div>
+
+        <!-- Iñigo -->
+        <div class="t-card">
+          <blockquote>"Trabajar con Ale es fácil porque no guarda nada para ella — si encuentra algo que funciona, lo comparte con todo el equipo antes de que se lo pidan. No compite con el equipo, lo hace mejor."</blockquote>
+          <div class="t-card-footer">
+            <div class="t-cite"><strong><a href="https://www.linkedin.com/in/inigomarin/" target="_blank">Iñigo Marín</a></strong> — Speexx (compañero de equipo) <span class="t-draft">pendiente confirmación</span></div>
+            <a href="mailto:inigo.marin@aon.com?subject=Pregunta%20rapida%20sobre%20Ale%20Cadario&body=Hola%20Inigo%2C%0A%0AVimos%20que%20trabajaste%20junto%20a%20Alejandra%20%28Ale%29%20Cadario%20en%20Speexx%20y%20la%20estamos%20evaluando%20para%20un%20rol%20de%20liderazgo%20comercial%20%28Head%20of%20Business%20Development%20/%20Director%20/%20VP%29.%0A%0ANos%20encantaria%20conocer%20tu%20opinion%20como%20companero%20de%20equipo%3A%20como%20es%20colaborar%20con%20ella%3F%20Comparte%20lo%20que%20aprende%20con%20el%20resto%20del%20equipo%3F%0A%0ACualquier%20comentario%2C%20por%20breve%20que%20sea%2C%20nos%20ayuda%20mucho.%0A%0AGracias%21" class="t-verify">¿Querés confirmarlo? Escribile →</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- VENTURES -->
+  <section class="section ventures">
+    <div class="section-inner fade-up">
+      <span class="eyebrow">Además, construyo</span>
+      <h2>No solo vendo.<br><em>También armo los sistemas.</em></h2>
+      <div class="ventures-grid">
+        <div class="venture-card">
+          <div class="venture-tag">Founder & CEO</div>
+          <h3>Piraí</h3>
+          <p>App de búsqueda de empleo y desarrollo de carrera para profesionales hispanohablantes: pipeline visual, CRM de contactos, preparación de entrevistas y análisis de CV con IA.</p>
+        </div>
+        <div class="venture-card">
+          <div class="venture-tag">Fundadora</div>
+          <h3>Coomadres</h3>
+          <p>Comunidad de 400+ mujeres que conecta a través de eventos de storytelling, networking y coaching. 90% de engagement en talleres y retiros.</p>
+        </div>
+        <div class="venture-card">
+          <div class="venture-tag">Autora</div>
+          <h3>Lejos de casa, cerca de mí</h3>
+          <p>Libro sobre migración, resiliencia e identidad — la misma historia que explica por qué me adapto rápido a mercados y equipos nuevos.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA FINAL -->
+  <section class="cta-final">
+    <div class="cta-final-inner fade-up">
+      <span class="eyebrow" style="color: var(--teal-light);">HABLEMOS</span>
+      <h2>Si buscás a alguien que rellene una casilla,<br><em>no soy yo.</em></h2>
+      <p>Si buscás a alguien que la rediseñe, hablemos. Abierta a roles de liderazgo comercial — Head of Sales, Head of BD, Director, VP — en mercados de LatAm, Europa o Norteamérica.</p>
+      <div class="cta-btns">
+        <a href="mailto:team@alecadario.com" class="btn-teal">Escribime →</a>
+        <a href="https://calendar.app.google/pVx8u2CpPygzXwjF7" target="_blank" class="btn-ghost">Agendar llamada</a>
+      </div>
+      <div class="cta-links">
+        <a href="https://www.linkedin.com/in/alecadario/" target="_blank">LinkedIn</a> ·
+        <a href="mailto:team@alecadario.com">team@alecadario.com</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <p>&copy; 2026 <a href="/">Ale Cadario</a> &nbsp;&middot;&nbsp; Liderazgo Comercial B2B</p>
+  </footer>
+
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>
