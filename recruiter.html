@@ -158,23 +158,23 @@
     .qs-label { font-size: 11px; color: rgba(255,255,255,0.35); font-weight: 500; margin-top: 6px; line-height: 1.4; }
 
     /* ═══ NO FIT ═══ */
-    .nofit-banner { background: var(--white); border-top: 4px solid #EF4444; padding: 44px 32px; }
+    .nofit-banner { background: var(--white); border-top: 1px solid var(--gray-200); padding: 44px 32px; }
     .nofit-inner { max-width: var(--max); margin: 0 auto; }
     .nofit-header { display: flex; align-items: center; gap: 10px; margin-bottom: 24px; }
     .nofit-icon { font-size: 18px; }
-    .nofit-title { font-size: 11px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: #DC2626; }
+    .nofit-title { font-size: 11px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gray-600); }
     .nofit-items { display: grid; grid-template-columns: repeat(2,1fr); gap: 10px; }
     .nofit-item {
       display: flex; align-items: flex-start; gap: 12px;
-      background: #FEF2F2; border: 1px solid #FECACA;
+      background: var(--gray-50); border: 1px solid var(--gray-200);
       border-radius: var(--radius-sm); padding: 16px 18px;
     }
     .nofit-x {
       width: 20px; height: 20px; border-radius: 50%; flex-shrink: 0; margin-top: 1px;
-      background: #FEE2E2; color: #DC2626; font-size: 10px; font-weight: 900;
+      background: var(--gray-200); color: var(--gray-600); font-size: 10px; font-weight: 900;
       display: flex; align-items: center; justify-content: center;
     }
-    .nofit-item span:last-child { font-size: 13px; color: #7F1D1D; line-height: 1.55; font-weight: 500; }
+    .nofit-item span:last-child { font-size: 13px; color: var(--gray-600); line-height: 1.55; font-weight: 500; }
 
     /* ═══ TABS ═══ */
     .tabs-wrap { background: var(--white); border-bottom: 1px solid var(--gray-200); padding: 14px 32px; position: sticky; top: 58px; z-index: 90; }
@@ -433,11 +433,11 @@
       <p class="panel-sub">Track record confirmado.</p>
       <div class="metrics-grid">
         <div class="metric-card"><div class="metric-num">160%</div><div class="metric-label">Cumplimiento de cuota</div><div class="metric-note">Consistente sobre target</div></div>
-        <div class="metric-card"><div class="metric-num">↑40%</div><div class="metric-label">Reducción de ciclo de venta</div><div class="metric-note">vs. benchmark industria B2B SaaS</div></div>
+        <div class="metric-card"><div class="metric-num">8 fig.</div><div class="metric-label">Pipeline generado este año</div><div class="metric-note">80% hunting · 20% farming</div></div>
+        <div class="metric-card"><div class="metric-num">20+</div><div class="metric-label">Personas lideradas simultáneamente</div><div class="metric-note">Equipos multi-país: Bolivia, México, EE.UU., Canadá</div></div>
         <div class="metric-card"><div class="metric-num">20+</div><div class="metric-label">Años en ventas B2B y desarrollo de negocio</div></div>
         <div class="metric-card"><div class="metric-num">6</div><div class="metric-label">Países donde viví y construí pipeline</div></div>
         <div class="metric-card"><div class="metric-num">3</div><div class="metric-label">Organizaciones fundadas desde cero</div></div>
-        <div class="metric-card"><div class="metric-num">15+</div><div class="metric-label">Industrias distintas trabajadas</div></div>
       </div>
     </div>
   </div>
@@ -452,7 +452,7 @@
         <div class="pillar-card"><div class="pillar-num">01</div><h3>Descubro, no asumo</h3><p>Antes de proponer, investigo: quién decide, qué dato valida el problema, qué fricción real están viviendo. El valor no sale de lo que yo creo que sirve, sale de lo que el negocio necesita y todavía no vio.</p></div>
         <div class="pillar-card"><div class="pillar-num">02</div><h3>Decido con datos, no con olfato</h3><p>Cada paso del proceso comercial —prospección, calificación, forecast— se mide. Si algo no convierte, el dato lo dice antes que la opinión.</p></div>
         <div class="pillar-card"><div class="pillar-num">03</div><h3>Construyo sistemas, no dependencia</h3><p>El objetivo de cualquier proceso que armo es que sobreviva a mi salida. Si el sistema depende de mí para funcionar, todavía no terminé de construirlo.</p></div>
-        <div class="pillar-card"><div class="pillar-num">04</div><h3>Multiplico, no controlo</h3><p>Mi trabajo no es ser la que más vende. Es dejar un equipo que vende mejor sin necesitarme en cada llamada. Documento el criterio, no solo la tarea, para que se pueda enseñar y escalar.</p></div>
+        <div class="pillar-card"><div class="pillar-num">04</div><h3>Multiplico, no controlo</h3><p>Mi trabajo no es ser la que más vende. Es dejar un equipo que vende mejor sin necesitarme en cada llamada. Capacito de forma constante, no solo al arrancar — y documento el criterio, no solo la tarea, para que se pueda enseñar y escalar.</p></div>
         <div class="pillar-card"><div class="pillar-num">05</div><h3>Inspiro con contexto, no con entusiasmo</h3><p>No motivo con frases. Motivo mostrando el por qué detrás de cada objetivo. La gente da lo mejor cuando entiende lo que está construyendo, no solo lo que le pidieron hacer.</p></div>
         <div class="pillar-card"><div class="pillar-num">06</div><h3>Potencio lo que funciona. Cambio lo que no.</h3><p>Cuando entro a un equipo, primero escucho. Amplifico lo que ya da resultado y reemplazo lo que claramente no lo da. Sin apego al statu quo, pero tampoco sin evidencia.</p></div>
       </div>
@@ -472,9 +472,9 @@
         <div class="t-label">Track record</div>
         <div class="t-item"><div class="t-date">2025 — Presente</div><div><div class="t-role">Senior Business Consultant</div><div class="t-company">Globant · Madrid</div><div class="t-desc">Desarrollo de negocio y consultoría comercial para cuentas internacionales.</div></div></div>
         <div class="t-item"><div class="t-date">2022 — Presente</div><div><div class="t-role">Solutions Consultant</div><div class="t-company">Speexx</div><div class="t-desc">Estrategias de comunicación B2B para clientes corporativos internacionales; presentaciones de alto impacto para audiencias globales.</div></div></div>
-        <div class="t-item"><div class="t-date">2018 — 2019</div><div><div class="t-role">Commercial Manager, North America</div><div class="t-company">Pure Organic Foods · Toronto</div><div class="t-desc">Expandió su rol de Operations Manager para liderar también el desarrollo comercial en Norteamérica.</div></div></div>
+        <div class="t-item"><div class="t-date">2018 — 2019</div><div><div class="t-role">Commercial Manager, North America</div><div class="t-company">Pure Organic Foods · Toronto</div><div class="t-desc">Expandió su rol de Operations Manager para liderar también el desarrollo comercial en Norteamérica, coordinando con los equipos de México, Estados Unidos y Canadá para asegurar que cada departamento entregue en tiempo y forma.</div></div></div>
         <div class="t-item"><div class="t-date">2017 — 2021</div><div><div class="t-role">Commercial Director & Partner</div><div class="t-company">SAMI Salud · Santa Cruz de la Sierra</div><div class="t-desc">Dirección comercial y sociedad en el negocio.</div></div></div>
-        <div class="t-item"><div class="t-date">2012 — 2015</div><div><div class="t-role">Sales and Marketing Manager</div><div class="t-company">Laboratorios IFA S.A.</div><div class="t-desc">Planificación y ejecución de objetivos de marketing y ventas; planes de acción de venta en campo.</div></div></div>
+        <div class="t-item"><div class="t-date">2012 — 2015</div><div><div class="t-role">Sales and Marketing Manager</div><div class="t-company">Laboratorios IFA S.A.</div><div class="t-desc">Lideré equipos comerciales nacionales de 20+ personas distribuidos en 4 departamentos de Bolivia. Planificación y ejecución de objetivos de marketing y ventas; planes de acción de venta en campo.</div></div></div>
       </div>
     </div>
   </div>
@@ -615,8 +615,10 @@
         document.querySelectorAll('.tab-btn').forEach(t => t.classList.remove('active'));
         document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
         tab.classList.add('active');
-        document.getElementById('panel-' + tab.dataset.tab).classList.add('active');
-        document.querySelector('.tabs-wrap').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        const panel = document.getElementById('panel-' + tab.dataset.tab);
+        panel.classList.add('active');
+        const tabsTop = document.querySelector('.tabs-wrap').getBoundingClientRect().top + window.scrollY;
+        window.scrollTo({ top: tabsTop - 58, behavior: 'smooth' });
       });
     });
 
