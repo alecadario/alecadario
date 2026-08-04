@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Ale Cadario — Liderazgo Comercial B2B. Head of BD / Director / VP." />
+  <meta name="description" content="Ale Cadario — Liderazgo Comercial B2B." />
   <title>Para Recruiters | Ale Cadario</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;0,900;1,700;1,800;1,900&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
@@ -14,13 +14,51 @@
       --bg: #FAFAF8; --bg-white: #FFFFFF; --bg-section: #F0F0EC;
       --text: #111111; --text-secondary: #4A4A4A; --text-muted: #888888;
       --border: #E2E2DC; --radius: 16px; --radius-sm: 10px;
-      --li-blue: #0A66C2;
-      --max-width: 960px;
+      --li-blue: #0A66C2; --max-width: 960px;
     }
     html { scroll-behavior: smooth; }
     body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
 
-    /* NAV */
+    /* ═══ INTRO OVERLAY ═══ */
+    #intro-overlay {
+      position: fixed; inset: 0; z-index: 999;
+      background: #0A0A0A;
+      display: flex; align-items: center; justify-content: center;
+      padding: 32px;
+      transition: opacity 0.6s ease;
+    }
+    #intro-overlay.hidden { opacity: 0; pointer-events: none; }
+    .intro-inner { max-width: 680px; text-align: center; }
+    .intro-pre { font-size: 12px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: var(--teal-light); margin-bottom: 28px; }
+    .intro-q {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(24px, 4vw, 42px); font-weight: 900; font-style: italic;
+      color: white; line-height: 1.15; margin-bottom: 40px;
+    }
+    .intro-options { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-bottom: 32px; }
+    .intro-btn {
+      padding: 14px 28px; border-radius: 999px;
+      font-size: 14px; font-weight: 700; cursor: pointer;
+      border: 1.5px solid rgba(255,255,255,0.2); background: transparent;
+      color: rgba(255,255,255,0.8); font-family: inherit;
+      transition: all 0.2s;
+    }
+    .intro-btn:hover { border-color: var(--teal-light); color: var(--teal-light); }
+    .intro-skip { font-size: 12px; color: rgba(255,255,255,0.25); cursor: pointer; background: none; border: none; font-family: inherit; transition: color 0.2s; }
+    .intro-skip:hover { color: rgba(255,255,255,0.5); }
+    .intro-response {
+      display: none; margin-top: 32px;
+      font-size: 16px; color: rgba(255,255,255,0.55); line-height: 1.7; max-width: 520px; margin: 32px auto 0;
+    }
+    .intro-continue {
+      display: none; margin-top: 28px;
+      padding: 14px 32px; background: var(--teal); color: white;
+      border: none; border-radius: var(--radius-sm); font-size: 15px; font-weight: 700;
+      cursor: pointer; font-family: inherit; transition: background 0.2s;
+    }
+    .intro-continue:hover { background: var(--teal-light); }
+
+    /* ═══ NAV ═══ */
     .nav {
       position: sticky; top: 0; z-index: 100;
       background: rgba(250,250,248,0.96); backdrop-filter: blur(12px);
@@ -33,60 +71,78 @@
     .nav-back { font-size: 13px; font-weight: 600; color: var(--text-muted); text-decoration: none; transition: color 0.2s; }
     .nav-back:hover { color: var(--text); }
 
-    /* HERO */
-    .hero { padding: 72px 24px 56px; background: var(--bg-white); border-bottom: 1px solid var(--border); }
+    /* ═══ HERO ═══ */
+    .hero { padding: 64px 24px 0; background: var(--bg-white); border-bottom: 1px solid var(--border); }
     .hero-inner { max-width: var(--max-width); margin: 0 auto; }
-    .hero-badge {
-      display: inline-flex; align-items: center; gap: 8px;
-      background: rgba(13,148,136,0.08); border: 1px solid rgba(13,148,136,0.2);
-      color: var(--teal); border-radius: 999px;
-      padding: 5px 14px; font-size: 12px; font-weight: 700; margin-bottom: 28px;
-      letter-spacing: 0.04em;
-    }
     .hero-tagline {
       font-family: 'Playfair Display', serif;
       font-size: clamp(28px, 4.5vw, 52px); font-weight: 900; font-style: italic;
       color: var(--teal); line-height: 1.1; margin-bottom: 20px; max-width: 800px;
     }
-    .hero h1 {
-      font-size: clamp(16px, 2vw, 20px); font-weight: 500;
-      color: var(--text-secondary); line-height: 1.65; max-width: 680px; margin-bottom: 36px;
-    }
-    .hero-btns { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 48px; }
+    .hero h1 { font-size: clamp(15px, 1.8vw, 18px); font-weight: 500; color: var(--text-secondary); line-height: 1.7; max-width: 640px; margin-bottom: 32px; }
+    .hero-btns { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 0; }
     .btn-teal { display: inline-flex; align-items: center; gap: 7px; background: var(--teal); color: white; padding: 12px 22px; border-radius: var(--radius-sm); font-size: 13px; font-weight: 700; text-decoration: none; transition: background 0.2s; }
     .btn-teal:hover { background: var(--teal-light); }
     .btn-outline { display: inline-flex; align-items: center; gap: 7px; background: transparent; color: var(--text); border: 1.5px solid var(--border); padding: 12px 22px; border-radius: var(--radius-sm); font-size: 13px; font-weight: 600; text-decoration: none; transition: all 0.2s; }
     .btn-outline:hover { border-color: var(--teal); color: var(--teal); }
-
-    /* LINKEDIN ICON */
     .li-icon { display: inline-flex; align-items: center; justify-content: center; width: 18px; height: 18px; background: var(--li-blue); border-radius: 4px; flex-shrink: 0; }
     .li-icon svg { width: 11px; height: 11px; fill: white; }
 
+    /* VIDEO STRIP */
+    .video-strip {
+      margin-top: 40px; background: var(--bg-section);
+      border-top: 1px solid var(--border);
+      padding: 28px 0;
+    }
+    .video-inner { max-width: var(--max-width); margin: 0 auto; padding: 0 24px; display: flex; align-items: center; gap: 24px; }
+    .video-placeholder {
+      width: 160px; height: 90px; flex-shrink: 0;
+      background: #0D0D0D; border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      border: 1.5px solid rgba(255,255,255,0.08); position: relative; overflow: hidden;
+      cursor: pointer;
+    }
+    .video-placeholder iframe {
+      position: absolute; inset: 0; width: 100%; height: 100%; border: none; border-radius: 10px;
+    }
+    .video-text h4 { font-size: 15px; font-weight: 700; color: var(--text); margin-bottom: 4px; }
+    .video-text p { font-size: 13px; color: var(--text-muted); }
+
     /* QUICK STATS */
-    .quick-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; border: 1.5px solid var(--border); border-radius: var(--radius); overflow: hidden; background: var(--bg); }
+    .quick-stats { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid var(--border); }
     .qs-item { padding: 20px 24px; border-right: 1px solid var(--border); }
     .qs-item:last-child { border-right: none; }
-    .qs-num { font-family: 'Playfair Display', serif; font-size: 30px; font-weight: 900; color: var(--teal); line-height: 1; }
+    .qs-num { font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 900; color: var(--teal); line-height: 1; }
     .qs-label { font-size: 11px; color: var(--text-muted); font-weight: 600; margin-top: 4px; line-height: 1.4; }
 
-    /* SECTION TABS — visible card buttons */
-    .tabs-wrap { background: var(--bg-section); border-bottom: 1px solid var(--border); padding: 20px 24px; position: sticky; top: 60px; z-index: 90; }
-    .tabs-label { font-size: 11px; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 12px; }
+    /* ═══ NO FIT BANNER ═══ */
+    .nofit-banner {
+      background: #FFF8F0; border-bottom: 1px solid #FDDCB5;
+      padding: 20px 24px;
+    }
+    .nofit-inner { max-width: var(--max-width); margin: 0 auto; }
+    .nofit-title { font-size: 12px; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; color: #C47A20; margin-bottom: 12px; }
+    .nofit-items { display: flex; gap: 24px; flex-wrap: wrap; }
+    .nofit-item { display: flex; align-items: flex-start; gap: 8px; font-size: 13px; color: #6B4A1A; }
+    .nofit-x { font-size: 14px; font-weight: 900; color: #C47A20; flex-shrink: 0; margin-top: 1px; }
+
+    /* ═══ TABS ═══ */
+    .tabs-wrap { background: var(--bg-section); border-bottom: 1px solid var(--border); padding: 16px 24px; position: sticky; top: 60px; z-index: 90; }
+    .tabs-label { font-size: 11px; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 10px; max-width: var(--max-width); margin-left: auto; margin-right: auto; }
     .tabs { display: flex; gap: 8px; flex-wrap: wrap; max-width: var(--max-width); margin: 0 auto; }
     .tab-btn {
-      padding: 10px 18px; font-size: 13px; font-weight: 700;
+      padding: 9px 16px; font-size: 13px; font-weight: 700;
       color: var(--text-secondary); background: var(--bg-white);
       border: 1.5px solid var(--border); border-radius: 999px;
-      cursor: pointer; white-space: nowrap; transition: all 0.18s;
-      font-family: inherit;
+      cursor: pointer; white-space: nowrap; transition: all 0.18s; font-family: inherit;
     }
     .tab-btn:hover { border-color: var(--teal); color: var(--teal); }
     .tab-btn.active { background: var(--teal); color: white; border-color: var(--teal); }
 
-    /* PANELS */
+    /* ═══ PANELS ═══ */
     .panel { display: none; background: var(--bg); min-height: 60vh; }
     .panel.active { display: block; }
-    .panel-inner { max-width: var(--max-width); margin: 0 auto; padding: 56px 24px 72px; }
+    .panel-inner { max-width: var(--max-width); margin: 0 auto; padding: 52px 24px 72px; }
     .eyebrow { display: inline-block; font-size: 11px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: var(--teal); margin-bottom: 12px; }
     .panel h2 { font-family: 'Playfair Display', serif; font-size: clamp(24px, 3vw, 36px); font-weight: 900; line-height: 1.1; margin-bottom: 8px; color: var(--text); }
     .panel h2 em { font-style: italic; color: var(--teal); }
@@ -102,7 +158,7 @@
     /* FILOSOFÍA */
     .pillars-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
     .pillar-card { background: var(--bg-white); border: 1.5px solid var(--border); border-radius: var(--radius); padding: 28px; }
-    .pillar-num { font-family: 'Playfair Display', serif; font-size: 38px; font-weight: 900; color: var(--teal); line-height: 1; margin-bottom: 12px; opacity: 0.25; }
+    .pillar-num { font-family: 'Playfair Display', serif; font-size: 38px; font-weight: 900; color: var(--teal); line-height: 1; margin-bottom: 12px; opacity: 0.2; }
     .pillar-card h3 { font-size: 15px; font-weight: 800; color: var(--text); margin-bottom: 10px; }
     .pillar-card p { font-size: 14px; color: var(--text-secondary); line-height: 1.75; }
 
@@ -110,7 +166,7 @@
     .story-text { font-size: 16px; color: var(--text-secondary); line-height: 1.8; max-width: 700px; margin-bottom: 16px; }
     .quote-line { font-style: italic; color: var(--teal); font-weight: 600; border-left: 3px solid var(--teal); padding-left: 20px; margin: 24px 0; font-size: 16px; }
     .timeline { margin-top: 40px; border: 1.5px solid var(--border); border-radius: var(--radius); overflow: hidden; background: var(--bg-white); }
-    .t-label { font-size: 11px; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); padding: 16px 24px; background: var(--bg-section); border-bottom: 1px solid var(--border); }
+    .t-label { font-size: 11px; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); padding: 14px 24px; background: var(--bg-section); border-bottom: 1px solid var(--border); }
     .t-item { display: grid; grid-template-columns: 160px 1fr; gap: 24px; padding: 20px 24px; border-bottom: 1px solid var(--border); }
     .t-item:last-child { border-bottom: none; }
     .t-date { font-size: 11px; font-weight: 800; color: var(--teal); text-transform: uppercase; letter-spacing: 0.06em; padding-top: 3px; }
@@ -126,9 +182,40 @@
     .t-cite { display: flex; align-items: center; gap: 10px; font-size: 13px; color: var(--text-muted); }
     .t-cite a { display: inline-flex; align-items: center; gap: 6px; color: var(--text); text-decoration: none; font-weight: 700; }
     .t-cite a:hover { color: var(--teal); }
-    .t-cite-detail { font-size: 12px; color: var(--text-muted); }
     .t-verify { font-size: 12px; font-weight: 700; color: var(--teal); text-decoration: none; border: 1.5px solid rgba(13,148,136,0.3); padding: 7px 16px; border-radius: 999px; white-space: nowrap; transition: all 0.2s; }
     .t-verify:hover { background: rgba(13,148,136,0.06); border-color: var(--teal); }
+
+    /* FIT CHECK */
+    .fit-intro { font-size: 15px; color: var(--text-secondary); max-width: 600px; margin-bottom: 32px; line-height: 1.7; }
+    .fit-list { display: flex; flex-direction: column; gap: 10px; margin-bottom: 32px; }
+    .fit-item {
+      display: flex; align-items: center; gap: 14px;
+      background: var(--bg-white); border: 1.5px solid var(--border);
+      border-radius: var(--radius-sm); padding: 16px 20px; cursor: pointer;
+      transition: all 0.18s; user-select: none;
+    }
+    .fit-item:hover { border-color: var(--teal); }
+    .fit-item.checked { border-color: var(--teal); background: rgba(13,148,136,0.04); }
+    .fit-checkbox {
+      width: 20px; height: 20px; border-radius: 5px;
+      border: 2px solid var(--border); background: white;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; transition: all 0.18s;
+    }
+    .fit-item.checked .fit-checkbox { background: var(--teal); border-color: var(--teal); }
+    .fit-checkbox svg { width: 12px; height: 12px; fill: white; display: none; }
+    .fit-item.checked .fit-checkbox svg { display: block; }
+    .fit-text { font-size: 14px; font-weight: 600; color: var(--text); }
+    .fit-result {
+      padding: 24px 28px; border-radius: var(--radius); margin-top: 8px;
+      border: 1.5px solid var(--border); background: var(--bg-white);
+      transition: all 0.3s;
+    }
+    .fit-score-label { font-size: 11px; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 8px; }
+    .fit-score-bar-wrap { height: 8px; background: var(--bg-section); border-radius: 999px; margin-bottom: 12px; overflow: hidden; }
+    .fit-score-bar { height: 100%; background: var(--teal); border-radius: 999px; transition: width 0.4s ease; width: 0%; }
+    .fit-score-text { font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 900; color: var(--text); margin-bottom: 6px; }
+    .fit-score-sub { font-size: 13px; color: var(--text-muted); }
 
     /* KNOW-HOW */
     .ventures-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
@@ -147,7 +234,6 @@
     .cta-strip p { font-size: 15px; color: var(--text-muted); margin-bottom: 28px; }
     .cta-btns { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
 
-    /* FOOTER */
     .footer { background: var(--bg-section); border-top: 1px solid var(--border); padding: 24px; text-align: center; }
     .footer p { font-size: 12px; color: var(--text-muted); }
     .footer a { color: var(--text-secondary); text-decoration: none; }
@@ -161,12 +247,30 @@
       .pillars-grid { grid-template-columns: 1fr; }
       .ventures-grid { grid-template-columns: 1fr; }
       .t-item { grid-template-columns: 1fr; gap: 3px; }
-      .t-date { padding-top: 0; }
       .t-card-footer { flex-direction: column; align-items: flex-start; }
+      .video-inner { flex-direction: column; align-items: flex-start; }
+      .nofit-items { flex-direction: column; gap: 10px; }
     }
   </style>
 </head>
 <body>
+
+  <!-- ═══ INTRO OVERLAY ═══ -->
+  <div id="intro-overlay">
+    <div class="intro-inner">
+      <div class="intro-pre">Antes de seguir, una pregunta</div>
+      <p class="intro-q">"¿Cuánto tarda tu pipeline en caerse si sacás a tu mejor vendedor?"</p>
+      <div class="intro-options">
+        <button class="intro-btn" onclick="introAnswer('dias')">Días</button>
+        <button class="intro-btn" onclick="introAnswer('semanas')">Semanas</button>
+        <button class="intro-btn" onclick="introAnswer('nolo')">No lo sé</button>
+      </div>
+      <p class="intro-response" id="intro-response"></p>
+      <button class="intro-continue" id="intro-continue" onclick="closeIntro()">Ver el perfil →</button>
+      <br/><br/>
+      <button class="intro-skip" onclick="closeIntro()">Saltear pregunta</button>
+    </div>
+  </div>
 
   <!-- NAV -->
   <nav class="nav">
@@ -177,49 +281,63 @@
   <!-- HERO -->
   <section class="hero">
     <div class="hero-inner">
-      <div class="hero-badge">Head of BD · Director · VP</div>
       <p class="hero-tagline">"Si tu pipeline se cae cuando yo agarro vacaciones, no es un sistema. Es una persona con suerte."</p>
       <h1>No vendo lo que creo que necesitan. Construyo el sistema que descubre lo que realmente necesitan — un sistema que le pertenece al negocio, no a mí.</h1>
       <div class="hero-btns">
         <a href="https://mail.google.com/mail/?view=cm&fs=1&to=team@alecadario.com" target="_blank" class="btn-teal">Contactar →</a>
         <a href="https://www.linkedin.com/in/alecadario/" target="_blank" class="btn-outline">
-          <span class="li-icon"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></span>
+          <span class="li-icon"><svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></span>
           LinkedIn
         </a>
         <a href="https://calendar.app.google/pVx8u2CpPygzXwjF7" target="_blank" class="btn-outline">Agendar llamada</a>
       </div>
+
+      <!-- VIDEO -->
+      <div class="video-strip">
+        <div class="video-inner">
+          <div class="video-placeholder">
+            <!-- Reemplazá el src con tu video cuando esté listo -->
+            <div style="color:rgba(255,255,255,0.25); font-size:11px; font-weight:700; text-align:center; padding:8px;">VIDEO<br>PRÓXIMO</div>
+          </div>
+          <div class="video-text">
+            <h4>60 segundos. En mis palabras.</h4>
+            <p>Por qué estoy buscando este próximo paso y qué podría aportar a tu equipo.</p>
+          </div>
+        </div>
+      </div>
+
       <div class="quick-stats">
-        <div class="qs-item">
-          <div class="qs-num">20+</div>
-          <div class="qs-label">Años en ventas B2B</div>
-        </div>
-        <div class="qs-item">
-          <div class="qs-num">6</div>
-          <div class="qs-label">Países donde viví y vendí</div>
-        </div>
-        <div class="qs-item">
-          <div class="qs-num">3</div>
-          <div class="qs-label">Organizaciones fundadas</div>
-        </div>
-        <div class="qs-item">
-          <div class="qs-num">15+</div>
-          <div class="qs-label">Industrias distintas</div>
-        </div>
+        <div class="qs-item"><div class="qs-num">160%</div><div class="qs-label">Cumplimiento de cuota</div></div>
+        <div class="qs-item"><div class="qs-num">20+</div><div class="qs-label">Años en ventas B2B</div></div>
+        <div class="qs-item"><div class="qs-num">6</div><div class="qs-label">Países donde viví y vendí</div></div>
+        <div class="qs-item"><div class="qs-num">3</div><div class="qs-label">Organizaciones fundadas</div></div>
       </div>
     </div>
   </section>
 
+  <!-- CUÁNDO NO SOY LA PERSONA -->
+  <div class="nofit-banner">
+    <div class="nofit-inner">
+      <div class="nofit-title">Cuándo no soy la persona correcta</div>
+      <div class="nofit-items">
+        <div class="nofit-item"><span class="nofit-x">✕</span><span>Si buscás a alguien que ejecute sin opinar sobre el proceso</span></div>
+        <div class="nofit-item"><span class="nofit-x">✕</span><span>Si el éxito se mide solo por actividad (calls, emails) y no por resultados</span></div>
+        <div class="nofit-item"><span class="nofit-x">✕</span><span>Si el rol no tiene capacidad real de cambiar cómo funciona el equipo</span></div>
+        <div class="nofit-item"><span class="nofit-x">✕</span><span>Si necesitás a alguien que necesite que le digan qué hacer cada semana</span></div>
+      </div>
+    </div>
+  </div>
+
   <!-- TABS -->
   <div class="tabs-wrap">
-    <div style="max-width: var(--max-width); margin: 0 auto;">
-      <div class="tabs-label">Explorá en detalle →</div>
-      <div class="tabs">
-        <button class="tab-btn active" data-tab="metricas">📊 Métricas</button>
-        <button class="tab-btn" data-tab="filosofia">💡 Filosofía de trabajo</button>
-        <button class="tab-btn" data-tab="experiencia">🗂 Experiencia</button>
-        <button class="tab-btn" data-tab="testimonios">💬 Testimonios</button>
-        <button class="tab-btn" data-tab="knowhow">🛠 Know-how</button>
-      </div>
+    <div class="tabs-label">Explorá en detalle</div>
+    <div class="tabs">
+      <button class="tab-btn active" data-tab="metricas">📊 Métricas</button>
+      <button class="tab-btn" data-tab="filosofia">💡 Filosofía</button>
+      <button class="tab-btn" data-tab="experiencia">🗂 Experiencia</button>
+      <button class="tab-btn" data-tab="testimonios">💬 Testimonios</button>
+      <button class="tab-btn" data-tab="fit">✅ ¿Es mi rol?</button>
+      <button class="tab-btn" data-tab="knowhow">🛠 Know-how</button>
     </div>
   </div>
 
@@ -230,32 +348,12 @@
       <h2>Lo que se mide,<br><em>se demuestra.</em></h2>
       <p class="panel-sub">Track record confirmado.</p>
       <div class="metrics-grid">
-        <div class="metric-card">
-          <div class="metric-num">160%</div>
-          <div class="metric-label">Cumplimiento de cuota</div>
-          <div class="metric-note">Consistente sobre target</div>
-        </div>
-        <div class="metric-card">
-          <div class="metric-num">↑40%</div>
-          <div class="metric-label">Reducción de ciclo de venta</div>
-          <div class="metric-note">vs. benchmark industria B2B SaaS</div>
-        </div>
-        <div class="metric-card">
-          <div class="metric-num">20+</div>
-          <div class="metric-label">Años en ventas B2B y desarrollo de negocio</div>
-        </div>
-        <div class="metric-card">
-          <div class="metric-num">6</div>
-          <div class="metric-label">Países donde viví y construí pipeline</div>
-        </div>
-        <div class="metric-card">
-          <div class="metric-num">3</div>
-          <div class="metric-label">Organizaciones fundadas desde cero</div>
-        </div>
-        <div class="metric-card">
-          <div class="metric-num">15+</div>
-          <div class="metric-label">Industrias distintas trabajadas</div>
-        </div>
+        <div class="metric-card"><div class="metric-num">160%</div><div class="metric-label">Cumplimiento de cuota</div><div class="metric-note">Consistente sobre target</div></div>
+        <div class="metric-card"><div class="metric-num">↑40%</div><div class="metric-label">Reducción de ciclo de venta</div><div class="metric-note">vs. benchmark industria B2B SaaS</div></div>
+        <div class="metric-card"><div class="metric-num">20+</div><div class="metric-label">Años en ventas B2B y desarrollo de negocio</div></div>
+        <div class="metric-card"><div class="metric-num">6</div><div class="metric-label">Países donde viví y construí pipeline</div></div>
+        <div class="metric-card"><div class="metric-num">3</div><div class="metric-label">Organizaciones fundadas desde cero</div></div>
+        <div class="metric-card"><div class="metric-num">15+</div><div class="metric-label">Industrias distintas trabajadas</div></div>
       </div>
     </div>
   </div>
@@ -264,29 +362,15 @@
   <div class="panel" id="panel-filosofia">
     <div class="panel-inner">
       <span class="eyebrow">Cómo trabajo</span>
-      <h2>Cuatro principios.<br><em>Sin excepciones.</em></h2>
-      <p class="panel-sub">No son valores de empresa en una pared. Son las preguntas que me hago en cada decisión comercial.</p>
+      <h2>Seis principios.<br><em>Sin excepciones.</em></h2>
+      <p class="panel-sub">Sobre ventas y sobre equipos — porque los dos van juntos.</p>
       <div class="pillars-grid">
-        <div class="pillar-card">
-          <div class="pillar-num">01</div>
-          <h3>Descubro, no asumo</h3>
-          <p>Antes de proponer, investigo: quién decide, qué dato valida el problema, qué fricción real están viviendo. El valor no sale de lo que yo creo que sirve, sale de lo que el negocio necesita y todavía no vio.</p>
-        </div>
-        <div class="pillar-card">
-          <div class="pillar-num">02</div>
-          <h3>Decido con datos, no con olfato</h3>
-          <p>Cada paso del proceso comercial —prospección, calificación, forecast— se mide. Si algo no convierte, el dato lo dice antes que la opinión.</p>
-        </div>
-        <div class="pillar-card">
-          <div class="pillar-num">03</div>
-          <h3>Construyo sistemas, no dependencia</h3>
-          <p>El objetivo de cualquier proceso que armo es que sobreviva a mi salida. Si el sistema depende de mí para funcionar, todavía no terminé de construirlo.</p>
-        </div>
-        <div class="pillar-card">
-          <div class="pillar-num">04</div>
-          <h3>Multiplico, no controlo</h3>
-          <p>Mi trabajo no es ser la que más vende. Es dejar un equipo que vende mejor sin necesitarme en cada llamada. Documento el criterio, no solo la tarea, para que se pueda enseñar y escalar.</p>
-        </div>
+        <div class="pillar-card"><div class="pillar-num">01</div><h3>Descubro, no asumo</h3><p>Antes de proponer, investigo: quién decide, qué dato valida el problema, qué fricción real están viviendo. El valor no sale de lo que yo creo que sirve, sale de lo que el negocio necesita y todavía no vio.</p></div>
+        <div class="pillar-card"><div class="pillar-num">02</div><h3>Decido con datos, no con olfato</h3><p>Cada paso del proceso comercial —prospección, calificación, forecast— se mide. Si algo no convierte, el dato lo dice antes que la opinión.</p></div>
+        <div class="pillar-card"><div class="pillar-num">03</div><h3>Construyo sistemas, no dependencia</h3><p>El objetivo de cualquier proceso que armo es que sobreviva a mi salida. Si el sistema depende de mí para funcionar, todavía no terminé de construirlo.</p></div>
+        <div class="pillar-card"><div class="pillar-num">04</div><h3>Multiplico, no controlo</h3><p>Mi trabajo no es ser la que más vende. Es dejar un equipo que vende mejor sin necesitarme en cada llamada. Documento el criterio, no solo la tarea, para que se pueda enseñar y escalar.</p></div>
+        <div class="pillar-card"><div class="pillar-num">05</div><h3>Inspiro con contexto, no con entusiasmo</h3><p>No motivo con frases. Motivo mostrando el por qué detrás de cada objetivo. La gente da lo mejor cuando entiende lo que está construyendo, no solo lo que le pidieron hacer.</p></div>
+        <div class="pillar-card"><div class="pillar-num">06</div><h3>Potencio lo que funciona. Cambio lo que no.</h3><p>Cuando entro a un equipo, primero escucho. Amplifico lo que ya da resultado y reemplazo lo que claramente no lo da. Sin apego al statu quo, pero tampoco sin evidencia.</p></div>
       </div>
     </div>
   </div>
@@ -299,48 +383,14 @@
       <p class="story-text">Crecí en Santa Cruz de la Sierra, Bolivia, donde aprendí lo esencial de las ventas mucho antes de dedicarme a esto: empatía, conversación genuina y el arte de construir relaciones. Después viví y trabajé en Canadá, Costa Rica, Bélgica, Argentina y España — cada mudanza significó volver a presentarme, aprender un mercado nuevo y ganarme la confianza de gente que no me conocía.</p>
       <p class="quote-line">"A veces tenés que irte lejos para encontrarte." — de mi libro, <em>Lejos de casa, cerca de mí</em></p>
       <p class="story-text">Cualificar un lead, desarrollar un negocio desde cero, abrir una puerta que estaba cerrada — no es una técnica que aprendí, es como armé mi propia vida. Creo tanto en ese método que terminé construyendo Piraí, una app que le da a cualquier persona buscando trabajo el mismo sistema de generación de oportunidades que uso yo.</p>
+      <p class="story-text">Liderar equipos me enseñó algo que ningún curso de ventas enseña: la gente no rinde más cuando se la presiona, rinde más cuando entiende adónde va. Los mejores resultados que tuve no vinieron de mi pipeline. Vinieron de un equipo que ya no me necesitaba para cerrar.</p>
       <div class="timeline">
         <div class="t-label">Track record</div>
-        <div class="t-item">
-          <div class="t-date">2025 — Presente</div>
-          <div>
-            <div class="t-role">Senior Business Consultant</div>
-            <div class="t-company">Globant · Madrid</div>
-            <div class="t-desc">Desarrollo de negocio y consultoría comercial para cuentas internacionales.</div>
-          </div>
-        </div>
-        <div class="t-item">
-          <div class="t-date">2022 — Presente</div>
-          <div>
-            <div class="t-role">Solutions Consultant</div>
-            <div class="t-company">Speexx</div>
-            <div class="t-desc">Estrategias de comunicación B2B para clientes corporativos internacionales; presentaciones de alto impacto para audiencias globales.</div>
-          </div>
-        </div>
-        <div class="t-item">
-          <div class="t-date">2018 — 2019</div>
-          <div>
-            <div class="t-role">Commercial Manager, North America</div>
-            <div class="t-company">Pure Organic Foods · Toronto</div>
-            <div class="t-desc">Expandió su rol de Operations Manager para liderar también el desarrollo comercial en Norteamérica.</div>
-          </div>
-        </div>
-        <div class="t-item">
-          <div class="t-date">2017 — 2021</div>
-          <div>
-            <div class="t-role">Commercial Director & Partner</div>
-            <div class="t-company">SAMI Salud · Santa Cruz de la Sierra</div>
-            <div class="t-desc">Dirección comercial y sociedad en el negocio.</div>
-          </div>
-        </div>
-        <div class="t-item">
-          <div class="t-date">2012 — 2015</div>
-          <div>
-            <div class="t-role">Sales and Marketing Manager</div>
-            <div class="t-company">Laboratorios IFA S.A.</div>
-            <div class="t-desc">Planificación y ejecución de objetivos de marketing y ventas; planes de acción de venta en campo.</div>
-          </div>
-        </div>
+        <div class="t-item"><div class="t-date">2025 — Presente</div><div><div class="t-role">Senior Business Consultant</div><div class="t-company">Globant · Madrid</div><div class="t-desc">Desarrollo de negocio y consultoría comercial para cuentas internacionales.</div></div></div>
+        <div class="t-item"><div class="t-date">2022 — Presente</div><div><div class="t-role">Solutions Consultant</div><div class="t-company">Speexx</div><div class="t-desc">Estrategias de comunicación B2B para clientes corporativos internacionales; presentaciones de alto impacto para audiencias globales.</div></div></div>
+        <div class="t-item"><div class="t-date">2018 — 2019</div><div><div class="t-role">Commercial Manager, North America</div><div class="t-company">Pure Organic Foods · Toronto</div><div class="t-desc">Expandió su rol de Operations Manager para liderar también el desarrollo comercial en Norteamérica.</div></div></div>
+        <div class="t-item"><div class="t-date">2017 — 2021</div><div><div class="t-role">Commercial Director & Partner</div><div class="t-company">SAMI Salud · Santa Cruz de la Sierra</div><div class="t-desc">Dirección comercial y sociedad en el negocio.</div></div></div>
+        <div class="t-item"><div class="t-date">2012 — 2015</div><div><div class="t-role">Sales and Marketing Manager</div><div class="t-company">Laboratorios IFA S.A.</div><div class="t-desc">Planificación y ejecución de objetivos de marketing y ventas; planes de acción de venta en campo.</div></div></div>
       </div>
     </div>
   </div>
@@ -352,43 +402,64 @@
       <h2>Lo que dicen<br><em>los que saben.</em></h2>
       <p class="panel-sub">Podés escribirles directamente para verificar.</p>
       <div class="t-cards">
-
         <div class="t-card">
           <blockquote>"Contraté a Ale para un rol de Operations Manager y terminó liderando también el desarrollo comercial en Norteamérica. Esa capacidad de expandir su rol sin que nadie se lo pida es lo que la distingue. Si hoy tuviera que armar un equipo comercial desde cero en cualquier mercado, la llamaría primero a ella."</blockquote>
           <div class="t-card-footer">
             <div class="t-cite">
-              <span class="li-icon"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></span>
+              <span class="li-icon"><svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></span>
               <a href="https://www.linkedin.com/in/carloszs/" target="_blank"><strong>Carlos Zamorano</strong></a>
-              <span class="t-cite-detail">— Pure Organic Foods</span>
+              <span style="color:var(--text-muted);">— Pure Organic Foods</span>
             </div>
-            <a href="https://mail.google.com/mail/?view=cm&fs=1&to=tzamoranoscott@gmail.com&su=Pregunta%20rapida%20sobre%20Ale%20Cadario&body=Hola%20Carlos%2C%0A%0AVimos%20que%20Alejandra%20%28Ale%29%20Cadario%20trabajo%20contigo%20en%20Pure%20Organic%20Foods%20y%20la%20estamos%20evaluando%20para%20un%20rol%20de%20liderazgo%20comercial%20%28Head%20of%20Business%20Development%20%2F%20Director%20%2F%20VP%29.%0A%0ANos%20encantaria%20conocer%20tu%20opinion%20como%20su%20manager%3A%20como%20maneja%20la%20ambiguedad%3F%20La%20pondrias%20a%20cargo%20de%20un%20equipo%20comercial%20desde%20cero%20otra%20vez%3F%0A%0ACualquier%20comentario%2C%20por%20breve%20que%20sea%2C%20nos%20ayuda%20mucho.%0A%0AGracias%21" target="_blank" class="t-verify">Verificar referencia →</a>
+            <a href="https://mail.google.com/mail/?view=cm&fs=1&to=tzamoranoscott@gmail.com&su=Pregunta%20rapida%20sobre%20Ale%20Cadario&body=Hola%20Carlos%2C%0A%0AVimos%20que%20Alejandra%20%28Ale%29%20Cadario%20trabajo%20contigo%20en%20Pure%20Organic%20Foods%20y%20la%20estamos%20evaluando%20para%20un%20rol%20de%20liderazgo%20comercial.%0A%0ANos%20encantaria%20conocer%20tu%20opinion%3A%20como%20maneja%20la%20ambiguedad%3F%20La%20pondrias%20a%20cargo%20de%20un%20equipo%20comercial%20desde%20cero%20otra%20vez%3F%0A%0AGracias%21" target="_blank" class="t-verify">Verificar referencia →</a>
           </div>
         </div>
-
         <div class="t-card">
           <blockquote>"Como manager de Ale, lo que más valoro es que no espera instrucciones para resolver — identifica el problema, decide con datos y después informa. Le daría un equipo a cargo sin dudarlo."</blockquote>
           <div class="t-card-footer">
             <div class="t-cite">
-              <span class="li-icon"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></span>
+              <span class="li-icon"><svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></span>
               <a href="https://www.linkedin.com/in/leopoldorojasd/" target="_blank"><strong>Leopoldo Rojas</strong></a>
-              <span class="t-cite-detail">— Speexx</span>
+              <span style="color:var(--text-muted);">— Speexx</span>
             </div>
-            <a href="https://mail.google.com/mail/?view=cm&fs=1&to=l.dominguez@speexx.com&su=Pregunta%20rapida%20sobre%20Ale%20Cadario&body=Hola%20Leopoldo%2C%0A%0AVimos%20que%20trabajaste%20con%20Alejandra%20%28Ale%29%20Cadario%20en%20Speexx%20y%20la%20estamos%20evaluando%20para%20un%20rol%20de%20liderazgo%20comercial%20%28Head%20of%20Business%20Development%20%2F%20Director%20%2F%20VP%29.%0A%0ANos%20encantaria%20conocer%20tu%20opinion%3A%20como%20es%20que%20te%20reporte%20directamente%3F%20La%20pondrias%20a%20cargo%20de%20un%20equipo%3F%0A%0ACualquier%20comentario%2C%20por%20breve%20que%20sea%2C%20nos%20ayuda%20mucho.%0A%0AGracias%21" target="_blank" class="t-verify">Verificar referencia →</a>
+            <a href="https://mail.google.com/mail/?view=cm&fs=1&to=l.dominguez@speexx.com&su=Pregunta%20rapida%20sobre%20Ale%20Cadario&body=Hola%20Leopoldo%2C%0A%0AVimos%20que%20trabajaste%20con%20Alejandra%20%28Ale%29%20Cadario%20en%20Speexx%20y%20la%20estamos%20evaluando%20para%20un%20rol%20de%20liderazgo%20comercial.%0A%0ANos%20encantaria%20conocer%20tu%20opinion%3A%20como%20es%20que%20te%20reporte%20directamente%3F%20La%20pondrias%20a%20cargo%20de%20un%20equipo%3F%0A%0AGracias%21" target="_blank" class="t-verify">Verificar referencia →</a>
           </div>
         </div>
-
         <div class="t-card">
           <blockquote>"Trabajar con Ale es fácil porque no guarda nada para ella — si encuentra algo que funciona, lo comparte con todo el equipo antes de que se lo pidan. No compite con el equipo, lo hace mejor."</blockquote>
           <div class="t-card-footer">
             <div class="t-cite">
-              <span class="li-icon"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></span>
+              <span class="li-icon"><svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></span>
               <a href="https://www.linkedin.com/in/inigomarin/" target="_blank"><strong>Iñigo Marín</strong></a>
-              <span class="t-cite-detail">— Speexx</span>
+              <span style="color:var(--text-muted);">— Speexx</span>
             </div>
-            <a href="https://mail.google.com/mail/?view=cm&fs=1&to=inigo.marin@aon.com&su=Pregunta%20rapida%20sobre%20Ale%20Cadario&body=Hola%20Inigo%2C%0A%0AVimos%20que%20trabajaste%20junto%20a%20Alejandra%20%28Ale%29%20Cadario%20en%20Speexx%20y%20la%20estamos%20evaluando%20para%20un%20rol%20de%20liderazgo%20comercial%20%28Head%20of%20Business%20Development%20%2F%20Director%20%2F%20VP%29.%0A%0ANos%20encantaria%20conocer%20tu%20opinion%20como%20companero%20de%20equipo%3A%20como%20es%20colaborar%20con%20ella%3F%20Comparte%20lo%20que%20aprende%20con%20el%20resto%20del%20equipo%3F%0A%0ACualquier%20comentario%2C%20por%20breve%20que%20sea%2C%20nos%20ayuda%20mucho.%0A%0AGracias%21" target="_blank" class="t-verify">Verificar referencia →</a>
+            <a href="https://mail.google.com/mail/?view=cm&fs=1&to=inigo.marin@aon.com&su=Pregunta%20rapida%20sobre%20Ale%20Cadario&body=Hola%20Inigo%2C%0A%0AVimos%20que%20trabajaste%20junto%20a%20Alejandra%20%28Ale%29%20Cadario%20en%20Speexx%20y%20la%20estamos%20evaluando%20para%20un%20rol%20de%20liderazgo%20comercial.%0A%0ANos%20encantaria%20conocer%20tu%20opinion%20como%20companero%3A%20como%20es%20colaborar%20con%20ella%3F%0A%0AGracias%21" target="_blank" class="t-verify">Verificar referencia →</a>
           </div>
         </div>
+      </div>
+    </div>
+  </div>
 
+  <!-- PANEL: FIT CHECK -->
+  <div class="panel" id="panel-fit">
+    <div class="panel-inner">
+      <span class="eyebrow">¿Es mi rol?</span>
+      <h2>Marcá lo que<br><em>buscás en este puesto.</em></h2>
+      <p class="fit-intro">Seleccioná todo lo que aplica al rol que estás cubriendo. Te digo en tiempo real si hay fit real.</p>
+      <div class="fit-list" id="fit-list">
+        <div class="fit-item" onclick="toggleFit(this)"><div class="fit-checkbox"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3" stroke="white" stroke-width="2" fill="none" stroke-linecap="round"/></svg></div><div class="fit-text">Necesitás armar o rediseñar el proceso comercial desde cero</div></div>
+        <div class="fit-item" onclick="toggleFit(this)"><div class="fit-checkbox"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3" stroke="white" stroke-width="2" fill="none" stroke-linecap="round"/></svg></div><div class="fit-text">El rol incluye liderazgo de equipo comercial</div></div>
+        <div class="fit-item" onclick="toggleFit(this)"><div class="fit-checkbox"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3" stroke="white" stroke-width="2" fill="none" stroke-linecap="round"/></svg></div><div class="fit-text">Tu mercado es LATAM, Europa o Norteamérica</div></div>
+        <div class="fit-item" onclick="toggleFit(this)"><div class="fit-checkbox"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3" stroke="white" stroke-width="2" fill="none" stroke-linecap="round"/></svg></div><div class="fit-text">Buscás a alguien que genere pipeline sin que nadie se lo pida</div></div>
+        <div class="fit-item" onclick="toggleFit(this)"><div class="fit-checkbox"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3" stroke="white" stroke-width="2" fill="none" stroke-linecap="round"/></svg></div><div class="fit-text">El rol implica presentaciones o negociaciones a nivel C-suite</div></div>
+        <div class="fit-item" onclick="toggleFit(this)"><div class="fit-checkbox"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3" stroke="white" stroke-width="2" fill="none" stroke-linecap="round"/></svg></div><div class="fit-text">Necesitás que alguien desarrolle y potencie al equipo actual</div></div>
+        <div class="fit-item" onclick="toggleFit(this)"><div class="fit-checkbox"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3" stroke="white" stroke-width="2" fill="none" stroke-linecap="round"/></svg></div><div class="fit-text">Estás abriendo un mercado nuevo o una vertical nueva</div></div>
+        <div class="fit-item" onclick="toggleFit(this)"><div class="fit-checkbox"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3" stroke="white" stroke-width="2" fill="none" stroke-linecap="round"/></svg></div><div class="fit-text">El rol es B2B — ciclos de venta largos, stakeholders múltiples</div></div>
+      </div>
+      <div class="fit-result" id="fit-result">
+        <div class="fit-score-label">Fit estimado</div>
+        <div class="fit-score-bar-wrap"><div class="fit-score-bar" id="fit-bar"></div></div>
+        <div class="fit-score-text" id="fit-score-text">Seleccioná los criterios arriba</div>
+        <div class="fit-score-sub" id="fit-score-sub">El resultado aparece en tiempo real</div>
       </div>
     </div>
   </div>
@@ -400,22 +471,9 @@
       <h2>No solo vendo.<br><em>También armo los sistemas.</em></h2>
       <p class="panel-sub">Tres proyectos que nacieron de la misma convicción: si no existe el sistema, lo construís.</p>
       <div class="ventures-grid">
-        <div class="venture-card">
-          <div class="venture-tag">Founder & CEO</div>
-          <h3>Piraí</h3>
-          <p>App de búsqueda de empleo y desarrollo de carrera para profesionales hispanohablantes: pipeline visual, CRM de contactos, preparación de entrevistas y análisis de CV con IA.</p>
-          <a href="https://pirai.es" target="_blank" class="venture-link">Ir a Piraí →</a>
-        </div>
-        <div class="venture-card">
-          <div class="venture-tag">Fundadora</div>
-          <h3>Coomadres</h3>
-          <p>Comunidad de 400+ mujeres que conecta a través de eventos de storytelling, networking y coaching. 90% de engagement en talleres y retiros.</p>
-        </div>
-        <div class="venture-card">
-          <div class="venture-tag">Autora</div>
-          <h3>Lejos de casa, cerca de mí</h3>
-          <p>Libro sobre migración, resiliencia e identidad — la misma historia que explica por qué me adapto rápido a mercados y equipos nuevos.</p>
-        </div>
+        <div class="venture-card"><div class="venture-tag">Founder & CEO</div><h3>Piraí</h3><p>App de búsqueda de empleo y desarrollo de carrera para profesionales hispanohablantes: pipeline visual, CRM de contactos, preparación de entrevistas y análisis de CV con IA.</p><a href="https://pirai.es" target="_blank" class="venture-link">Ir a Piraí →</a></div>
+        <div class="venture-card"><div class="venture-tag">Fundadora</div><h3>Coomadres</h3><p>Comunidad de 400+ mujeres que conecta a través de eventos de storytelling, networking y coaching. 90% de engagement en talleres y retiros.</p></div>
+        <div class="venture-card"><div class="venture-tag">Autora</div><h3>Lejos de casa, cerca de mí</h3><p>Libro sobre migración, resiliencia e identidad — la misma historia que explica por qué me adapto rápido a mercados y equipos nuevos.</p></div>
       </div>
     </div>
   </div>
@@ -429,7 +487,7 @@
         <a href="https://mail.google.com/mail/?view=cm&fs=1&to=team@alecadario.com" target="_blank" class="btn-teal">Escribime →</a>
         <a href="https://calendar.app.google/pVx8u2CpPygzXwjF7" target="_blank" class="btn-outline">Agendar llamada</a>
         <a href="https://www.linkedin.com/in/alecadario/" target="_blank" class="btn-outline">
-          <span class="li-icon"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></span>
+          <span class="li-icon"><svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></span>
           LinkedIn
         </a>
       </div>
@@ -441,6 +499,28 @@
   </footer>
 
   <script>
+    // INTRO
+    const responses = {
+      dias: { text: "Días. Eso no es un pipeline — es una persona con buena agenda. Si eso te preocupa, seguí leyendo.", btn: "Ver cómo lo resuelvo →" },
+      semanas: { text: "Semanas. Ya es mejor, pero todavía depende demasiado de individuos. Un sistema real sobrevive rotación de equipo.", btn: "Ver cómo construyo sistemas →" },
+      nolo: { text: "No lo sabés — eso en sí mismo ya es una respuesta. La buena noticia es que se puede medir, y se puede cambiar.", btn: "Ver el perfil →" }
+    };
+    function introAnswer(key) {
+      const r = responses[key];
+      const el = document.getElementById('intro-response');
+      const btn = document.getElementById('intro-continue');
+      el.textContent = r.text;
+      el.style.display = 'block';
+      btn.textContent = r.btn;
+      btn.style.display = 'inline-block';
+    }
+    function closeIntro() {
+      const overlay = document.getElementById('intro-overlay');
+      overlay.classList.add('hidden');
+      setTimeout(() => overlay.style.display = 'none', 600);
+    }
+
+    // TABS
     document.querySelectorAll('.tab-btn').forEach(tab => {
       tab.addEventListener('click', () => {
         document.querySelectorAll('.tab-btn').forEach(t => t.classList.remove('active'));
@@ -450,6 +530,23 @@
         document.querySelector('.tabs-wrap').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
       });
     });
+
+    // FIT CHECK
+    const fitMessages = [
+      { min: 0, max: 0, score: 0, title: "Seleccioná los criterios arriba", sub: "El resultado aparece en tiempo real" },
+      { min: 1, max: 2, score: 25, title: "Fit parcial", sub: "Pocos puntos de coincidencia por ahora. Marcá más criterios para ver si hay fit real." },
+      { min: 3, max: 4, score: 55, title: "Fit moderado", sub: "Hay puntos en común. Vale una conversación para entender si encaja bien en el contexto específico." },
+      { min: 5, max: 6, score: 80, title: "Buen fit", sub: "Mucho en común con lo que buscás. Definitivamente vale una llamada." },
+      { min: 7, max: 8, score: 100, title: "Fit muy alto", sub: "Casi todo coincide. Si el timing es el correcto, tiene mucho sentido hablar." }
+    ];
+    function toggleFit(el) {
+      el.classList.toggle('checked');
+      const checked = document.querySelectorAll('.fit-item.checked').length;
+      const msg = fitMessages.find(m => checked >= m.min && checked <= m.max) || fitMessages[0];
+      document.getElementById('fit-bar').style.width = msg.score + '%';
+      document.getElementById('fit-score-text').textContent = msg.title;
+      document.getElementById('fit-score-sub').textContent = msg.sub;
+    }
   </script>
 
 </body>
