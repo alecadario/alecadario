@@ -199,7 +199,13 @@ function avSleeves(item, kind, ease, cx, fill, stroke) {
 }
 
 function avSpec(item) {
-  return Object.assign({}, AVATAR_SPEC_BY_ID[item.id] || {}, item.avatar || {});
+  const own = { ...(item.avatar || {}) };
+  // Antes el largo de los tops se guardaba como "len": se lee como "hem", que es el que usa el dibujo.
+  if (item.category === "top" && own.len && !own.hem) {
+    own.hem = own.len;
+    delete own.len;
+  }
+  return Object.assign({}, AVATAR_SPEC_BY_ID[item.id] || {}, own);
 }
 
 function avSleeveKind(item) {

@@ -269,7 +269,8 @@ function itemCard(it) {
 function escapeHtml(str) {
   const div = document.createElement("div");
   div.textContent = str;
-  return div.innerHTML;
+  // innerHTML no escapa las comillas, y este texto también va dentro de atributos.
+  return div.innerHTML.replace(/"/g, "&quot;").replace(/'/g, "&#39;");
 }
 
 // ---------- Add / edit item form ----------
@@ -297,7 +298,7 @@ const AVATAR_FIELDS = [
   { key: "sleeve", label: "Mangas", cats: ["top", "dress"], options: [["none", "Sin mangas"], ["short", "Cortas"], ["three", "3/4"], ["long", "Largas"]] },
   { key: "cov", label: "Hombros", cats: ["top", "dress"], options: [["full", "Cubiertos (breteles anchos)"], ["straps", "Tiras finas"], ["halter", "Cuello halter"], ["strapless", "Sin tiras"], ["off", "Descubiertos"]] },
   { key: "neck", label: "Escote", cats: ["top", "dress"], options: [["round", "Redondo"], ["v", "En V"], ["square", "Cuadrado"], ["heart", "Corazón"], ["high", "Cuello alto"]] },
-  { key: "len", label: "Largo", cats: ["top"], options: [["bra", "Corpiño"], ["crop", "Cropped"], ["hip", "A la cadera"], ["long", "Largo"], ["body", "Body"]] },
+  { key: "hem", label: "Largo", cats: ["top"], options: [["bra", "Corpiño"], ["crop", "Cropped"], ["hip", "A la cadera"], ["long", "Largo"], ["body", "Body"]] },
   { key: "len", label: "Largo", cats: ["dress"], options: [["mini", "Mini"], ["knee", "A la rodilla"], ["midi", "Midi"], ["maxi", "Largo"]] },
   { key: "len", label: "Largo", cats: ["bottom"], options: [["short", "Short"], ["bike", "Short ajustado"], ["cropped", "Tobillero"], ["full", "Pantalón largo"], ["mini", "Falda mini"], ["knee", "Falda a la rodilla"], ["midi", "Falda midi"], ["maxi", "Falda larga"]] },
   { key: "len", label: "Largo", cats: ["outerwear"], options: [["crop", "Corto"], ["hip", "A la cadera"], ["long", "Largo"]] },
