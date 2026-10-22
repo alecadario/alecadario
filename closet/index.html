@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>El Closet de Ale 😊</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#741353">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Closet">
+<link rel="apple-touch-icon" href="icons/icon-180.png">
+<link rel="icon" href="icons/icon-192.png">
+</head>
+<body>
+<header class="app-header">
+  <div class="header-row">
+    <h1>El Closet de Ale <span class="smiley">😊</span></h1>
+    <div class="cloud-box" id="cloud-box" hidden>
+      <span id="cloud-status" class="cloud-status"></span>
+      <span id="cloud-user" class="cloud-user"></span>
+      <button type="button" id="cloud-logout" class="secondary small">Salir</button>
+    </div>
+  </div>
+  <nav class="tabs">
+    <button class="tab-btn active" data-tab="wardrobe">Armario</button>
+    <button class="tab-btn" data-tab="add-item">Agregar prenda</button>
+    <button class="tab-btn" data-tab="outfit-builder">Crear outfit</button>
+    <button class="tab-btn" data-tab="recommend">Recomendar</button>
+    <button class="tab-btn" data-tab="my-outfits">Mis outfits</button>
+    <button class="tab-btn" data-tab="calendar">Calendario</button>
+    <button class="tab-btn" data-tab="trips">Viajes</button>
+    <button class="tab-btn" data-tab="gallery">Galería</button>
+    <button class="tab-btn" data-tab="colorimetry">Mi colorimetría</button>
+    <button class="tab-btn" data-tab="figure">Mi figura</button>
+    <button class="tab-btn" data-tab="strategy">Estrategia</button>
+    <button class="tab-btn" data-tab="profile">Mi perfil</button>
+    <button class="tab-btn" data-tab="shop">Comprar</button>
+  </nav>
+</header>
+
+<main>
+
+  <!-- ARMARIO -->
+  <section id="wardrobe" class="tab-panel active">
+    <div class="filters">
+      <select id="filter-category"><option value="">Categoría (todas)</option></select>
+      <select id="filter-season"><option value="">Temporada (todas)</option></select>
+      <select id="filter-occasion"><option value="">Ocasión (todas)</option></select>
+      <select id="filter-palette">
+        <option value="">Colorimetría (todas)</option>
+        <option value="mine">Solo mis colores (en paleta o cerca)</option>
+        <option value="in">En mi paleta</option>
+        <option value="near">Cerca de mi paleta</option>
+        <option value="out">Fuera de mi paleta</option>
+      </select>
+      <select id="filter-figure">
+        <option value="">Figura (todas)</option>
+        <option value="good">Te favorece</option>
+        <option value="neutral">Neutro</option>
+        <option value="bad">Menos favorecedor</option>
+      </select>
+      <input type="text" id="filter-search" placeholder="Buscar por nombre o color...">
+      <label class="fav-toggle"><input type="checkbox" id="filter-favorites"> Solo favoritos</label>
+    </div>
+    <p id="wardrobe-count" class="muted"></p>
+    <div id="wardrobe-grid" class="grid"></div>
+    <details class="wardrobe-options">
+      <summary>Copia de seguridad y empezar de cero</summary>
+      <p class="muted">Descargá una copia de todo tu armario, outfits y calendario antes de hacer cambios grandes. Después podés restaurarla cuando quieras.</p>
+      <div class="form-actions">
+        <button type="button" id="backup-download" class="secondary">Descargar copia de seguridad</button>
+        <button type="button" id="backup-restore-btn" class="secondary">Restaurar una copia…</button>
+        <input type="file" id="backup-restore" accept="application/json,.json" hidden>
+        <button type="button" id="cloud-upload-btn" class="secondary" hidden>Subir mi armario a la nube…</button>
+        <button type="button" id="reset-wardrobe" class="danger">Borrar todas las prendas…</button>
+      </div>
+      <p id="backup-msg" class="muted"></p>
+    </details>
+  </section>
+
+  <!-- AGREGAR PRENDA -->
+  <section id="add-item" class="tab-panel">
+    <h2 id="add-item-title">Agregar prenda</h2>
+    <form id="item-form" class="item-form">
+      <input type="hidden" id="item-id">
+      <div class="bulk-box">
+        <label>Subir varias fotos de una vez
+          <input type="file" id="item-photos-bulk" accept="image/*" multiple>
+        </label>
+        <p class="muted">Elegís todas las fotos juntas y después completás los datos de una en una: al guardar, aparece la siguiente.</p>
+        <p id="bulk-status" class="muted"></p>
+        <div class="form-actions">
+          <button type="button" id="bulk-skip" class="secondary" hidden>Saltar esta foto</button>
+          <button type="button" id="bulk-stop" class="secondary" hidden>Terminar la carga</button>
+        </div>
+      </div>
+      <label>Foto
+        <input type="file" id="item-photo" accept="image/*">
+      </label>
+      <p id="item-photo-error" class="error-msg"></p>
+      <img id="item-photo-preview" class="photo-preview" hidden>
+      <button type="button" id="item-photo-edit" class="secondary" hidden>Retocar foto</button>
+      <details class="photo-guide">
+        <summary>Cómo sacar una buena foto</summary>
+        <ul>
+          <li>Luz natural de ventana, de frente a la prenda. Evitá el flash y las luces amarillas.</li>
+          <li>Fondo liso y claro (pared blanca o sábana), sin objetos ni paredes de color que tiñan la prenda.</li>
+          <li>Prenda sola: colgada en una percha o estirada sobre una superficie plana.</li>
+          <li>Puesta: de cuerpo entero o del torso, de frente, con la cámara a la altura de la cintura.</li>
+          <li>Foto vertical, con la prenda centrada y sin cortarla.</li>
+        </ul>
+      </details>
+      <label>Foto de la prenda sola (opcional)
+        <input type="file" id="item-photo-solo" accept="image/*">
+      </label>
+      <p id="item-solo-error" class="error-msg"></p>
+      <img id="item-solo-preview" class="photo-preview" hidden>
+      <div class="form-actions">
+        <button type="button" id="item-solo-edit" class="secondary" hidden>Retocar foto sola</button>
+        <button type="button" id="item-solo-remove" class="secondary" hidden>Quitar foto sola</button>
+      </div>
+      <label>Nombre
+        <input type="text" id="item-name" required placeholder="Ej: Campera de jean azul">
+      </label>
+      <label>Categoría
+        <select id="item-category" required>
+          <option value="top">Top / remera / blusa</option>
+          <option value="bottom">Pantalón / short / falda</option>
+          <option value="dress">Vestido</option>
+          <option value="outerwear">Abrigo / campera / blazer</option>
+          <option value="shoes">Calzado</option>
+          <option value="bag">Cartera / bolso</option>
+          <option value="jewelry">Joyas</option>
+          <option value="accessory">Accesorio</option>
+        </select>
+      </label>
+      <label>Colores (separados por coma)
+        <input type="text" id="item-colors" placeholder="Ej: negro, dorado">
+      </label>
+      <fieldset id="item-origin">
+        <legend>Origen: de dónde es</legend>
+        <div class="avatar-spec-grid">
+          <label>Marca <input type="text" id="item-brand" list="brand-list" placeholder="Ej: Zara"></label>
+          <label>Tienda donde la compraste <input type="text" id="item-store" list="store-list" placeholder="Ej: Zara, Vinted"></label>
+          <label>Precio (€) <input type="number" id="item-price" min="0" step="0.01"></label>
+          <label>Mes de compra <input type="month" id="item-bought"></label>
+        </div>
+        <datalist id="brand-list"></datalist>
+        <datalist id="store-list"></datalist>
+      </fieldset>
+      <fieldset id="item-seasons">
+        <legend>Temporada</legend>
+      </fieldset>
+      <fieldset id="item-occasions">
+        <legend>Ocasión</legend>
+      </fieldset>
+      <label>Color según mi paleta
+        <select id="item-fit-override">
+          <option value="">Automático (según el color)</option>
+          <option value="in">Está en mi paleta</option>
+          <option value="near">Está cerca de mi paleta</option>
+          <option value="out">Está fuera de mi paleta</option>
+        </select>
+      </label>
+      <fieldset id="item-cuts">
+        <legend>Corte y silueta (solo prendas de vestir, para tu figura)</legend>
+      </fieldset>
+      <fieldset id="item-avatar">
+        <legend>Cómo se dibuja en el avatar (solo prendas de vestir)</legend>
+        <p class="muted">Si el avatar dibuja mal una prenda, corregilo acá. "Automático" deja que la app lo deduzca.</p>
+        <div class="avatar-spec-grid" id="avatar-spec-grid"></div>
+      </fieldset>
+      <label class="fav-toggle"><input type="checkbox" id="item-favorite"> Favorito</label>
+      <div class="form-actions">
+        <button type="submit" id="item-form-submit">Guardar prenda</button>
+        <button type="button" id="item-form-cancel" hidden>Cancelar edición</button>
+        <button type="button" id="item-form-delete" hidden class="danger">Eliminar prenda</button>
+      </div>
+    </form>
+  </section>
+
+  <!-- CREAR OUTFIT -->
+  <section id="outfit-builder" class="tab-panel">
+    <h2>Crear outfit</h2>
+    <div class="outfit-mode">
+      <label><input type="radio" name="outfit-mode" value="separates" checked> Top + Bottom</label>
+      <label><input type="radio" name="outfit-mode" value="dress"> Vestido</label>
+    </div>
+    <div id="outfit-slots" class="outfit-slots"></div>
+    <div class="outfit-preview" id="outfit-preview"></div>
+    <p id="outfit-fit" class="muted"></p>
+    <div id="outfit-figure" class="muted"></div>
+    <div class="avatar-inline">
+      <div id="outfit-avatar" class="avatar-mini"></div>
+      <button type="button" id="outfit-avatar-open" class="secondary" hidden>Ver en grande (avatar y fotos)</button>
+    </div>
+    <label>Nombre del outfit
+      <input type="text" id="outfit-name" placeholder="Ej: Look oficina lunes">
+    </label>
+    <label>Planificar para el día (opcional)
+      <input type="date" id="outfit-plan-date">
+    </label>
+    <button id="save-outfit">Guardar outfit</button>
+    <p id="outfit-save-msg" class="muted"></p>
+  </section>
+
+  <!-- RECOMENDAR -->
+  <section id="recommend" class="tab-panel">
+    <h2>¿Qué me pongo?</h2>
+    <div class="recommend-form">
+      <select id="rec-occasion">
+        <option value="">Ocasión...</option>
+      </select>
+      <select id="rec-season">
+        <option value="">Clima / temporada...</option>
+      </select>
+      <label class="fav-toggle"><input type="checkbox" id="rec-favorites"> Solo favoritos</label>
+      <label class="fav-toggle"><input type="checkbox" id="rec-palette" checked> Priorizar mi paleta</label>
+      <label class="fav-toggle"><input type="checkbox" id="rec-figure" checked> Priorizar mi figura</label>
+      <button id="rec-generate">Sugerir outfits</button>
+    </div>
+    <p id="rec-hint" class="muted"></p>
+    <div id="rec-results" class="rec-results"></div>
+  </section>
+
+  <!-- MIS OUTFITS -->
+  <section id="my-outfits" class="tab-panel">
+    <h2>Mis outfits guardados</h2>
+    <div id="outfits-grid" class="grid"></div>
+  </section>
+
+  <!-- CALENDARIO -->
+  <section id="calendar" class="tab-panel">
+    <h2>Calendario de looks</h2>
+    <p class="muted">Marcá qué usaste cada día, o dejá cargado con anticipación lo que tenés planeado.</p>
+    <div class="calendar-header">
+      <button id="cal-prev" type="button">‹</button>
+      <h3 id="cal-title"></h3>
+      <button id="cal-next" type="button">›</button>
+    </div>
+    <div class="calendar-grid" id="calendar-grid"></div>
+    <div id="day-editor" class="day-editor" hidden></div>
+  </section>
+
+  <!-- VIAJES -->
+  <section id="trips" class="tab-panel">
+    <h2>Viajes</h2>
+    <p class="muted">Armá un viaje, asignale un look a cada día y generá la lista de valija automáticamente.</p>
+    <div id="trips-list" class="grid"></div>
+    <h3>Nuevo viaje</h3>
+    <form id="trip-form" class="item-form">
+      <label>Nombre <input type="text" id="trip-name" required placeholder="Ej: Bariloche"></label>
+      <label>Desde <input type="date" id="trip-start" required></label>
+      <label>Hasta <input type="date" id="trip-end" required></label>
+      <label>Notas <input type="text" id="trip-notes" placeholder="opcional"></label>
+      <button type="submit">Crear viaje</button>
+    </form>
+    <div id="trip-detail" hidden></div>
+  </section>
+
+  <!-- GALERÍA -->
+  <section id="gallery" class="tab-panel">
+    <h2>Galería de looks</h2>
+    <p class="muted">Todos los looks que registraste, como un grid de inspiración.</p>
+    <div class="gallery-toolbar">
+      <select id="gallery-filter">
+        <option value="">Todos</option>
+        <option value="worn">Solo usados</option>
+        <option value="planned">Solo planeados</option>
+      </select>
+    </div>
+    <div id="gallery-grid" class="gallery-grid"></div>
+  </section>
+
+  <!-- MI COLORIMETRÍA -->
+  <section id="colorimetry" class="tab-panel"></section>
+
+  <!-- MI FIGURA -->
+  <section id="figure" class="tab-panel"></section>
+
+  <!-- MI PERFIL -->
+  <section id="profile" class="tab-panel"></section>
+
+  <!-- ESTRATEGIA -->
+  <section id="strategy" class="tab-panel"></section>
+
+  <!-- COMPRAR -->
+  <section id="shop" class="tab-panel"></section>
+
+</main>
+
+<script src="config.js"></script>
+<script>
+  // Archivos personales (catálogo, fotos mejoradas, perfil): solo en tu computadora, no en la web publicada.
+  if (!CLOUD_ENABLED) ["seed-data.js", "seed-accessories.js", "photos.js", "local-profile.js"].forEach(function (f) { document.write('<script src="' + f + '"><\/script>'); });
+</script>
+<script src="profile.js"></script>
+<script src="colorimetria.js"></script>
+<script src="figura.js"></script>
+<script src="strategy.js"></script>
+<script src="shop.js"></script>
+<script src="photo-editor.js"></script>
+<script src="avatar-specs.js"></script>
+<script src="avatar.js"></script>
+<script src="app.js"></script>
+<script src="cloud.js"></script>
+</body>
+</html>

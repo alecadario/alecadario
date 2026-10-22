@@ -1,0 +1,16 @@
+{
+  "name": "El Closet de Ale",
+  "short_name": "Closet",
+  "description": "Tu armario, tus outfits y tu estrategia de compra, en el teléfono.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#eefbfb",
+  "theme_color": "#741353",
+  "lang": "es",
+  "icons": [
+    { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}
