@@ -8,8 +8,32 @@ export const config = { path: "/closet/api/photo" };
 
 const TYPES = { "image/jpeg": "jpg", "image/png": "png", "image/webp": "webp" };
 
-// Sube (o quita, si dataUrl es null) la foto de un registro que ya existe.
+// Devuelve la foto guardada como data URL. El navegador no puede retocar una imagen que
+// viene directo de Airtable (otro dominio), así que se descarga desde acá.
+async function getPhoto(req, user) {
+  const q = new URL(req.url).searchParams;
+  const def = COLLECTIONS[q.get("collection")];
+  if (!def) throw new HttpError(400, "Colección no válida.");
+  const field = def.photos[q.get("key")];
+  if (!field) throw new HttpError(400, "Campo de foto no válido.");
+  const id = checkId(q.get("id"));
+
+  const rows = await listAll(def.table, `AND({UserId}='${esc(user.id)}',{${def.idField}}='${esc(id)}')`);
+  const att = rows[0] && rows[0].fields[field];
+  if (!Array.isArray(att) || !att[0] || !att[0].url) throw new HttpError(404, "Esa foto no está guardada.");
+
+  const res = await fetch(att[0].url);
+  if (!res.ok) throw new Error(`No se pudo descargar la foto de Airtable (${res.status}).`);
+  const type = (res.headers.get("content-type") || att[0].type || "").split(";")[0];
+  if (!TYPES[type]) throw new HttpError(415, "La foto debe ser JPG, PNG o WEBP.");
+  const buf = Buffer.from(await res.arrayBuffer());
+  if (buf.length > 4 * 1024 * 1024) throw new HttpError(413, "La foto pesa demasiado para retocarla.");
+  return json(req, 200, { dataUrl: `data:${type};base64,${buf.toString("base64")}` });
+}
+
+// GET: descarga la foto para retocarla. POST: sube (o quita, si dataUrl es null) la foto de un registro que ya existe.
 export default handler(async (req) => {
+  if (req.method === "GET") return getPhoto(req, requireUser(req));
   if (req.method !== "POST") throw new HttpError(405, "Método no permitido.");
   const user = requireUser(req);
   const b = await readJson(req, 7 * 1024 * 1024);

@@ -322,6 +322,20 @@ async function cloudRefreshUrls() {
   } catch (e) { /* se reintenta más tarde */ }
 }
 
+// Foto guardada en la nube -> data URL que el editor puede retocar (ver photo-editor.js).
+async function cloudPhotoDataUrl(src) {
+  for (const col of CLOUD_COLLECTIONS) {
+    for (const o of state[col] || []) {
+      const key = CLOUD_PHOTO_KEYS[col].find((k) => o[k] === src);
+      if (key) {
+        const q = new URLSearchParams({ collection: col, key, id: o.id });
+        return (await api(`/photo?${q}`)).dataUrl;
+      }
+    }
+  }
+  throw new Error("No encontré esa foto en tu armario.");
+}
+
 // ---------- subir mi armario local a la nube ----------
 function blobToDataUrl(blob) {
   return new Promise((resolve, reject) => {

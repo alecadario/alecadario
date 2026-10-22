@@ -330,6 +330,14 @@ function avLegsPants(item, P, cx, defs, idp) {
   return out;
 }
 
+// Falda o pantalón: manda el largo o el vuelo elegido en "Editar"; si no hay, el nombre.
+function avIsSkirt(item) {
+  const sp = avSpec(item);
+  if (AV_SKIRT_LEN[sp.len] || sp.flare) return true;
+  if (AV_PANTS_LEN[sp.len] || sp.leg) return false;
+  return /falda|pollera/.test(avText(item));
+}
+
 function avSkirt(item, P, cx, defs, idp) {
   const cuts = avCuts(item);
   const sp = avSpec(item);
@@ -488,7 +496,7 @@ function buildAvatarSvg(items) {
   if (dress) {
     g += avDress(dress, P, cx, defs, idp);
   } else {
-    if (bottom) g += /falda/.test(avText(bottom)) ? avSkirt(bottom, P, cx, defs, idp) : avLegsPants(bottom, P, cx, defs, idp);
+    if (bottom) g += avIsSkirt(bottom) ? avSkirt(bottom, P, cx, defs, idp) : avLegsPants(bottom, P, cx, defs, idp);
     if (top) g += avTop(top, P, cx, defs, idp, null);
   }
   if (shoes) g += avShoes(shoes, cx, defs, idp);

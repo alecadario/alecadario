@@ -3,6 +3,14 @@
 // procesar (por ejemplo una imagen de archivo local), llama a onError(mensaje).
 
 function openPhotoEditor(src, onDone, onError) {
+  // Las fotos de la nube vienen de otro dominio y el navegador no deja retocarlas: se piden como data URL.
+  const remote = /^https?:/.test(src) && new URL(src).origin !== location.origin;
+  if (remote && typeof cloudPhotoDataUrl === "function") {
+    cloudPhotoDataUrl(src)
+      .then((url) => openPhotoEditor(url, onDone, onError))
+      .catch(() => onError && onError("No se pudo descargar la foto para retocarla. Probá de nuevo en un rato."));
+    return;
+  }
   const img = new Image();
   img.onload = () => buildEditor(img, onDone, onError);
   img.onerror = () => onError && onError("No se pudo abrir la foto para retocarla.");
