@@ -27,8 +27,8 @@ a{color:inherit}
 .skip{position:absolute;left:12px;top:-60px;z-index:200;background:var(--tiza);color:var(--petroleo);padding:10px 16px;border-radius:7px;font-weight:700;text-decoration:none}
 .skip:focus{top:12px}
 
-/* Bloques oscuros con textura de tiza sutil */
-.board{background-color:var(--carbon);color:var(--tiza);background-image:url(img/tiza.png);background-size:420px auto}
+/* Bloques oscuros. La textura de tiza no va detrás de textos: solo en zonas sin lectura (ver inicio.css › .hero::after). */
+.board{background-color:var(--carbon);color:var(--tiza)}
 
 /* ── Cabecera y navegación ── */
 .site-header{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;gap:20px;padding:14px 5%;min-height:68px}

@@ -1,10 +1,14 @@
 /* Inicio · composición de la muestra aprobada */
 ol.steps{list-style:none;margin:0;padding:0}
 
-/* Portada: foto a la derecha en su zona; el texto nunca va sobre la cara */
-.hero{position:relative;isolation:isolate;overflow:hidden;min-height:590px;display:flex;align-items:center}
-.hero-photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:70% center;z-index:-2}
-.hero::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,#1E2627 0%,#1E2627f2 27%,#1E2627a8 46%,#1E262700 65%)}
+/* Portada: la foto entera (cabeza y manos) en su zona a la derecha; el texto nunca va sobre ella.
+   El borde izquierdo de la foto (pizarra vacía) se funde con el fondo; la tiza va solo a la derecha de la columna de texto. */
+.hero{position:relative;isolation:isolate;overflow:hidden;display:flex;align-items:center;min-height:clamp(600px,44vw,760px)}
+.hero::after{content:"";position:absolute;top:0;bottom:0;right:0;left:calc(5% + 580px);z-index:-3;
+  background:url(img/tiza.png) 0 0/420px auto;
+  -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 120px);mask-image:linear-gradient(90deg,transparent 0,#000 120px)}
+.hero-photo{position:absolute;top:0;right:0;height:100%;width:auto;max-width:none;aspect-ratio:3/2;z-index:-2;
+  -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 24%);mask-image:linear-gradient(90deg,transparent 0,#000 24%)}
 .hero-copy{width:54%;padding:50px 5% 58px}
 .hero h1{max-width:540px}
 .hero-lead{font-size:18px;line-height:1.5;margin:0 0 16px;max-width:380px}
@@ -74,16 +78,17 @@ ol.steps{list-style:none;margin:0;padding:0}
 .quotes figcaption{font-size:15px;font-weight:700;color:var(--petroleo)}
 .quotes figcaption span{display:block;font-size:13px;font-weight:400;color:var(--gris);margin-top:5px}
 
-@media (max-width:900px){
-  .hero-copy{width:62%}
+@media (max-width:1179px){
+  .hero{flex-direction:column;align-items:stretch;min-height:0}
+  .hero::after{display:none}
+  .hero-copy{width:100%;max-width:760px;padding:44px 6% 30px}
+  .hero-photo{position:static;order:2;width:100%;height:auto;-webkit-mask-image:none;mask-image:none;z-index:0}
 }
 @media (max-width:700px){
-  .hero{flex-direction:column;align-items:stretch;min-height:0}
-  .hero::before{display:none}
-  .hero-copy{width:100%;padding:32px 24px 26px}
+  .hero-copy{padding:32px 24px 26px}
   .hero h1{font-size:48px;line-height:1.06}
   .hero-lead{font-size:17px}
-  .hero-photo{position:static;order:2;width:100%;height:330px;object-position:100% center;z-index:0}
+  .hero-photo{height:330px;object-fit:cover;object-position:100% center}
   .hero .actions{flex-direction:column;align-items:stretch}
   .split,.split-talks,.offers,.points,.topics,.quotes,.about-layout{grid-template-columns:1fr}
   .about-layout{gap:25px}
