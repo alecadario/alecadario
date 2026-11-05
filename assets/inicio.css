@@ -78,7 +78,7 @@ ol.steps{list-style:none;margin:0;padding:0}
 .quotes figcaption{font-size:15px;font-weight:700;color:var(--petroleo)}
 .quotes figcaption span{display:block;font-size:13px;font-weight:400;color:var(--gris);margin-top:5px}
 
-@media (max-width:1179px){
+@media (max-width:1239px){
   .hero{flex-direction:column;align-items:stretch;min-height:0}
   .hero::after{display:none}
   .hero-copy{width:100%;max-width:760px;padding:44px 6% 30px}
