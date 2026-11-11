@@ -12,8 +12,7 @@
   @font-face{font-family:"Nunito Sans";src:url(../assets/fonts/nunito-sans-700.woff2) format("woff2");font-weight:700}
   @font-face{font-family:"Nunito Sans";src:url(../assets/fonts/nunito-sans-800.woff2) format("woff2");font-weight:800}
   html,body{margin:0;background:#111;height:100%;overflow:hidden;font-family:"Nunito Sans",sans-serif}
-  svg{display:block;width:100vw;height:56.25vw;max-height:100vh;max-width:177.78vh;margin:0 auto}
-  body.exportar svg{width:1920px;height:1080px;max-width:none;max-height:none;margin:0}
+  svg{display:block;margin:0 auto}
   #controles{position:fixed;left:0;right:0;bottom:0;display:flex;gap:12px;align-items:center;padding:10px 16px;background:#000a;color:#F4F1EA;font-size:14px}
   body.exportar #controles{display:none}
   #controles input{flex:1}
@@ -21,15 +20,24 @@
 </style>
 </head>
 <body>
-<svg id="escena" viewBox="0 0 1920 1080" xmlns="http://www.w3.org/2000/svg"></svg>
+<svg id="escena" xmlns="http://www.w3.org/2000/svg"></svg>
 <div id="controles"><button id="play">Reproducir</button><input id="barra" type="range" min="0" step="0.01" value="0"><span id="reloj">0.00 s</span></div>
 <script src="motor.js"></script>
 <script src="subtitulos.js"></script>
 <script src="escenas-1-2.js"></script>
 <script>
   // Previsualización de trabajo. El entregable es el MP4 que genera ../render.mjs.
+  // Formato vertical: abrir index.html?formato=vertical
+  const svg = document.getElementById('escena'), { W, H } = window.FORMATO;
+  svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
+  function ajusta() {
+    const k = document.body.classList.contains('exportar') ? 1 : Math.min(innerWidth / W, (innerHeight - 48) / H);
+    svg.style.width = W * k + 'px'; svg.style.height = H * k + 'px';
+  }
+  addEventListener('resize', ajusta);
   const barra = document.getElementById('barra'), reloj = document.getElementById('reloj'), boton = document.getElementById('play');
   if (new URLSearchParams(location.search).has('exportar')) document.body.classList.add('exportar');
+  ajusta();
   barra.max = window.DURACION;
   let t = 0, andando = false, previo = 0;
   function pinta() { window.renderAt(t); barra.value = t; reloj.textContent = t.toFixed(2) + ' s'; }

@@ -1,7 +1,8 @@
 // Exporta la animación a MP4 (H.264, 1920 × 1080) fotograma a fotograma,
 // y escribe los subtítulos SRT / VTT desde src/subtitulos.js.
 //
-//   node render.mjs                      → salida/muestra-escenas-1-2.mp4 (+ .srt, .vtt, portada)
+//   node render.mjs                      → salida/muestra-escenas-1-2.mp4 (+ .srt, .vtt)
+//   node render.mjs --formato vertical   → salida/muestra-escenas-1-2-vertical.mp4 (1080 × 1920)
 //   node render.mjs --fotos 1.5,8.6,21   → solo fotogramas PNG de control en salida/control/
 //
 // Requiere: Node, Playwright con Chromium y ffmpeg en el PATH.
@@ -18,13 +19,15 @@ catch { ({ chromium } = require('/opt/node-tools/node_modules/playwright')); }
 
 const AQUI = path.dirname(fileURLToPath(import.meta.url));
 const SALIDA = path.join(AQUI, 'salida');
-const NOMBRE = 'muestra-escenas-1-2';
+const VERTICAL = process.argv.includes('vertical');
+const NOMBRE = 'muestra-escenas-1-2' + (VERTICAL ? '-vertical' : '');
+const [ANCHO, ALTO] = VERTICAL ? [1080, 1920] : [1920, 1080];
 const FPS = 30;
 const arg = (n) => { const i = process.argv.indexOf(n); return i > -1 ? process.argv[i + 1] : null; };
 
 const navegador = await chromium.launch();
-const pagina = await navegador.newPage({ viewport: { width: 1920, height: 1080 }, deviceScaleFactor: 1 });
-await pagina.goto(pathToFileURL(path.join(AQUI, 'src/index.html')).href + '?exportar');
+const pagina = await navegador.newPage({ viewport: { width: ANCHO, height: ALTO }, deviceScaleFactor: 1 });
+await pagina.goto(pathToFileURL(path.join(AQUI, 'src/index.html')).href + '?exportar' + (VERTICAL ? '&formato=vertical' : ''));
 await pagina.evaluate(() => window.listo);
 const { duracion, subs } = await pagina.evaluate(() => ({ duracion: window.DURACION, subs: window.SUBTITULOS }));
 const foto = async (t) => { await pagina.evaluate((x) => window.renderAt(x), t); return pagina.screenshot({ type: 'png' }); };
@@ -32,8 +35,9 @@ const foto = async (t) => { await pagina.evaluate((x) => window.renderAt(x), t);
 mkdirSync(SALIDA, { recursive: true });
 if (arg('--fotos')) {
   mkdirSync(path.join(SALIDA, 'control'), { recursive: true });
+  const pre = VERTICAL ? 'v' : 'h';
   for (const t of arg('--fotos').split(',').map(Number)) {
-    writeFileSync(path.join(SALIDA, 'control', `t-${t.toFixed(2).padStart(5, '0')}.png`), await foto(t));
+    writeFileSync(path.join(SALIDA, 'control', `${pre}-${t.toFixed(2).padStart(5, '0')}.png`), await foto(t));
   }
 } else {
   const mp4 = path.join(SALIDA, `${NOMBRE}.mp4`);
