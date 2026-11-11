@@ -23,11 +23,11 @@
 <svg id="escena" xmlns="http://www.w3.org/2000/svg"></svg>
 <div id="controles"><button id="play">Reproducir</button><input id="barra" type="range" min="0" step="0.01" value="0"><span id="reloj">0.00 s</span></div>
 <script src="motor.js"></script>
-<script src="subtitulos.js"></script>
-<script src="escenas-1-2.js"></script>
+<script src="montajes.js"></script>
+<script src="escenas.js"></script>
 <script>
   // Previsualización de trabajo. El entregable es el MP4 que genera ../render.mjs.
-  // Formato vertical: abrir index.html?formato=vertical
+  // Montaje web (horizontal): index.html · Montaje redes (vertical): index.html?montaje=redes
   const svg = document.getElementById('escena'), { W, H } = window.FORMATO;
   svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
   function ajusta() {

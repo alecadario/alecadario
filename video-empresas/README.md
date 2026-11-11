@@ -5,42 +5,54 @@ enlaza y no debe publicarse tal cual (ver «Antes de integrar»).
 
 ## Estado
 
-**Muestra de las escenas 1 y 2 en dos formatos** (23 s, 30 fps, mismos tiempos).
-Sin locución: llevan subtítulos temporizados provisionales incrustados y un rótulo
-que las identifica como muestra. Las escenas 3 a 8 y el montaje breve para redes
-(45–60 s) no están producidos.
+**Dos montajes completos de trabajo**, sin locución ni fotos (pendientes de elegir).
+Llevan subtítulos temporizados provisionales incrustados y un rótulo que los
+identifica como montaje de trabajo. No son la versión final.
 
 | Archivo | Qué es |
 | --- | --- |
-| `salida/muestra-escenas-1-2.mp4` | Horizontal 1920 × 1080 para la web (H.264, sin pista de audio) |
-| `salida/muestra-escenas-1-2-vertical.mp4` | Vertical 1080 × 1920 para Reels / TikTok, con composición propia |
-| `salida/muestra-escenas-1-2.srt` / `.vtt` | Subtítulos como archivo (valen para los dos formatos) |
-| `salida/muestra-fotograma-referencia.png` | Fotograma fijo horizontal de referencia (no es la portada final) |
+| `salida/video-empresas-web-horizontal.mp4` | alecadario.com · 1920 × 1080 · guion completo, escenas 1 a 8 · 2 min 26 s |
+| `salida/video-empresas-web-horizontal.srt` / `.vtt` | Subtítulos del montaje web |
+| `salida/video-empresas-redes-vertical.mp4` | Reels / TikTok · 1080 × 1920 · historia condensada · 60 s |
+| `salida/video-empresas-redes-vertical.srt` / `.vtt` | Subtítulos del montaje de redes |
+| `salida/opciones-fotos-*.jpg` | Fotos existentes en el repositorio de la web, para elegir |
 
-En vertical se reservan 260 px arriba, 480 px abajo y la columna derecha para los
-controles y textos de las aplicaciones; son márgenes orientativos, a comprobar en
-un teléfono con cada aplicación.
+Ambos MP4 son H.264 a 30 fps, sin pista de audio.
+
+- **Web**: cierra con «Conocé el Método Oike».
+- **Redes**: abre con «Compraste las pesas. ¿Cuánto cambió?», omite las escenas 4
+  (recetas) y 7 (preguntas para actuar) y cierra con «Conocé el Método Oike en
+  alecadario.com». Su guion es una condensación del guion base, a validar por Ale.
+  Reserva 260 px arriba, 480 px abajo y los bordes para los controles y textos de las
+  aplicaciones; son márgenes orientativos, a comprobar en un teléfono.
+
+## Pendiente
+
+- Locución definitiva (o voz provisional): los tiempos se reajustan con ella.
+- Fotos de Ale para las escenas 6 y 8: hoy ambas están resueltas sin foto.
+- Portada, música (opcional, con licencia) y versión sin rótulo de trabajo.
 
 ## Proyecto editable
 
-- `src/subtitulos.js` — textos y tiempos de los subtítulos (fuente única del video, SRT y VTT).
-- `src/escenas-1-2.js` — dibujos y transformaciones; los tiempos están en el bloque `T` y la
-  composición de cada formato en `HORIZONTAL` y `VERTICAL`.
+- `src/montajes.js` — por montaje: formato, orden de escenas, tiempos de cada acción y
+  subtítulos (fuente única del texto incrustado y de los SRT / VTT).
+- `src/escenas.js` — dibujos y transformaciones de las ocho escenas, y la composición
+  de cada formato (`HORIZONTAL` y `VERTICAL`).
 - `src/motor.js` — paleta Pizarra, primitivas de dibujo e interpolaciones.
-- `src/index.html` — previsualización de trabajo con barra de tiempo (abrir en el navegador;
-  agregar `?formato=vertical` para el formato de redes).
+- `src/index.html` — previsualización con barra de tiempo (abrir en el navegador;
+  agregar `?montaje=redes` para el vertical).
 - `render.mjs` — exporta el MP4 fotograma a fotograma.
 
 ```bash
-node render.mjs
+node render.mjs --montaje web
 ```
 
 ```bash
-node render.mjs --formato vertical
+node render.mjs --montaje redes
 ```
 
 ```bash
-node render.mjs --fotos 1.6,8.8,21.5
+node render.mjs --montaje redes --fotos 4.5,14.8,59.5
 ```
 
 Requiere Node, Playwright con Chromium y ffmpeg.
@@ -49,9 +61,9 @@ Requiere Node, Playwright con Chromium y ffmpeg.
 
 - Tipografías Caveat Brush, Caveat y Nunito Sans, copiadas de `assets/fonts/` de la web
   (SIL Open Font License, `assets/fonts/OFL.txt`).
-- `assets/tiza.png`: textura de tiza de la web, usada solo en la zona de dibujo oscura.
-- Todos los dibujos están hechos por código para este video. La muestra no usa fotos,
-  música ni voz.
+- `assets/tiza.png`: textura de tiza de la web, usada solo en zonas de dibujo oscuras.
+- Todos los dibujos están hechos por código para este video. Los montajes no usan
+  fotos, música ni voz.
 
 ## Antes de integrar
 
