@@ -5,9 +5,10 @@ enlaza y no debe publicarse tal cual (ver «Antes de integrar»).
 
 ## Estado
 
-**Dos montajes completos de trabajo**, sin locución ni fotos (pendientes de elegir).
-Llevan subtítulos temporizados provisionales incrustados y un rótulo que los
-identifica como montaje de trabajo. No son la versión final.
+**Video 1 de 3 (empresas / gimnasio): contenido y dirección visual aprobados por Ale
+para web y redes.** Queda pendiente solo el acabado final: fotos, voz, música y
+sincronización. Los MP4 son montajes de trabajo: llevan subtítulos temporizados
+provisionales incrustados y un rótulo que los identifica como tales.
 
 | Archivo | Qué es |
 | --- | --- |
@@ -26,11 +27,18 @@ Ambos MP4 son H.264 a 30 fps, sin pista de audio.
   Reserva 260 px arriba, 480 px abajo y los bordes para los controles y textos de las
   aplicaciones; son márgenes orientativos, a comprobar en un teléfono.
 
-## Pendiente
+## Pendiente (acabado final)
 
-- Locución definitiva (o voz provisional): los tiempos se reajustan con ella.
-- Fotos de Ale para las escenas 6 y 8: hoy ambas están resueltas sin foto.
-- Portada, música (opcional, con licencia) y versión sin rótulo de trabajo.
+Se decide al final, cuando estén preparados los tres videos (empresas / gimnasio,
+Método Oike y Oike Impacto), para definir una dirección sonora común:
+
+- Voz y música. Hasta entonces se trabaja con textos y subtítulos temporizados.
+- Fotos de Ale para las escenas 6 y 8: no incorporar ninguna hasta que Ale indique
+  cuáles; las composiciones están resueltas sin foto.
+- Sincronización con la locución: duración, pausas y animaciones se ajustan en
+  `src/montajes.js`. Los 60 s del vertical son una referencia provisional.
+- Portada y versión sin rótulo de trabajo.
+- Propuesta de ubicación de cada video en alecadario.com (sin modificar la web).
 
 ## Proyecto editable
 
